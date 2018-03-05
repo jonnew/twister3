@@ -4,6 +4,7 @@
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include <StepControl.h>
+//#include <Serial.h>
 
 #define POSGREY(sum)                                                           \
     (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011)
@@ -25,6 +26,9 @@
 #define ENC_1 23
 #define ENC_B 21
 
+// Settings address start
+#define SETTINGS_ADDR_START 0
+
 //#define DEBUG
 
 // Rotary encoder state
@@ -35,14 +39,15 @@ int encoder_dir_ = 0;
 int last_enc_ = 0;
 
 // Device Mode
-volatile int mode_idx_ = 0;
+int mode_idx_ = 0;
 const int num_modes_ = 2;
+float mode_idx_inc_  = 0.0;
 
 // Device parameters (match number of modes)
 // [0] for tt twisting
 // [1] for spool winding
 float forward_turns_[num_modes_] = {50, 100};
-float back_turns_[num_modes_] = {40, 0};
+float back_turns_[num_modes_] = {0, 0};
 float turn_speed_rpm_[num_modes_] = {700, 100};
 const float knob_gain_[num_modes_] = {0.3, 10};
 
@@ -63,19 +68,30 @@ LiquidCrystal lcd(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 elapsedMillis sinceButtonChange;
 
+// Setting state load/save
 void loadSettings()
 {
-    int addr = 0;
+    int addr = SETTINGS_ADDR_START;
+
+    byte good_settings = 0x0;
+    EEPROM.get(addr, good_settings); // check good settings flag
+    if (good_settings != 0x12) return;
+
     for (int i = 0; i < num_modes_; i++) {
         EEPROM.get(addr += sizeof(float), forward_turns_[i]);
         EEPROM.get(addr += sizeof(float), back_turns_[i]);
         EEPROM.get(addr += sizeof(float), turn_speed_rpm_[i]);
     }
+
+    //Serial.println("Fwd turns:");
+    //Serial.println(forward_turns_[0]);
 }
 
 void saveSettings()
 {
-    int addr = 0;
+    int addr = SETTINGS_ADDR_START;
+    EEPROM.put(addr, 0x12); // good settings flag
+
     for (int i = 0; i < num_modes_; i++) {
         EEPROM.put(addr += sizeof(float), forward_turns_[i]);
         EEPROM.put(addr += sizeof(float), back_turns_[i]);
@@ -92,7 +108,7 @@ void saveSettings()
 static int readButton(int pin,
                       int *value,
                       int min_hold_usec = 0,
-                      size_t min_interval_msec = 0,
+                      size_t min_interval_msec = 10,
                       bool hold_value = false,
                       int desired_value = -1)
 {
@@ -100,13 +116,13 @@ static int readButton(int pin,
         return -1;
 
     // Make sure button state equals desired value for at least min_hold_usec
-    *value = digitalRead(pin);
+    *value = digitalReadFast(pin);
 
     if (desired_value != 1 && desired_value != *value)
         return -2;
 
     for (int i = 0; i < min_hold_usec; i++) {
-        if (*value != digitalRead(pin))
+        if (*value != digitalReadFast(pin))
             return -1;
         delayMicroseconds(1);
     }
@@ -119,7 +135,7 @@ static int readButton(int pin,
 
     // See if the user keeps button held for HOLD_MSEC
     while (sinceButtonChange < HOLD_MSEC) {
-        if (*value != digitalRead(pin))
+        if (*value != digitalReadFast(pin))
             return 1;
     }
 
@@ -131,7 +147,7 @@ int executeTwist(void)
     int rc = 0;
 
     // Unsleep the driver
-    digitalWrite(MOT_EN, LOW);
+    digitalWriteFast(MOT_EN, LOW);
 
     // Set speed
     auto max_speed = (float)USTEPS_PER_REV * turn_speed_rpm_[mode_idx_] / 60.0;
@@ -169,11 +185,12 @@ int executeTwist(void)
     }
 
     // Sleep the driver
-    digitalWrite(MOT_EN, HIGH);
+    digitalWriteFast(MOT_EN, HIGH);
 
     // 0 = successful move
     // 1 = emergency stop
     return rc;
+
 }
 
 // Return 0 if nothing has happended
@@ -196,18 +213,19 @@ int updateEncoder()
     last_enc_ = encoded; // store this value for next time
 
     // Get direction
-    if (POSGREY(sum))
+    if (POSGREY(sum)) {
         encoder_dir_ = 1;
-    else if (NEGGREY(sum))
+        disp_update_requested = true;
+        return 1;
+    } else if (NEGGREY(sum)) {
         encoder_dir_ = -1;
-    else
+        disp_update_requested = true;
+        return 1;
+    } else {
         encoder_dir_ = 0;
+        return 0;
+    }
 
-    // Set flags
-    disp_update_requested = true;
-
-    // interrupts();
-    return 1;
 }
 
 void toggleParam()
@@ -243,27 +261,27 @@ void toggleParam()
 
 void setup()
 {
-    // Get parameters from last use
-    loadSettings();
+    //Serial.begin(9600);
 
     pinMode(encoder_p0_, INPUT);
     pinMode(encoder_p1_, INPUT);
     pinMode(encoder_but_, INPUT);
 
     pinMode(MOT_EN, OUTPUT);
-    digitalWrite(MOT_EN, HIGH);
+    digitalWriteFast(MOT_EN, HIGH);
 
-    // attachInterrupt(encoder_p0_, updateEncoder, CHANGE);
-    // attachInterrupt(encoder_p1_, updateEncoder, CHANGE);
     attachInterrupt(encoder_but_, toggleParam, FALLING);
 
     lcd.begin(16, 2);
-    lcd.print(F("twister3!"));
+    lcd.print(F("twister3"));
     lcd.setCursor(0, 1);
     lcd.print(F("JPN MWL MIT"));
 
     delay(2000);
     disp_update_requested = true;
+
+    // Get parameters from last use
+    loadSettings();
 }
 
 void loop()
@@ -294,7 +312,8 @@ void loop()
             }
             case sel_mode: {
                 if (encoder_dir_ != 0)
-                    mode_idx_ = (mode_idx_ += 1) % num_modes_;
+                    mode_idx_inc_ += 0.25; // HACK :)
+                    mode_idx_ = (mode_idx_ += mode_idx_inc_) % num_modes_;
                 break;
             }
         }
