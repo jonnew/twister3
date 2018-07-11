@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.001429" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
@@ -46,19 +46,19 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -206,10 +206,9 @@ Compatible</text>
 <hole x="99.46" y="63.39" drill="3"/>
 <hole x="187.8" y="63.39" drill="3"/>
 <hole x="187.8" y="3.85" drill="3"/>
-<text x="-7" y="-4.1" size="1.016" layer="51" rot="R180">0.5" standoffs</text>
 <wire x1="95.5" y1="1" x2="95.5" y2="-1" width="0.127" layer="51"/>
 <wire x1="94.5" y1="0" x2="96.5" y2="0" width="0.127" layer="51"/>
-<text x="95.5" y="-3" size="1.016" layer="51">Top Board Origin</text>
+<text x="96.5" y="-2" size="1.016" layer="51">Top Board Origin</text>
 <wire x1="0.5" y1="51" x2="0.5" y2="16" width="0" layer="20"/>
 <wire x1="0.5" y1="16" x2="16" y2="0.5" width="0" layer="20"/>
 <wire x1="95.5" y1="51" x2="95.5" y2="16" width="0" layer="20"/>
@@ -223,12 +222,8 @@ Compatible</text>
 <wire x1="107.5" y1="53.5" x2="107.5" y2="28.5" width="0" layer="20"/>
 <wire x1="108.5" y1="27.5" x2="178.5" y2="27.5" width="0" layer="20"/>
 <wire x1="179.5" y1="28.5" x2="179.5" y2="53.5" width="0" layer="20"/>
-<text x="18.1" y="-23.2" size="1.016" layer="51">- Teensy goes on bottom with top of board facing up. 
-- Silent stepper stick goes on bottom with top of board facing down
-- Inner holes are for 1/2" standoffs</text>
 <circle x="160.5" y="12" radius="4.75" width="0.05" layer="20"/>
 <wire x1="178.5" y1="54.5" x2="108.5" y2="54.5" width="0" layer="20"/>
-<wire x1="-6.5" y1="-4" x2="10" y2="10.4" width="0.01" layer="51"/>
 <wire x1="107.5" y1="53.5" x2="108.5" y2="54.5" width="0" layer="20" curve="-233.130102"/>
 <wire x1="108.5" y1="27.5" x2="107.5" y2="28.5" width="0" layer="20" curve="-233.130102"/>
 <wire x1="179.5" y1="28.5" x2="178.5" y2="27.5" width="0" layer="20" curve="-233.130102"/>
@@ -3026,6 +3021,24 @@ MIT 2018</text>
 <rectangle x1="126.5023875" y1="60.579" x2="126.86560625" y2="60.61506875" layer="21"/>
 <rectangle x1="127.2643875" y1="60.579" x2="127.59204375" y2="60.61506875" layer="21"/>
 <rectangle x1="113.728728125" y1="60.61506875" x2="113.982728125" y2="60.6513875" layer="21"/>
+<hole x="85" y="46.5" drill="3"/>
+<hole x="6.5" y="48" drill="3"/>
+<hole x="6" y="19" drill="3"/>
+<circle x="85" y="46.5" radius="3.5" width="0" layer="39"/>
+<circle x="6.5" y="48" radius="3.5" width="0" layer="39"/>
+<circle x="6" y="19" radius="3.5" width="0" layer="39"/>
+<circle x="78" y="13.5" radius="3.5" width="0" layer="39"/>
+<hole x="78" y="13.5" drill="3"/>
+<circle x="45.5" y="63" radius="3.5" width="0" layer="39"/>
+<hole x="45.5" y="63" drill="3"/>
+<text x="4" y="21.5" size="1.27" layer="21" font="vector" ratio="18">M1</text>
+<text x="5" y="50.5" size="1.27" layer="21" font="vector" ratio="18">M2</text>
+<text x="41" y="62.5" size="1.27" layer="21" font="vector" ratio="18">M3</text>
+<text x="84" y="48.5" size="1.27" layer="21" font="vector" ratio="18">M4</text>
+<text x="77" y="16" size="1.27" layer="21" font="vector" ratio="18">M5</text>
+<text x="17.5" y="77" size="1.27" layer="51" font="vector" ratio="18">- Board to panel stack height:  12 mm.
+- Teensy goes on bottom with top of teensy facing up (when board is flipped)
+- Silent stepper stick goes on bottom with top of module facing down (whe board flipped)</text>
 </plain>
 <libraries>
 <library name="jonnew">
@@ -3501,6 +3514,55 @@ Source: smt-pots.pdf</description>
 <wire x1="1.6" y1="-1.2" x2="-1.6" y2="-1.2" width="0.127" layer="21"/>
 <wire x1="-1.6" y1="-1.2" x2="-1.6" y2="1.2" width="0.127" layer="21"/>
 </package>
+<package name="LCD-16X2">
+<description>&lt;h3&gt;LCD-16x2&lt;/h3&gt;
+&lt;p&gt;For Standard hitatchi type LCDs with backlight.  Has 16 pin connection, silk outiline, and mounting holes.&lt;/p&gt;
+
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 16&lt;/li&gt;
+&lt;li&gt;Pin pitch: 0.1"&lt;/li&gt;
+&lt;li&gt;Area: &lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Datasheet referenced for footprint:&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s): 
+&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/255"&gt;Basic 16x2 LCD&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<wire x1="-40" y1="18" x2="40" y2="18" width="0.2032" layer="21"/>
+<wire x1="40" y1="18" x2="40" y2="-18" width="0.2032" layer="21"/>
+<wire x1="40" y1="-18" x2="-40" y2="-18" width="0.2032" layer="21"/>
+<wire x1="-40" y1="-18" x2="-40" y2="18" width="0.2032" layer="21"/>
+<wire x1="-35.65" y1="13.15" x2="35.65" y2="13.15" width="0.2032" layer="21"/>
+<wire x1="35.65" y1="13.15" x2="35.65" y2="-13.15" width="0.2032" layer="21"/>
+<wire x1="35.65" y1="-13.15" x2="-35.65" y2="-13.15" width="0.2032" layer="21"/>
+<wire x1="-35.65" y1="-13.15" x2="-35.65" y2="13.15" width="0.2032" layer="21"/>
+<wire x1="-32.25" y1="8.2" x2="32.25" y2="8.2" width="0.2032" layer="47"/>
+<wire x1="32.25" y1="8.2" x2="32.25" y2="-8.2" width="0.2032" layer="47"/>
+<wire x1="32.25" y1="-8.2" x2="-32.25" y2="-8.2" width="0.2032" layer="47"/>
+<wire x1="-32.25" y1="-8.2" x2="-32.25" y2="8.2" width="0.2032" layer="47"/>
+<pad name="1" x="-32" y="15.5" drill="1.016" diameter="1.8796" shape="square"/>
+<pad name="2" x="-29.46" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="3" x="-26.92" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="4" x="-24.38" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="5" x="-21.84" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="6" x="-19.3" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="7" x="-16.76" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="8" x="-14.22" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="9" x="-11.68" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="10" x="-9.14" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="11" x="-6.6" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="12" x="-4.06" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="13" x="-1.52" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="14" x="1.02" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="15" x="3.56" y="15.5" drill="1.016" diameter="1.8796"/>
+<pad name="16" x="6.1" y="15.5" drill="1.016" diameter="1.8796"/>
+<text x="-34.29" y="15.24" size="1.016" layer="51" ratio="15">1</text>
+<text x="-31.75" y="19.05" size="0.6096" layer="25" font="vector" ratio="20">&gt;Name</text>
+<text x="-31.75" y="-19.05" size="0.6096" layer="27" font="vector" ratio="20" align="top-left">&gt;Value</text>
+<hole x="-37.5" y="15.5" drill="4"/>
+<hole x="-37.5" y="-15.5" drill="4"/>
+<hole x="37.5" y="15.5" drill="4"/>
+<hole x="37.5" y="-15.5" drill="4"/>
+</package>
 </packages>
 </library>
 <library name="cyclops">
@@ -3570,72 +3632,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pad name="5" x="4" y="7" drill="1.1" diameter="1.778"/>
 <text x="-6.35" y="3.81" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;Name</text>
 <text x="6.35" y="3.81" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center">&gt;Value</text>
-</package>
-</packages>
-</library>
-<library name="SparkFun-Displays">
-<description>&lt;h3&gt;SparkFun Displays&lt;/h3&gt;
-This library contains LCDs, OLEDs, etc. 
-&lt;br&gt;
-&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
-&lt;br&gt;
-&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
-&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;
-&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="LCD-16X2">
-<description>&lt;h3&gt;LCD-16x2&lt;/h3&gt;
-&lt;p&gt;For Standard hitatchi type LCDs with backlight.  Has 16 pin connection, silk outiline, and mounting holes.&lt;/p&gt;
-
-&lt;p&gt;Specifications:
-&lt;ul&gt;&lt;li&gt;Pin count: 16&lt;/li&gt;
-&lt;li&gt;Pin pitch: 0.1"&lt;/li&gt;
-&lt;li&gt;Area: &lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Datasheet referenced for footprint:&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;Example device(s): 
-&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/255"&gt;Basic 16x2 LCD&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;</description>
-<wire x1="-40" y1="18" x2="40" y2="18" width="0.2032" layer="21"/>
-<wire x1="40" y1="18" x2="40" y2="-18" width="0.2032" layer="21"/>
-<wire x1="40" y1="-18" x2="-40" y2="-18" width="0.2032" layer="21"/>
-<wire x1="-40" y1="-18" x2="-40" y2="18" width="0.2032" layer="21"/>
-<wire x1="-35.65" y1="13.15" x2="35.65" y2="13.15" width="0.2032" layer="21"/>
-<wire x1="35.65" y1="13.15" x2="35.65" y2="-13.15" width="0.2032" layer="21"/>
-<wire x1="35.65" y1="-13.15" x2="-35.65" y2="-13.15" width="0.2032" layer="21"/>
-<wire x1="-35.65" y1="-13.15" x2="-35.65" y2="13.15" width="0.2032" layer="21"/>
-<wire x1="-32.25" y1="8.2" x2="32.25" y2="8.2" width="0.2032" layer="47"/>
-<wire x1="32.25" y1="8.2" x2="32.25" y2="-8.2" width="0.2032" layer="47"/>
-<wire x1="32.25" y1="-8.2" x2="-32.25" y2="-8.2" width="0.2032" layer="47"/>
-<wire x1="-32.25" y1="-8.2" x2="-32.25" y2="8.2" width="0.2032" layer="47"/>
-<pad name="1" x="-32" y="15.5" drill="1.016" diameter="1.8796" shape="square"/>
-<pad name="2" x="-29.46" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="-26.92" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="4" x="-24.38" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="5" x="-21.84" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="6" x="-19.3" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="7" x="-16.76" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="8" x="-14.22" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="9" x="-11.68" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="10" x="-9.14" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="11" x="-6.6" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="12" x="-4.06" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="13" x="-1.52" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="14" x="1.02" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="15" x="3.56" y="15.5" drill="1.016" diameter="1.8796"/>
-<pad name="16" x="6.1" y="15.5" drill="1.016" diameter="1.8796"/>
-<text x="-34.29" y="15.24" size="1.016" layer="51" ratio="15">1</text>
-<hole x="-37.5" y="15.5" drill="2.8"/>
-<hole x="-37.5" y="-15.5" drill="2.8"/>
-<hole x="37.5" y="15.5" drill="2.8"/>
-<hole x="37.5" y="-15.5" drill="2.8"/>
-<text x="-31.75" y="19.05" size="0.6096" layer="25" font="vector" ratio="20">&gt;Name</text>
-<text x="-31.75" y="-19.05" size="0.6096" layer="27" font="vector" ratio="20" align="top-left">&gt;Value</text>
 </package>
 </packages>
 </library>
@@ -4032,7 +4028,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="51.79" y="11.25" size="1.016" layer="26" font="vector" ratio="19" rot="MR0"/>
 <attribute name="VALUE" x="49.54" y="11.25" size="1.016" layer="28" font="vector" ratio="19" rot="MR0"/>
 </element>
-<element name="U2" library="SparkFun-Displays" package="LCD-16X2" value="GDM1602K" x="48" y="41" smashed="yes">
+<element name="U2" library="jonnew" package="LCD-16X2" value="GDM1602K" x="48" y="41" smashed="yes">
 <attribute name="NAME" x="8.6" y="21.7" size="1.016" layer="25" font="vector" ratio="19"/>
 <attribute name="SF_ID" value="LCD-00255" x="48" y="41" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="8.6" y="21.2" size="1.016" layer="27" font="vector" ratio="19" align="top-left"/>
@@ -4097,9 +4093,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="C6" library="jonnew" package="0805" value="1uF" x="55.6" y="20" smashed="yes" rot="MR90">
 <attribute name="DK" value="" x="55.6" y="20" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MN" value="TDK Corp." x="55.6" y="20" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="57.04" y="22.75" size="1.016" layer="26" font="vector" ratio="19" rot="MR90"/>
+<attribute name="NAME" x="58.54" y="19.75" size="1.016" layer="26" font="vector" ratio="19" rot="MR90"/>
 <attribute name="PARTNO" value="C2012X5R1Cxxxxxxx" x="55.6" y="20" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="VALUE" x="55.79" y="22.75" size="1.016" layer="28" font="vector" ratio="19" rot="MR90"/>
+<attribute name="VALUE" x="57.29" y="19.75" size="1.016" layer="28" font="vector" ratio="19" rot="MR90"/>
 <attribute name="VID" value="DK" x="55.6" y="20" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R3" library="jonnew" package="0805" value="4.7k" x="44.4" y="18.6" smashed="yes" rot="MR180">
@@ -4123,8 +4119,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="76.04" y="22.75" size="1.016" layer="28" font="vector" ratio="19" rot="MR90"/>
 </element>
 <element name="C7" library="jonnew" package="7343M" value="T491D227M010AT" x="70.838" y="30.206" smashed="yes" rot="MR270">
-<attribute name="NAME" x="65.54" y="23.75" size="1.016" layer="26" font="vector" ratio="19" rot="MR90"/>
-<attribute name="VALUE" x="64.29" y="23.75" size="1.016" layer="28" font="vector" ratio="19" rot="MR90"/>
+<attribute name="NAME" x="66.25" y="31.46" size="1.016" layer="25" font="vector" ratio="19" rot="R180"/>
+<attribute name="VALUE" x="66.25" y="30.21" size="1.016" layer="27" font="vector" ratio="19" rot="R180"/>
 </element>
 <element name="C8" library="jonnew" package="7343M" value="T491D156K035AT" x="89.648" y="34.22" smashed="yes" rot="MR270">
 <attribute name="NAME" x="95.54" y="27.75" size="1.016" layer="26" font="vector" ratio="19" rot="MR90"/>
@@ -4269,9 +4265,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="37.92" y1="8.35" x2="38.35" y2="8.35" width="1" layer="1"/>
 <wire x1="38.35" y1="8.35" x2="40.5" y2="10.5" width="1" layer="1"/>
 <wire x1="40.5" y1="10.5" x2="40.5" y2="23" width="1" layer="1"/>
-<wire x1="40.5" y1="23" x2="45.25" y2="27.75" width="1" layer="1"/>
-<wire x1="45.25" y1="27.75" x2="60.25" y2="27.75" width="1" layer="1"/>
-<wire x1="60.25" y1="27.75" x2="64.5" y2="32" width="1" layer="1"/>
+<wire x1="60.75" y1="28.25" x2="64.5" y2="32" width="1" layer="1"/>
 <wire x1="60.5" y1="48.5" x2="63.5" y2="48.5" width="1" layer="1"/>
 <wire x1="63.5" y1="48.5" x2="64.5" y2="47.5" width="1" layer="1"/>
 <wire x1="64.5" y1="47.5" x2="64.5" y2="32" width="1" layer="1"/>
@@ -4281,6 +4275,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="33.65" y1="21.05" x2="34.9" y2="19.8" width="1" layer="16"/>
 <wire x1="34.9" y1="19.8" x2="34.9" y2="17.95" width="1" layer="16"/>
 <wire x1="34.9" y1="17.95" x2="33.5" y2="16.55" width="1" layer="16"/>
+<wire x1="45.75" y1="28.25" x2="60.75" y2="28.25" width="1" layer="1"/>
+<wire x1="40.5" y1="23" x2="45.75" y2="28.25" width="1" layer="1"/>
 </signal>
 <signal name="N$4">
 <contactref element="R6" pad="1"/>
@@ -4593,14 +4589,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <signal name="RS">
 <contactref element="U2" pad="4"/>
 <contactref element="U10" pad="0"/>
-<wire x1="12.4" y1="24.71299375" x2="12.4" y2="26.28700625" width="0.2" layer="1"/>
-<wire x1="12.4" y1="26.28700625" x2="12" y2="26.68700625" width="0.2" layer="1"/>
-<wire x1="12.3" y1="24.61299375" x2="12.4" y2="24.71299375" width="0.2" layer="1"/>
-<wire x1="12.3" y1="16.19" x2="12.3" y2="24.61299375" width="0.2" layer="1"/>
 <wire x1="23.62" y1="55.62" x2="12" y2="44" width="0.2" layer="1"/>
-<wire x1="12" y1="26.68700625" x2="12" y2="44" width="0.2" layer="1"/>
-<wire x1="22.68" y1="5.81" x2="12.3" y2="16.19" width="0.2" layer="1"/>
+<wire x1="12" y1="44" x2="12" y2="32" width="0.2" layer="1"/>
 <wire x1="23.62" y1="56.5" x2="23.62" y2="55.62" width="0.2" layer="1"/>
+<wire x1="12" y1="19.5" x2="12" y2="16.49" width="0.2" layer="1"/>
+<wire x1="12" y1="16.49" x2="22.68" y2="5.81" width="0.2" layer="1"/>
+<wire x1="12" y1="32" x2="7.5" y2="27.5" width="0.2" layer="1"/>
+<wire x1="7.5" y1="27.5" x2="7.5" y2="24" width="0.2" layer="1"/>
+<wire x1="7.5" y1="24" x2="12" y2="19.5" width="0.2" layer="1"/>
 </signal>
 <signal name="RW">
 <contactref element="U2" pad="5"/>
@@ -5254,8 +5250,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <polygon width="0.2" layer="16" thermals="no">
 <vertex x="68" y="58"/>
 <vertex x="68" y="52"/>
-<vertex x="85" y="52"/>
-<vertex x="85" y="41"/>
+<vertex x="83.3" y="52"/>
+<vertex x="83.3" y="41"/>
 <vertex x="80.9" y="41"/>
 <vertex x="80.9" y="37.5"/>
 <vertex x="85" y="37.5"/>
@@ -5473,31 +5469,31 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </signals>
 <errors>
 <approved hash="19,16,7006cd062ac66e21"/>
-<approved hash="19,16,88b969751370f2bc"/>
-<approved hash="19,16,0b60ed0c97097165"/>
 <approved hash="19,16,739d9479ee7c0998"/>
+<approved hash="19,16,88b969751370f2bc"/>
 <approved hash="19,16,8fd2104a6a4ff5d7"/>
-<approved hash="19,16,4559763d0c303f54"/>
-<approved hash="19,16,be7d8b31f13cc470"/>
+<approved hash="19,16,0b60ed0c97097165"/>
 <approved hash="19,16,b916f20e8803c31b"/>
+<approved hash="19,16,be7d8b31f13cc470"/>
+<approved hash="19,16,4559763d0c303f54"/>
 <approved hash="19,16,3da40f48754547a9"/>
-<approved hash="19,16,db5a45c23fc6a15e"/>
-<approved hash="19,16,dc313cfd46f9a635"/>
 <approved hash="19,16,5fe8b884c28025ec"/>
+<approved hash="19,16,dc313cfd46f9a635"/>
+<approved hash="19,16,db5a45c23fc6a15e"/>
 <approved hash="19,16,2742c19abb9e5d46"/>
 <approved hash="19,16,dd241d2c1d6add62"/>
 <approved hash="19,16,087905630595088f"/>
 <approved hash="19,16,c008120a6dcbbfc9"/>
 <approved hash="19,16,bf44931c7ceb2a4f"/>
 <approved hash="19,16,ac8071f24e6c6dfa"/>
-<approved hash="19,16,149d07857d9a6e82"/>
 <approved hash="19,16,13f67eba04a569e9"/>
 <approved hash="19,16,902ffac380dcea30"/>
 <approved hash="19,16,e8d283b6f9a992cd"/>
-<approved hash="19,16,f6c2e95a935d8cc5"/>
-<approved hash="19,16,f1a99065ea628bae"/>
-<approved hash="19,16,7270141c6e1b0877"/>
+<approved hash="19,16,149d07857d9a6e82"/>
 <approved hash="19,16,0a8d6d69176e708a"/>
+<approved hash="19,16,f6c2e95a935d8cc5"/>
+<approved hash="19,16,7270141c6e1b0877"/>
+<approved hash="19,16,f1a99065ea628bae"/>
 <approved hash="19,16,0b68b6ec8a46ce25"/>
 </errors>
 </board>
