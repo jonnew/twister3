@@ -1,5 +1,5 @@
 ---
-title: MWL twister3 User Manual
+title: MWL `twister3` User Manual
 author:
     - Jonathan P. Newman (github [jonnew](http://www.mit.edu/~jpnewman/))
 date: \today{}
@@ -18,10 +18,12 @@ reference-section-title: true
 
 \newpage
 
-**MWL twister3** 
+**MWL `twister3`** 
 
-Code and hardware designs for the MWL `twister3`, a simple and fast stepper-based tetrode 
-twister. Its design is inspired by the [SpikeGadgets Tetrode Fabrication Machine](http://www.spikegadgets.com/hardware/tetmachine.html).
+Code and hardware designs for the MWL `twister3`, a simple and fast
+stepper-based tetrode twister. `twister3`'s design was inspired by the
+[SpikeGadgets Tetrode Fabrication
+Machine](http://www.spikegadgets.com/hardware/tetmachine.html).
 
 \FloatBarrier
 \newpage
@@ -37,7 +39,7 @@ Pull requests and issue submissions are __welcome__ on the github repo and
 open ephys forum. If you have criticisms, fixes, suggestions for improvement
 in the docs etc, please let us know so we can implement them ASAP.
 
-Happy tetrode building.
+Happy twisting.
 
 Jon Newman MWL@MIT
 
@@ -45,7 +47,7 @@ Jon Newman MWL@MIT
 
 # License
 
-## Hardware Licensing
+### Hardware Licensing
 Copyright Jonathan P. Newman 2018.
 
 This documentation describes Open Hardware and is licensed under the
@@ -57,19 +59,19 @@ ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY
 QUALITY AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN OHL v.1.2 for
 applicable conditions
 
-__Note__: This license applies to hardware designs and documentation which reside
-in the 'device', 'experimental', 'resources' folders of this repository along
-with information in 'MANUAL.md' and 'MANUAL.pdf'
+__Note__: This license applies to hardware designs and documentation which
+reside in the 'cad','control-board', 'resources' folders of this repository
+along with information in 'MANUAL.md' and 'MANUAL.pdf'
 
-## Software Licensing
+### Software Licensing
 Copyright (c) Jonathan P. Newman 2018. All right reserved.
 
-The code associated with the MWL twister3 project is free software: you can
+The code associated with the twister3 project is free software: you can
 redistribute it and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation, either version 3 of the
 License, or (at your option) any later version.
 
-The code associated with the MWL twister3 project is distributed in the hope that it
+The code associated with the twister3 project is distributed in the hope that it
 will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
 Public License for more details.
@@ -78,13 +80,18 @@ You should have received a copy of the GNU General Public License along with
 this code.  If not, see <http://www.gnu.org/licenses/>.
 
 __Note__: This license applies to software/fireware source code which resides in in
-the 'lib' folder of this repository
+the 'firmware' folder of this repository
+
+\newpage
+
 # Features
 - Speed
 - Repeatability
 - Speed test with experienced users?
 
-#Usage
+\newpage
+
+# Usage
 
 ### Using the controller
 Using the `twister3` controller is simple. Just follow these steps:
@@ -109,6 +116,7 @@ The motor on `twister3` serves two purposes:
 The mode can be selected using the dial on the `twister3` controller. 
 After a mode is selected, all turning parameters pertain to that mode only.
 Using `twister3` for each of these purposes is detailed below.
+
 ## Twisting Tetrodes
 To make a tetrode, follow these steps: 
 
@@ -123,8 +131,9 @@ To make a tetrode, follow these steps:
 9. Cut the tetrode wire above the point at which the wires are fused
 10. Pull the alligator clip off the magnet and cut the finished tetrode into a storage box.
 
+TODO: Add pcitures, and links to videos for the above steps
+
 ## Loading bobbins 
-- Step by step instructions, with pictures or links to video for loading bobbins
 To load a bobbin, follow these steps:
 
 1. Remove the wire shield by removing its M6-retention screw
@@ -142,44 +151,42 @@ To load a bobbin, follow these steps:
 13. Put the bobbins bake on their axle and and place back on the bobbin mount.
 14. Replace the wire shield.
 
-# Twister Construction
-## Stuff you need to use `twister3`
+TODO: Add pcitures, and links to videos for the above steps
 
-### Controller Firmware
-The twister3 hardware runs on teensy 3.2. To program the teensy you will need the following dependencies:
+\newpage
+
+# Construction
+
+## Bill of materials
+The Bill of Materials for electrical, mechanical and 3D printed parts is available on [this google sheet](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0).
+Each class of these materials has its own dedicated google sheet:
+
+* [Electronics](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0)
+* [Mechanical](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=1299007471)
+* [3D Printing](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485)
+
+## Twister Assembly (TODO) 
+- Step by step assembly instructions, probably made using CAD renders instead of pictures.
+
+## Control Box Assembly (TODO)
+- Assembly of box starting with pre-fab PCB
+
+## Controller Firmware
+The twister3 controller firmware runs on a teensy 3.2. To program the teensy you
+will need the following Arduino dependencies:
 
 - [TeensyStep](https://github.com/luni64/TeensyStep)
 - [Liquid Crystal](https://www.arduino.cc/en/Reference/LiquidCrystal)
 - [Teensyduino add-on](https://www.pjrc.com/teensy/td_download.html)
 - [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 
-The firmware is located [here](https://github.com/jonnew/twister3/tree/master/firmware/twister3).
-
-### Controller Hardware
-This repository should eventually contain circuit board files and BOM. 
-Right now, the control hardware is on a breadboard.
-
-## Bill of materials
-The Bill of Materials for electrical, mechanical and 3D printed parts is available on [this google sheet](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0).
-Each class of these materials has its own dedicated google sheet:
-* [Electronics](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0)
-* [Mechanical](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=1299007471)
-* [3D Printing](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485)
-
-## Assembly Instructions
-- Step by step assembly instructions, probably made using CAD renders instead of pictures.
-
-# Control Box Construction (TODO)
-## Bill of materials
-
-
-## Assembly instructions
-- Assembly of box starting with pre-fab PCB
-## Firmware
-- Dependencies
-- Compilation
-- Upload 
-
+The firmware is located
+[here](https://github.com/jonnew/twister3/tree/master/firmware/twister3). The
+firmware can be uploaded to the device using the [Arduino
+IDE](https://www.arduino.cc/en/Main/Software) in combination with the Cyclops
+Arduino library: `./lib/cyclops`. _Note that you will need to add the
+[Teensyduino add-on](https://www.pjrc.com/teensy/teensyduino.html) to to the
+Arduino IDE to program the Teensy_. 
 \newpage
 
 
