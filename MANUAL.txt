@@ -1,0 +1,186 @@
+---
+title: MWL twister3 User Manual
+author:
+    - Jonathan P. Newman (github [jonnew](http://www.mit.edu/~jpnewman/))
+date: \today{}
+geometry: margin=2cm
+header-includes:
+    - \usepackage{setspace}
+    - \usepackage{placeins}
+    - \usepackage[multiple]{footmisc}
+colorlinks: true
+toc: true
+toc-depth: 2
+secnumdepth: 2
+colwidth: 1000
+reference-section-title: true
+---
+
+\newpage
+
+**MWL twister3** 
+
+Code and hardware designs for the MWL `twister3`, a simple and fast stepper-based tetrode 
+twister. Its design is inspired by the [SpikeGadgets Tetrode Fabrication Machine](http://www.spikegadgets.com/hardware/tetmachine.html).
+
+\FloatBarrier
+\newpage
+
+# Note From the Maintainer
+I am very happy that this device may enable your scientific endeavors and I'm
+sincerely grateful for your interest in the project. In general, I hope this
+project will eventually be one small module in a of growing set of
+__high-quality__, __open-source__, and __afforable__ tools that facilitate your
+research and enable an __open__, __community-oriented__ approach to science.
+
+Pull requests and issue submissions are __welcome__ on the github repo and
+open ephys forum. If you have criticisms, fixes, suggestions for improvement
+in the docs etc, please let us know so we can implement them ASAP.
+
+Happy tetrode building.
+
+Jon Newman MWL@MIT
+
+\newpage
+
+# License
+
+## Hardware Licensing
+Copyright Jonathan P. Newman 2018.
+
+This documentation describes Open Hardware and is licensed under the
+CERN OHL v. 1.2.
+
+You may redistribute and modify this documentation under the terms of the CERN
+OHL v.1.2. (http://ohwr.org/cernohl). This documentation is distributed WITHOUT
+ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY
+QUALITY AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN OHL v.1.2 for
+applicable conditions
+
+__Note__: This license applies to hardware designs and documentation which reside
+in the 'device', 'experimental', 'resources' folders of this repository along
+with information in 'MANUAL.md' and 'MANUAL.pdf'
+
+## Software Licensing
+Copyright (c) Jonathan P. Newman 2018. All right reserved.
+
+The code associated with the MWL twister3 project is free software: you can
+redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+The code associated with the MWL twister3 project is distributed in the hope that it
+will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this code.  If not, see <http://www.gnu.org/licenses/>.
+
+__Note__: This license applies to software/fireware source code which resides in in
+the 'lib' folder of this repository
+# Features
+- Speed
+- Repeatability
+- Speed test with experienced users?
+
+#Usage
+
+### Using the controller
+Using the `twister3` controller is simple. Just follow these steps:
+
+* Power the device.
+* Place your finger on the control knob. This is the device's only user input
+  mechanism.
+    * __Pressing it__ will cycle through different settings (forward turns,
+      backward turns, turn speed, turning mode)
+    * __Turning it__ will increment or decrement the selected setting depending
+      on turn direction.
+    * __Pressing and holding it__ for 500 msec will execute the twist sequence
+      using the current settings
+    * __Pressing it__ during a twist will cancel the twist and stop the motor
+      immediately.
+
+The motor on `twister3` serves two purposes:
+
+1. Twisting tetrodes (Mode 0)
+1. Loading bobbins with tetrode wires (Mode 1)
+
+The mode can be selected using the dial on the `twister3` controller. 
+After a mode is selected, all turning parameters pertain to that mode only.
+Using `twister3` for each of these purposes is detailed below.
+## Twisting Tetrodes
+To make a tetrode, follow these steps: 
+
+1. Pull down the wire from all 4 of the bobbins and group with yur fingers
+2. Clamp the bundle with the alligator clip
+3. Pull the twisting attachment's leaf spring up until under slight tension, about 1 cm.
+4. Move the alligator clip down to meet the magnet on the twisting attachment. Now, the leaf spring should be in opposition with the upward force produced by the tetrode wire. Each of the wires should be pulled straight.
+5. Make sure the controller is in `mode 0` and has been set to the desired amount of turns and turn speed.
+6. Hold the button down to perform a twist.
+7. When finished, fuse wires _starting from the point at which they separate_ using the hot air gun at ~480 deg. C.
+8. Roll each of the bobbins forward a bit in order to release tension on the tetrode wire.
+9. Cut the tetrode wire above the point at which the wires are fused
+10. Pull the alligator clip off the magnet and cut the finished tetrode into a storage box.
+
+## Loading bobbins 
+- Step by step instructions, with pictures or links to video for loading bobbins
+To load a bobbin, follow these steps:
+
+1. Remove the wire shield by removing its M6-retention screw
+2. Remove one set of bobbins by unscrewing the M3 bold that serves as the axle.
+3. Take the bobbins and spacers off the axle.
+4. Remove any remaining tetrode wire from bobbin and make sure it is clean of dirt and debris.
+5. Remove the twisting attachment from the motor.
+6. Place a bobbin on the motor using the embedded magnets
+7. Adjust the position of the wire guide such that the pointy part points directly into the center of the wire channel on the bobbin.
+8. Place the stock spool bearings into the stocks pole and mount on the steel post using the M3 bolt
+9. Feed the tetrode wire from the stock spool through the wire guide and wrap once around the bobbin.
+10. Set the controller to `mode 1`
+11. Select the desired number of turns to load the bobbin. The circumference of the bobbin is ~10 cm. The amount of wire loaded on the bobbin is therefore the number of turns * 10 cm.
+12. Start the turn and wait until it is finished.  __Be very careful not touch moving parts during this process__: the TT wire needs to have constant tension to ensure it is properly loaded on the bobbin.
+13. Put the bobbins bake on their axle and and place back on the bobbin mount.
+14. Replace the wire shield.
+
+# Twister Construction
+## Stuff you need to use `twister3`
+
+### Controller Firmware
+The twister3 hardware runs on teensy 3.2. To program the teensy you will need the following dependencies:
+
+- [TeensyStep](https://github.com/luni64/TeensyStep)
+- [Liquid Crystal](https://www.arduino.cc/en/Reference/LiquidCrystal)
+- [Teensyduino add-on](https://www.pjrc.com/teensy/td_download.html)
+- [Arduino IDE](https://www.arduino.cc/en/Main/Software)
+
+The firmware is located [here](https://github.com/jonnew/twister3/tree/master/firmware/twister3).
+
+### Controller Hardware
+This repository should eventually contain circuit board files and BOM. 
+Right now, the control hardware is on a breadboard.
+
+## Bill of materials
+The Bill of Materials for electrical, mechanical and 3D printed parts is available on [this google sheet](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0).
+Each class of these materials has its own dedicated google sheet:
+* [Electronics](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0)
+* [Mechanical](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=1299007471)
+* [3D Printing](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485)
+
+## Assembly Instructions
+- Step by step assembly instructions, probably made using CAD renders instead of pictures.
+
+# Control Box Construction (TODO)
+## Bill of materials
+
+
+## Assembly instructions
+- Assembly of box starting with pre-fab PCB
+## Firmware
+- Dependencies
+- Compilation
+- Upload 
+
+\newpage
+
+
+# References
