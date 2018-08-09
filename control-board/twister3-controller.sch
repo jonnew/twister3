@@ -2492,22 +2492,22 @@ http://www.bccomponents.com/</description>
 <rectangle x1="-2.2" y1="-1.5" x2="2.2" y2="1.4" layer="39"/>
 </package>
 <package name="7343M">
-<smd name="+" x="-3.8" y="0" dx="3.85" dy="5.5" layer="1"/>
-<smd name="-" x="3.8" y="0" dx="3.85" dy="5.5" layer="1"/>
-<wire x1="-4.5" y1="3.5" x2="-4.5" y2="-3.5" width="0.1524" layer="51"/>
-<wire x1="-4.5" y1="-3.5" x2="4.5" y2="-3.5" width="0.1524" layer="51"/>
-<wire x1="4.5" y1="-3.5" x2="4.5" y2="3.5" width="0.1524" layer="51"/>
-<wire x1="4.5" y1="3.5" x2="-4.5" y2="3.5" width="0.1524" layer="51"/>
-<rectangle x1="-4.5" y1="-2.5" x2="-2.5" y2="2.5" layer="51"/>
-<rectangle x1="2.5" y1="-2.5" x2="4.5" y2="2.5" layer="51"/>
-<wire x1="-7" y1="4" x2="6.5" y2="4" width="0.1524" layer="21"/>
-<wire x1="6.5" y1="4" x2="6.5" y2="-4" width="0.1524" layer="21"/>
-<wire x1="6.5" y1="-4" x2="-7" y2="-4" width="0.1524" layer="21"/>
-<wire x1="-7" y1="-4" x2="-7" y2="4" width="0.1524" layer="21"/>
-<rectangle x1="-7" y1="-4" x2="-6" y2="4" layer="21"/>
-<rectangle x1="-5.8" y1="-3.5" x2="5.6" y2="3.6" layer="39"/>
-<text x="-5.467" y="4.289" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
-<text x="-5.921" y="-5.305" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+<smd name="+" x="-3.22" y="0" dx="2.77" dy="2.55" layer="1"/>
+<smd name="-" x="3.22" y="0" dx="2.77" dy="2.55" layer="1"/>
+<wire x1="-4.1" y1="2.2" x2="-4.1" y2="-2" width="0.1524" layer="51"/>
+<wire x1="-4.1" y1="-2" x2="4.1" y2="-2" width="0.1524" layer="51"/>
+<wire x1="4.1" y1="-2" x2="4.1" y2="2.2" width="0.1524" layer="51"/>
+<wire x1="4.1" y1="2.2" x2="-4.1" y2="2.2" width="0.1524" layer="51"/>
+<wire x1="-5.65" y1="2.8" x2="5" y2="2.8" width="0.1524" layer="21"/>
+<wire x1="5" y1="2.8" x2="5" y2="-2.8" width="0.1524" layer="21"/>
+<wire x1="5" y1="-2.8" x2="-5.65" y2="-2.8" width="0.1524" layer="21"/>
+<wire x1="-5.65" y1="-2.8" x2="-5.65" y2="2.8" width="0.1524" layer="21"/>
+<text x="-5.5" y="3.3" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<text x="-5.5" y="-4.2" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+<rectangle x1="-5" y1="-2.8" x2="5" y2="2.8" layer="39"/>
+<rectangle x1="2.3" y1="-1.1" x2="4.1" y2="1.1" layer="51"/>
+<rectangle x1="-4.1" y1="-1.1" x2="-2.1" y2="1.1" layer="51"/>
+<rectangle x1="-5.65" y1="-2.8" x2="-4.95" y2="2.8" layer="21"/>
 </package>
 <package name="SM-42/43A">
 <description>&lt;b&gt;COPAL ELECTRONICS SM-42/43 SURFACE MOUNT TRIMMERS&lt;/b&gt; Side adjustmet&lt;p&gt;
@@ -3636,6 +3636,25 @@ Source: smt-pots.pdf</description>
 <hole x="-37.5" y="-15.5" drill="2.8"/>
 <hole x="37.5" y="15.5" drill="2.8"/>
 <hole x="37.5" y="-15.5" drill="2.8"/>
+</package>
+<package name="EVQPF">
+<pad name="M1" x="3.5" y="0" drill="1.3" rot="R180"/>
+<pad name="M2" x="-3.5" y="0" drill="1.3" rot="R180"/>
+<pad name="A" x="2.25" y="2.5" drill="1" rot="R180"/>
+<pad name="B" x="-2.25" y="2.5" drill="1" rot="R180"/>
+<wire x1="-3.5" y1="5.5" x2="-1.7" y2="5.5" width="0.127" layer="21"/>
+<wire x1="-1.7" y1="5.5" x2="1.7" y2="5.5" width="0.127" layer="21"/>
+<wire x1="1.7" y1="5.5" x2="3.5" y2="5.5" width="0.127" layer="21"/>
+<wire x1="3.5" y1="5.5" x2="3.5" y2="1.2" width="0.127" layer="21"/>
+<wire x1="3.5" y1="-1.3" x2="-3.5" y2="-1.3" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="1.2" x2="-3.5" y2="5.5" width="0.127" layer="21"/>
+<wire x1="-1.7" y1="5.5" x2="-1.7" y2="7.4" width="0.127" layer="21"/>
+<wire x1="-1.7" y1="7.4" x2="1.7" y2="7.4" width="0.127" layer="21"/>
+<wire x1="1.7" y1="7.4" x2="1.7" y2="5.5" width="0.127" layer="21"/>
+<wire x1="-4.4" y1="5.5" x2="4.8" y2="5.5" width="0.127" layer="51" style="shortdash"/>
+<text x="5.1" y="5.4" size="0.8128" layer="51" font="vector" ratio="18">PCB EDGE</text>
+<text x="-2.9" y="4" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<text x="-3.2" y="-2.7" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -5303,6 +5322,15 @@ Source: smt-pots.pdf</description>
 <connects>
 <connect gate="G$1" pin="P" pad="1"/>
 <connect gate="G$1" pin="S" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_EVQPF" package="EVQPF">
+<connects>
+<connect gate="G$1" pin="P" pad="A"/>
+<connect gate="G$1" pin="S" pad="B"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -7348,24 +7376,24 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 </classes>
 <parts>
 <part name="SUPPLY1" library="jonnew" deviceset="GND" device=""/>
-<part name="R1" library="jonnew" deviceset="R" device="_0805" value="10k"/>
+<part name="R1" library="jonnew" deviceset="R" device="_0603" value="10k"/>
 <part name="S1" library="SparkFun-Switches" deviceset="ENCODER-RGB-SWITCH" device="" value="EC12P"/>
 <part name="U2" library="jonnew" deviceset="LCD-16X2" device="SILK" value="GDM1602K"/>
-<part name="R4" library="jonnew" deviceset="R" device="_0805" value="10k"/>
-<part name="C2" library="jonnew" deviceset="C" device="_0805" value="10nF"/>
-<part name="C3" library="jonnew" deviceset="C" device="_0805" value="10nF"/>
-<part name="R5" library="jonnew" deviceset="R" device="_0805" value="10k"/>
-<part name="R6" library="jonnew" deviceset="R" device="_0805" value="10k"/>
+<part name="R4" library="jonnew" deviceset="R" device="_0603" value="10k"/>
+<part name="C2" library="jonnew" deviceset="C" device="_0603" value="10nF"/>
+<part name="C3" library="jonnew" deviceset="C" device="_0603" value="10nF"/>
+<part name="R5" library="jonnew" deviceset="R" device="_0603" value="10k"/>
+<part name="R6" library="jonnew" deviceset="R" device="_0603" value="10k"/>
 <part name="SUPPLY2" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="jonnew" deviceset="GND" device=""/>
 <part name="R13" library="cyclops" deviceset="R" device="_0603" value="470"/>
 <part name="SUPPLY4" library="jonnew" deviceset="GND" device=""/>
 <part name="U1" library="jonnew" deviceset="MAX6816" device=""/>
-<part name="C4" library="jonnew" deviceset="C" device="_0805" value="10nF"/>
+<part name="C4" library="jonnew" deviceset="C" device="_0603" value="10nF"/>
 <part name="SUPPLY8" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY9" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY10" library="jonnew" deviceset="GND" device=""/>
-<part name="R2" library="jonnew" deviceset="TRIM_US-" device="SM-42/43W" value="20k"/>
+<part name="R2" library="jonnew" deviceset="TRIM_US-" device="SM-42/43X" value="20k"/>
 <part name="SUPPLY14" library="jonnew" deviceset="GND" device=""/>
 <part name="J1" library="jonnew" deviceset="PINHD-1X4" device=""/>
 <part name="SUPPLY15" library="jonnew" deviceset="+3V3" device=""/>
@@ -7386,21 +7414,21 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="C17" library="jonnew" deviceset="C" device="_0402" value="100n/50V"/>
 <part name="C18" library="jonnew" deviceset="C" device="_0402" value="100nF/50V"/>
 <part name="C19" library="jonnew" deviceset="C" device="_0402" value="22nF/50V"/>
-<part name="R22" library="jonnew" deviceset="R" device="_0402" value="20k"/>
+<part name="R22" library="jonnew" deviceset="R" device="_0603" value="20k"/>
 <part name="R23" library="jonnew" deviceset="R" device="_0402" value="2.2"/>
 <part name="U11" library="we-chip" deviceset="TMC21X0" device="-LA" value="TMC2130-LA"/>
 <part name="U3" library="jonnew" deviceset="IS31FL3193" device=""/>
-<part name="C1" library="jonnew" deviceset="C" device="_0805" value="1uF"/>
+<part name="C1" library="jonnew" deviceset="C" device="_0603" value="1uF"/>
 <part name="SUPPLY5" library="jonnew" deviceset="GND" device=""/>
-<part name="C5" library="jonnew" deviceset="C" device="_0805" value="10nF"/>
-<part name="C6" library="jonnew" deviceset="C" device="_0805" value="1uF"/>
+<part name="C5" library="jonnew" deviceset="C" device="_0603" value="10nF"/>
+<part name="C6" library="jonnew" deviceset="C" device="_0603" value="1uF"/>
 <part name="P+1" library="jonnew" deviceset="+5V" device=""/>
 <part name="P+2" library="jonnew" deviceset="+5V" device=""/>
 <part name="P+5" library="jonnew" deviceset="+5V" device=""/>
 <part name="P+6" library="jonnew" deviceset="+5V" device=""/>
 <part name="SUPPLY6" library="jonnew" deviceset="GND" device=""/>
-<part name="R3" library="jonnew" deviceset="R" device="_0805" value="4.7k"/>
-<part name="R7" library="jonnew" deviceset="R" device="_0805" value="4.7k"/>
+<part name="R3" library="jonnew" deviceset="R" device="_0603" value="4.7k"/>
+<part name="R7" library="jonnew" deviceset="R" device="_0603" value="4.7k"/>
 <part name="U4" library="jonnew" deviceset="MIC4680" device="_SOIC" value="MIC4680-5.0YM-TR"/>
 <part name="SUPPLY18" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY19" library="jonnew" deviceset="GND" device=""/>
@@ -7419,13 +7447,13 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="SUPPLY25" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY26" library="jonnew" deviceset="GND" device=""/>
 <part name="U$6" library="jonnew" deviceset="DOCFIELD-GEN" device=""/>
-<part name="R10" library="jonnew" deviceset="TRIM_US-" device="SM-42/43W" value="20k"/>
+<part name="R10" library="jonnew" deviceset="TRIM_US-" device="SM-42/43X" value="20k"/>
 <part name="SUPPLY29" library="jonnew" deviceset="GND" device=""/>
 <part name="J2" library="jonnew" deviceset="PINHD-1X4" device="" value="OSTVN04A150"/>
 <part name="J3" library="jonnew" deviceset="PINHD-1X4" device="_SMD-0.1&quot;"/>
 <part name="J7" library="jonnew" deviceset="BARREL-JACK" device="_PJ-063BH"/>
 <part name="SUPPLY30" library="jonnew" deviceset="GND" device=""/>
-<part name="R12" library="jonnew" deviceset="R" device="_0805" value="4.7k"/>
+<part name="R12" library="jonnew" deviceset="R" device="_0603" value="4.7k"/>
 <part name="SUPPLY32" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY33" library="jonnew" deviceset="GND" device=""/>
 <part name="S2" library="jonnew" deviceset="SPST_TACT2" device="_800AW" value="800AWSP9M2QE"/>
@@ -7433,7 +7461,7 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="SUPPLY34" library="jonnew" deviceset="GND" device=""/>
 <part name="R14" library="cyclops" deviceset="R" device="_0603" value="4.7k"/>
 <part name="R15" library="cyclops" deviceset="R" device="_0603" value="4.7k"/>
-<part name="R16" library="jonnew" deviceset="R" device="_0805" value="100k"/>
+<part name="R16" library="jonnew" deviceset="R" device="_0603" value="100k"/>
 <part name="P+8" library="jonnew" deviceset="+5V" device=""/>
 <part name="P+9" library="jonnew" deviceset="+5V" device=""/>
 <part name="P+10" library="jonnew" deviceset="+5V" device=""/>
@@ -7449,18 +7477,11 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="SUPPLY13" library="jonnew" deviceset="GND" device=""/>
 <part name="J4" library="jonnew" deviceset="PINHD-1X4" device="_SMD-0.1&quot;"/>
 <part name="J5" library="jonnew" deviceset="PINHD-1X4" device="_SMD-0.1&quot;"/>
-<part name="J6" library="jonnew" deviceset="PINHD-1X4" device="_SMD-0.1&quot;"/>
 <part name="J8" library="jonnew" deviceset="PINHD-1X4" device=""/>
 <part name="J9" library="jonnew" deviceset="PINHD-1X4" device=""/>
-<part name="J10" library="jonnew" deviceset="PINHD-1X4" device=""/>
 <part name="SUPPLY7" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY17" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY22" library="jonnew" deviceset="GND" device=""/>
-<part name="J11" library="jonnew" deviceset="PINHD-1X4" device="_SMD-0.1&quot;"/>
-<part name="J12" library="jonnew" deviceset="PINHD-1X4" device=""/>
-<part name="TP2" library="jonnew" deviceset="TP" device="_S7121-42R" value="S7121-42R"/>
-<part name="TP3" library="jonnew" deviceset="TP" device="_S7121-42R" value="S7121-42R"/>
-<part name="TP4" library="jonnew" deviceset="TP" device="_S7121-42R" value="S7121-42R"/>
 </parts>
 <sheets>
 <sheet>
@@ -7474,7 +7495,6 @@ Teensy)</text>
 between panel and board.</text>
 <text x="408.94" y="33.02" size="1.778" layer="97">Motor connection
 to screw terminal</text>
-<text x="284.48" y="15.24" size="1.778" layer="97" rot="R90">Clips hold up LCD</text>
 </plain>
 <instances>
 <instance part="SUPPLY1" gate="PE" x="104.14" y="226.06"/>
@@ -7597,18 +7617,11 @@ to screw terminal</text>
 <instance part="SUPPLY13" gate="PE" x="284.48" y="73.66"/>
 <instance part="J4" gate="G$1" x="365.76" y="33.02" rot="MR180"/>
 <instance part="J5" gate="G$1" x="383.54" y="33.02" rot="MR180"/>
-<instance part="J6" gate="G$1" x="347.98" y="33.02" rot="MR180"/>
 <instance part="J8" gate="G$1" x="383.54" y="15.24" rot="MR180"/>
 <instance part="J9" gate="G$1" x="365.76" y="15.24" rot="MR180"/>
-<instance part="J10" gate="G$1" x="347.98" y="15.24" rot="MR180"/>
 <instance part="SUPPLY7" gate="PE" x="398.78" y="66.04"/>
 <instance part="SUPPLY17" gate="PE" x="431.8" y="66.04"/>
 <instance part="SUPPLY22" gate="PE" x="439.42" y="66.04"/>
-<instance part="J11" gate="G$1" x="330.2" y="33.02" rot="MR180"/>
-<instance part="J12" gate="G$1" x="330.2" y="15.24" rot="MR180"/>
-<instance part="TP2" gate="G$1" x="289.56" y="35.56"/>
-<instance part="TP3" gate="G$1" x="289.56" y="20.32"/>
-<instance part="TP4" gate="G$1" x="289.56" y="48.26"/>
 </instances>
 <busses>
 </busses>
@@ -8691,43 +8704,7 @@ to screw terminal</text>
 <label x="424.18" y="111.76" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="MECH1" class="0">
-<segment>
-<pinref part="J11" gate="G$1" pin="1"/>
-<wire x1="330.2" y1="33.02" x2="325.12" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="325.12" y1="33.02" x2="325.12" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="J11" gate="G$1" pin="4"/>
-<wire x1="325.12" y1="35.56" x2="325.12" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="325.12" y1="38.1" x2="325.12" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="325.12" y1="40.64" x2="330.2" y2="40.64" width="0.1524" layer="91"/>
-<pinref part="J11" gate="G$1" pin="3"/>
-<wire x1="330.2" y1="38.1" x2="325.12" y2="38.1" width="0.1524" layer="91"/>
-<junction x="325.12" y="38.1"/>
-<pinref part="J11" gate="G$1" pin="2"/>
-<wire x1="330.2" y1="35.56" x2="325.12" y2="35.56" width="0.1524" layer="91"/>
-<junction x="325.12" y="35.56"/>
-<label x="325.12" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-</net>
-<net name="MECH2" class="0">
-<segment>
-<pinref part="J6" gate="G$1" pin="1"/>
-<wire x1="347.98" y1="33.02" x2="342.9" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="342.9" y1="33.02" x2="342.9" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="J6" gate="G$1" pin="4"/>
-<wire x1="342.9" y1="35.56" x2="342.9" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="342.9" y1="38.1" x2="342.9" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="342.9" y1="40.64" x2="347.98" y2="40.64" width="0.1524" layer="91"/>
-<pinref part="J6" gate="G$1" pin="3"/>
-<wire x1="347.98" y1="38.1" x2="342.9" y2="38.1" width="0.1524" layer="91"/>
-<junction x="342.9" y="38.1"/>
-<pinref part="J6" gate="G$1" pin="2"/>
-<wire x1="347.98" y1="35.56" x2="342.9" y2="35.56" width="0.1524" layer="91"/>
-<junction x="342.9" y="35.56"/>
-<label x="342.9" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-</net>
-<net name="MECH3" class="0">
+<net name="MECH" class="0">
 <segment>
 <pinref part="J4" gate="G$1" pin="1"/>
 <wire x1="365.76" y1="33.02" x2="360.68" y2="33.02" width="0.1524" layer="91"/>
@@ -8745,14 +8722,6 @@ to screw terminal</text>
 <label x="360.68" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="TP2" gate="G$1" pin="TP"/>
-<wire x1="289.56" y1="33.02" x2="289.56" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="30.48" x2="297.18" y2="30.48" width="0.1524" layer="91"/>
-<label x="297.18" y="30.48" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="MECH4" class="0">
-<segment>
 <pinref part="J5" gate="G$1" pin="1"/>
 <wire x1="383.54" y1="33.02" x2="378.46" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="33.02" x2="378.46" y2="35.56" width="0.1524" layer="91"/>
@@ -8767,18 +8736,6 @@ to screw terminal</text>
 <wire x1="383.54" y1="35.56" x2="378.46" y2="35.56" width="0.1524" layer="91"/>
 <junction x="378.46" y="35.56"/>
 <label x="378.46" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
-<pinref part="TP4" gate="G$1" pin="TP"/>
-<wire x1="289.56" y1="45.72" x2="289.56" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="43.18" x2="297.18" y2="43.18" width="0.1524" layer="91"/>
-<label x="297.18" y="43.18" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="TP3" gate="G$1" pin="TP"/>
-<wire x1="289.56" y1="17.78" x2="289.56" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="15.24" x2="297.18" y2="15.24" width="0.1524" layer="91"/>
-<label x="297.18" y="15.24" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
