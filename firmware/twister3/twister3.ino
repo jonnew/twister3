@@ -4,44 +4,57 @@
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
 #include <StepControl.h>
-//#include <Serial.h>
-
-#define POSGREY(sum)                                                           \
-    (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011)
-#define NEGGREY(sum)                                                           \
-    (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000)
-
-// Button read parameters
-#define HOLD_MSEC 500
-
-// Stepper parameters
-#define USTEPS_PER_REV (200 * 16)
-#define MAX_RPM 500
-#define MOT_DIR 19
-#define MOT_STEP 18
-#define MOT_EN 17
-
-// Rotary encoder pins
-#define ENC_0 22
-#define ENC_1 23
-#define ENC_B 21
-
-// Settings address start
-#define SETTINGS_ADDR_START 0
+#include <Encoder.h>
+#include <i2c_t3.h>
 
 //#define DEBUG
+//#include <Serial.h>
+
+// Button read parameters
+#define HOLD_MSEC 300
+
+// Stepper parameters
+#define DETENTS 200
+#define USTEPS_PER_REV (DETENTS * 16)
+
+// Stepper driver pins
+#define MOT_DIR 17
+#define MOT_STEP 32
+#define MOT_CFG0_MISO 12
+#define MOT_CFG1_MOSI 11
+#define MOT_CFG2_SCLK 13
+#define MOT_CFG3_TMCCS 31
+#define MOT_CFG4 14
+#define MOT_CFG5 30
+#define MOT_CFG6_EN 26
+#define MOT_SPI_MODE 15
+#define MOT_SD_MODE 16
+#define MOT_DIAG0 29
+#define MOT_DIAG1 28
+
+// I2C
+#define SDA 18
+#define SCL 19
+
+// RGB Driver
+#define IS31_ADDR 0x68
+#define IS31_SHDN 33
+
+// Rotary encoder pins
+#define ENC_A 22
+#define ENC_B 23
+#define ENC_BUTT 21
+
+// Settings address start byte.
+#define SETTINGS_ADDR_START 0
 
 // Rotary encoder state
-const int encoder_p0_ = 22;
-const int encoder_p1_ = 23;
-const int encoder_but_ = 21;
-int encoder_dir_ = 0;
-int last_enc_ = 0;
+long last_encoder_pos_ = 0;
 
 // Device Mode
 int mode_idx_ = 0;
 const int num_modes_ = 2;
-float mode_idx_inc_  = 0.0;
+float mode_idx_inc_ = 10000.0;
 
 // Device parameters (match number of modes)
 // [0] for tt twisting
@@ -49,7 +62,7 @@ float mode_idx_inc_  = 0.0;
 float forward_turns_[num_modes_] = {50, 100};
 float back_turns_[num_modes_] = {0, 0};
 float turn_speed_rpm_[num_modes_] = {700, 100};
-const float knob_gain_[num_modes_] = {0.3, 10};
+const float knob_gain_[num_modes_] = {0.25, 1};
 
 // Start trigger
 volatile bool start_requested_ = false;
@@ -61,6 +74,9 @@ volatile SelectedParam selected_param_ = fwd_turns;
 // Stepper motor
 Stepper motor_(MOT_STEP, MOT_DIR);
 StepControl<> controller_; // Use default settings
+
+// Rotary encoder
+Encoder encoder_(ENC_B, ENC_A);
 
 // LCD
 volatile bool disp_update_requested = false;
@@ -83,8 +99,8 @@ void loadSettings()
         EEPROM.get(addr += sizeof(float), turn_speed_rpm_[i]);
     }
 
-    //Serial.println("Fwd turns:");
-    //Serial.println(forward_turns_[0]);
+    Serial.println("Fwd turns:");
+    Serial.println(forward_turns_[0]);
 }
 
 void saveSettings()
@@ -101,37 +117,20 @@ void saveSettings()
 
 // Return code
 // -2 : Wrong value compared to desired_value
-// -1 : Did not pass debounce. Should be ignored.
 //  1 : Normal button press.
 //  2 : Hold value maintained for longer than wait period.
 // NOTE: Need interrupts enabled for this to work properly.
 static int readButton(int pin,
                       int *value,
-                      int min_hold_usec = 0,
-                      size_t min_interval_msec = 10,
-                      bool hold_value = false,
                       int desired_value = -1)
 {
-    if (sinceButtonChange < min_interval_msec)
-        return -1;
-
-    // Make sure button state equals desired value for at least min_hold_usec
-    *value = digitalReadFast(pin);
-
-    if (desired_value != 1 && desired_value != *value)
-        return -2;
-
-    for (int i = 0; i < min_hold_usec; i++) {
-        if (*value != digitalReadFast(pin))
-            return -1;
-        delayMicroseconds(1);
-    }
-
     // Log button change time
     sinceButtonChange = 0;
 
-    if (!hold_value)
-        return 1;
+    // Make sure button state equals desired value
+    *value = digitalReadFast(pin);
+    if (desired_value != -1 && desired_value != *value)
+        return -2;
 
     // See if the user keeps button held for HOLD_MSEC
     while (sinceButtonChange < HOLD_MSEC) {
@@ -147,13 +146,15 @@ int executeTwist(void)
     int rc = 0;
 
     // Unsleep the driver
-    digitalWriteFast(MOT_EN, LOW);
+    digitalWriteFast(MOT_CFG6_EN, LOW);
 
     // Set speed
     auto max_speed = (float)USTEPS_PER_REV * turn_speed_rpm_[mode_idx_] / 60.0;
     motor_.setMaxSpeed(max_speed);
     motor_.setAcceleration(max_speed / 3);
 
+    // Change RBG to red and tell user we are turning
+    setRGBColor(0xFF, 0x00, 0x00);
     lcd.clear();
     lcd.print(F("Forward..."));
 
@@ -185,53 +186,125 @@ int executeTwist(void)
     }
 
     // Sleep the driver
-    digitalWriteFast(MOT_EN, HIGH);
+    digitalWriteFast(MOT_CFG6_EN, HIGH);
+
+    // Reset RGB based on mode
+    modeToRGB();
 
     // 0 = successful move
     // 1 = emergency stop
     return rc;
+}
+
+// Return difference in encoder position since last read
+int getEncoderDiff()
+{
+    long curr = encoder_.read();
+    int diff = curr - last_encoder_pos_;
+    last_encoder_pos_ = curr;
+    if (diff)
+        disp_update_requested = true;
+    return diff;
+}
+
+void setRGBColor(byte r, byte g, byte b)
+{
+    // Set PWM state
+    Wire.beginTransmission(IS31_ADDR);
+    Wire.write(0x04); 
+    Wire.write(r); 
+    Wire.write(g); 
+    Wire.write(b); 
+    Wire.endTransmission();
+
+    // Update PWM
+    Wire.beginTransmission(IS31_ADDR);
+    Wire.write(0x07); 
+    Wire.write(0x00); 
+    Wire.endTransmission();
 
 }
 
-// Return 0 if nothing has happended
-// Return 1 if encoder has been updated
-int updateEncoder()
-{
-    int msb;
-    if (readButton(encoder_p0_, &msb) == -1)
-        return 0;
+void modeToRGB() {
 
-    int lsb;
-    if (readButton(encoder_p1_, &lsb) == -1)
-        return 0;
-
-    // converting the 2 pin value to single number
-    int encoded = (msb << 1) | lsb;
-
-    // adding it to the previous encoded value
-    int sum = (last_enc_ << 2) | encoded;
-    last_enc_ = encoded; // store this value for next time
-
-    // Get direction
-    if (POSGREY(sum)) {
-        encoder_dir_ = 1;
-        disp_update_requested = true;
-        return 1;
-    } else if (NEGGREY(sum)) {
-        encoder_dir_ = -1;
-        disp_update_requested = true;
-        return 1;
-    } else {
-        encoder_dir_ = 0;
-        return 0;
+    switch (mode_idx_) {
+    case 0:
+        setRGBColor(0x33, 0x55, 0xFF);
+        break;
+    case 1:
+        setRGBColor(0x00, 0xFF, 0x55);
+        break;
     }
+}
 
+void setupRGB() 
+{
+    // I2C for RGB LED
+    Wire.begin(I2C_MASTER, 0x00, I2C_PINS_18_19, I2C_PULLUP_EXT, 400000);
+    Wire.setDefaultTimeout(200000); // 200ms
+
+    // Enable LED current driver
+    pinMode(IS31_SHDN, OUTPUT);
+    digitalWriteFast(IS31_SHDN, HIGH);
+    delay(1);
+
+    // Set max LED current 
+    Wire.beginTransmission(IS31_ADDR);
+    Wire.write(0x03); 
+    Wire.write(0x08); // Set max current to 5 mA
+    Wire.endTransmission();
+
+    // Default color
+    modeToRGB();
+
+    // Enable current driver
+    Wire.beginTransmission(IS31_ADDR);
+    Wire.write(0x00); 
+    Wire.write(0x20); // Enable current driver
+    Wire.endTransmission();
+}
+
+void configMotor() 
+{
+    // TODO: use spi interface and get to work in silent mode
+    pinMode(MOT_SPI_MODE, OUTPUT);
+    pinMode(MOT_SPI_MODE, LOW);
+
+    // Chopper off time
+    pinMode(MOT_CFG0_MISO, OUTPUT);
+    digitalWriteFast(MOT_CFG0_MISO, LOW);
+
+    // 16-step spreadcycle: GFG2 = open, CFG 1 = gnd
+    // TODO: the led is preventing cfg2 from being open, I think. Instead, I'm
+    // using 16-ustep without interp...
+    //pinMode(MOT_CFG1_MOSI, INPUT); 
+    pinMode(MOT_CFG1_MOSI, OUTPUT);
+    //digitalWriteFast(MOT_CFG1_MOSI, LOW); 
+    digitalWriteFast(MOT_CFG1_MOSI, HIGH); 
+    //pinMode(MOT_CFG2_SCLK, INPUT); 
+    pinMode(MOT_CFG2_SCLK, OUTPUT); 
+    digitalWriteFast(MOT_CFG2_SCLK, HIGH); 
+
+    // Use external sense resistors
+    pinMode(MOT_CFG3_TMCCS, INPUT);
+
+    // Chopper hysteresis
+    pinMode(MOT_CFG4, OUTPUT);
+    digitalWriteFast(MOT_CFG4, LOW);
+
+    // Chopper blank time 
+    pinMode(MOT_CFG5, OUTPUT);
+    digitalWriteFast(MOT_CFG5, HIGH);
+
+    // Disable motor
+    pinMode(MOT_CFG6_EN, OUTPUT);
+    digitalWriteFast(MOT_CFG6_EN, HIGH); 
 }
 
 void toggleParam()
 {
     int val;
-    auto hold = readButton(encoder_but_, &val, 1000, 10, true, 0);
+    auto hold = readButton(ENC_BUTT, &val, HIGH);
 
     noInterrupts();
     switch (hold) {
@@ -242,6 +315,7 @@ void toggleParam()
         case 1: {
             if (start_requested_) {
                 start_requested_ = false;
+                setRGBColor(0x00, 0xFF, 0x55);
             } else {
                 int sm = (int)selected_param_;
                 sm++;
@@ -261,16 +335,15 @@ void toggleParam()
 
 void setup()
 {
-    //Serial.begin(9600);
+    Serial.begin(9600);
 
-    pinMode(encoder_p0_, INPUT);
-    pinMode(encoder_p1_, INPUT);
-    pinMode(encoder_but_, INPUT);
+    pinMode(ENC_BUTT, INPUT);
+    attachInterrupt(ENC_BUTT, toggleParam, RISING);
 
-    pinMode(MOT_EN, OUTPUT);
-    digitalWriteFast(MOT_EN, HIGH);
-
-    attachInterrupt(encoder_but_, toggleParam, FALLING);
+    // Configure and Disable motor
+    configMotor();
+    
+    setupRGB();
 
     lcd.begin(16, 2);
     lcd.print(F("twister3"));
@@ -286,34 +359,38 @@ void setup()
 
 void loop()
 {
-    if (updateEncoder()) {
+    int diff = getEncoderDiff();
+
+    if (diff) {
 
         switch (selected_param_) {
 
             case fwd_turns: {
                 forward_turns_[mode_idx_]
-                    += (float)encoder_dir_ * knob_gain_[mode_idx_];
+                    += (float)diff * knob_gain_[mode_idx_];
                 if (forward_turns_[mode_idx_] < 0)
                     forward_turns_[mode_idx_] = 0;
                 break;
             }
             case bck_turns: {
                 back_turns_[mode_idx_]
-                    += (float)encoder_dir_ * knob_gain_[mode_idx_];
+                    += (float)diff * knob_gain_[mode_idx_];
                 if (back_turns_[mode_idx_] < 0)
                     back_turns_[mode_idx_] = 0;
                 break;
             }
             case turn_spd: {
-                turn_speed_rpm_[mode_idx_] += 2 * (float)encoder_dir_;
+                turn_speed_rpm_[mode_idx_]
+                    += (float)diff * knob_gain_[mode_idx_];
                 if (turn_speed_rpm_[mode_idx_] < 0)
                     turn_speed_rpm_[mode_idx_] = 0;
                 break;
             }
             case sel_mode: {
-                if (encoder_dir_ != 0)
-                    mode_idx_inc_ += 0.25; // HACK :)
-                    mode_idx_ = (mode_idx_ += mode_idx_inc_) % num_modes_;
+
+                mode_idx_inc_ += (float)diff * 0.25; // HACK :)
+                mode_idx_ = (int)mode_idx_inc_ % num_modes_;
+                modeToRGB();
                 break;
             }
         }
