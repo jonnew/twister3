@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
@@ -36,10 +36,10 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
@@ -200,14 +200,12 @@ Compatible</text>
 <wire x1="0" y1="1" x2="0" y2="-1" width="0.127" layer="51"/>
 <wire x1="-1" y1="0" x2="1" y2="0" width="0.127" layer="51"/>
 <wire x1="107.5" y1="53.5" x2="107.5" y2="28.5" width="0" layer="20"/>
+<wire x1="107.5" y1="28.5" x2="108.5" y2="27.5" width="0" layer="20" curve="90"/>
 <wire x1="108.5" y1="27.5" x2="178.5" y2="27.5" width="0" layer="20"/>
+<wire x1="178.5" y1="27.5" x2="179.5" y2="28.5" width="0" layer="20" curve="90"/>
 <wire x1="179.5" y1="28.5" x2="179.5" y2="53.5" width="0" layer="20"/>
 <circle x="160.5" y="12" radius="3.3" width="0.05" layer="20"/>
 <wire x1="178.5" y1="54.5" x2="108.5" y2="54.5" width="0" layer="20"/>
-<wire x1="107.5" y1="53.5" x2="108.5" y2="54.5" width="0" layer="20" curve="-233.130102"/>
-<wire x1="108.5" y1="27.5" x2="107.5" y2="28.5" width="0" layer="20" curve="-233.130102"/>
-<wire x1="179.5" y1="28.5" x2="178.5" y2="27.5" width="0" layer="20" curve="-233.130102"/>
-<wire x1="178.5" y1="54.5" x2="179.5" y2="53.5" width="0" layer="20" curve="-233.130102"/>
 <wire x1="95.5" y1="81" x2="95.5" y2="-9.5" width="0" layer="20"/>
 <text x="92.5" y="82" size="1.778" layer="20">V-CUT</text>
 <text x="92.5" y="-12" size="1.778" layer="20">V-CUT</text>
@@ -3022,6 +3020,12 @@ MIT 2018</text>
 <circle x="133.5" y="63" radius="3.5" width="0" layer="30"/>
 <circle x="133.5" y="63" radius="3.5" width="0" layer="32"/>
 <text x="135.5" y="58" size="1.27" layer="22" font="vector" ratio="18" rot="MR0">M5</text>
+<wire x1="107.5" y1="53.5" x2="108.5" y2="54.5" width="0" layer="20" curve="-90"/>
+<wire x1="178.5" y1="54.5" x2="179.5" y2="53.5" width="0" layer="20" curve="-90"/>
+<text x="41.4" y="40.9" size="1.016" layer="22" font="vector" ratio="18" rot="MR0">IREF_AIN</text>
+<text x="61.8" y="27.8" size="1.016" layer="22" font="vector" ratio="18" rot="MR0">+3.3V</text>
+<text x="92" y="52.7" size="1.016" layer="22" font="vector" ratio="18" rot="MR0">+5V</text>
+<text x="92.4" y="46.9" size="1.016" layer="22" font="vector" ratio="18" rot="MR0">GND</text>
 </plain>
 <libraries>
 <library name="jonnew">
@@ -3534,6 +3538,11 @@ Source: smt-pots.pdf</description>
 <hole x="-37.5" y="-15.5" drill="4"/>
 <hole x="37.5" y="15.5" drill="4"/>
 <hole x="37.5" y="-15.5" drill="4"/>
+</package>
+<package name="TESTPOINT_2MM">
+<text x="-1" y="-3" size="0.8128" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+<text x="-1" y="2" size="0.8128" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<pad name="1" x="0" y="0" drill="2" shape="octagon"/>
 </package>
 </packages>
 </library>
@@ -4163,6 +4172,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="89.11184375" y="13.703946875" size="1.27" layer="25" font="vector" ratio="18" rot="R45"/>
 <attribute name="VALUE" x="83.601971875" y="3.71381875" size="1.27" layer="27" font="vector" ratio="18" rot="R45"/>
 </element>
+<element name="GND" library="jonnew" package="TESTPOINT_2MM" value="" x="90.5" y="45" smashed="yes">
+<attribute name="NAME" x="89.5" y="47" size="1.016" layer="25" font="vector" ratio="18"/>
+<attribute name="VALUE" x="89.5" y="42" size="0.8128" layer="27" font="vector" ratio="18"/>
+</element>
+<element name="+5V" library="jonnew" package="TESTPOINT_2MM" value="" x="90.6" y="50.7" smashed="yes">
+<attribute name="NAME" x="89.6" y="52.7" size="1.016" layer="25" font="vector" ratio="18"/>
+<attribute name="VALUE" x="89.6" y="47.7" size="0.8128" layer="27" font="vector" ratio="18"/>
+</element>
+<element name="+3.3V" library="jonnew" package="TESTPOINT_2MM" value="" x="59.7" y="25.9" smashed="yes">
+<attribute name="NAME" x="58" y="27.9" size="1.016" layer="25" font="vector" ratio="18"/>
+<attribute name="VALUE" x="58.7" y="22.9" size="0.8128" layer="27" font="vector" ratio="18"/>
+</element>
+<element name="IREF_AIN" library="jonnew" package="TESTPOINT_2MM" value="" x="38.7" y="43.6" smashed="yes">
+<attribute name="NAME" x="35.4" y="40.9" size="1.016" layer="25" font="vector" ratio="18"/>
+<attribute name="VALUE" x="37.7" y="40.6" size="0.8128" layer="27" font="vector" ratio="18"/>
+</element>
 </elements>
 <signals>
 <signal name="AGND">
@@ -4232,8 +4257,12 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="33.65" y1="21.05" x2="34.9" y2="19.8" width="1" layer="16"/>
 <wire x1="34.9" y1="19.8" x2="34.9" y2="17.95" width="1" layer="16"/>
 <wire x1="34.9" y1="17.95" x2="33.5" y2="16.55" width="1" layer="16"/>
-<wire x1="45.75" y1="28.25" x2="60.75" y2="28.25" width="1" layer="1"/>
+<wire x1="59.6" y1="28.25" x2="45.75" y2="28.25" width="1" layer="1"/>
+<wire x1="59.6" y1="28.25" x2="60.75" y2="28.25" width="1" layer="1"/>
 <wire x1="40.5" y1="23" x2="45.75" y2="28.25" width="1" layer="1"/>
+<contactref element="+3.3V" pad="1"/>
+<wire x1="59.7" y1="25.9" x2="59.7" y2="28.008578125" width="0.2" layer="1"/>
+<wire x1="59.7" y1="28.008578125" x2="59.6" y2="28.25" width="0.2" layer="1" curve="45"/>
 </signal>
 <signal name="N$4">
 <contactref element="R6" pad="1"/>
@@ -4489,8 +4518,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R19" pad="1"/>
 <wire x1="19.25" y1="61.25" x2="17.45" y2="61.25" width="0.5" layer="1"/>
 <wire x1="17.45" y1="61.25" x2="17.45" y2="61.23" width="0.5" layer="1"/>
-<wire x1="25.27" y1="61.23" x2="25.5" y2="61.23" width="0.3" layer="1"/>
+<wire x1="25.45" y1="61.23" x2="25.5" y2="61.23" width="0.3" layer="1"/>
 <wire x1="25.45" y1="61.23" x2="25.27" y2="61.23" width="0.3" layer="1"/>
+<contactref element="GND" pad="1"/>
 </signal>
 <signal name="ENC_A">
 <contactref element="R5" pad="2"/>
@@ -4927,7 +4957,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="31" y="60.5" extent="1-16" drill="0.5"/>
 <wire x1="46.7" y1="44.6341" x2="46.7" y2="44.6" width="0.2" layer="16"/>
 <wire x1="46.7" y1="44.6341" x2="42.8659" y2="44.6341" width="0.2" layer="16"/>
-<wire x1="42.8659" y1="44.6341" x2="41.2" y2="46.3" width="0.2" layer="16"/>
+<wire x1="41.35" y1="46.15" x2="42.8659" y2="44.6341" width="0.2" layer="16"/>
+<wire x1="41.35" y1="46.15" x2="41.2" y2="46.3" width="0.2" layer="16"/>
 <wire x1="52.07161875" y1="44.6341" x2="46.7" y2="44.6341" width="0.2" layer="16"/>
 <wire x1="54.574" y1="41.81" x2="54.574" y2="42.13171875" width="0.16" layer="16"/>
 <wire x1="54.574" y1="42.13171875" x2="52.07161875" y2="44.6341" width="0.16" layer="16"/>
@@ -4935,6 +4966,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="32.5" y1="59" x2="31" y2="60.5" width="0.5" layer="16"/>
 <wire x1="31" y1="60.5" x2="30.55" y2="60.95" width="0.5" layer="1"/>
 <wire x1="30.55" y1="60.95" x2="30.55" y2="62.5" width="0.5" layer="1"/>
+<contactref element="IREF_AIN" pad="1"/>
+<wire x1="38.7" y1="43.6" x2="38.870709375" y2="43.670709375" width="0.2" layer="16" curve="44.999476"/>
+<wire x1="38.870709375" y1="43.670709375" x2="41.35" y2="46.15" width="0.2" layer="16"/>
 </signal>
 <signal name="CFG-6">
 <contactref element="JP6" pad="8"/>
@@ -5060,6 +5094,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="52.7436" y1="18.58" x2="53.3" y2="19.1364" width="0.3" layer="16"/>
 <wire x1="54.1" y1="15.0636" x2="52.2236" y2="15.0636" width="0.3" layer="16"/>
 <wire x1="52.2236" y1="15.0636" x2="52.16" y2="15" width="0.3" layer="16"/>
+<contactref element="+5V" pad="1"/>
 </signal>
 <signal name="V_BM">
 <contactref element="U3" pad="10"/>

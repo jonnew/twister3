@@ -7482,6 +7482,13 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="SUPPLY7" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY17" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY22" library="jonnew" deviceset="GND" device=""/>
+<part name="GND" library="jonnew" deviceset="TP" device="_2MM"/>
+<part name="+5V" library="jonnew" deviceset="TP" device="_2MM"/>
+<part name="+3.3V" library="jonnew" deviceset="TP" device="_2MM"/>
+<part name="IREF_AIN" library="jonnew" deviceset="TP" device="_2MM"/>
+<part name="SUPPLY24" library="jonnew" deviceset="GND" device=""/>
+<part name="P+3" library="jonnew" deviceset="+5V" device=""/>
+<part name="SUPPLY27" library="jonnew" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7622,6 +7629,13 @@ to screw terminal</text>
 <instance part="SUPPLY7" gate="PE" x="398.78" y="66.04"/>
 <instance part="SUPPLY17" gate="PE" x="431.8" y="66.04"/>
 <instance part="SUPPLY22" gate="PE" x="439.42" y="66.04"/>
+<instance part="GND" gate="G$1" x="251.46" y="33.02"/>
+<instance part="+5V" gate="G$1" x="259.08" y="33.02"/>
+<instance part="+3.3V" gate="G$1" x="271.78" y="33.02"/>
+<instance part="IREF_AIN" gate="G$1" x="289.56" y="35.56"/>
+<instance part="SUPPLY24" gate="PE" x="251.46" y="22.86"/>
+<instance part="P+3" gate="1" x="264.16" y="33.02"/>
+<instance part="SUPPLY27" gate="PWR1" x="276.86" y="30.48"/>
 </instances>
 <busses>
 </busses>
@@ -7672,6 +7686,13 @@ to screw terminal</text>
 <label x="284.48" y="152.4" size="1.27" layer="95" rot="R90" xref="yes"/>
 <pinref part="C13" gate="C" pin="2"/>
 <pinref part="U11" gate="IC" pin="VCC_IO"/>
+</segment>
+<segment>
+<pinref part="+3.3V" gate="G$1" pin="TP"/>
+<wire x1="271.78" y1="30.48" x2="271.78" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="271.78" y1="27.94" x2="276.86" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="SUPPLY27" gate="PWR1" pin="+3V3"/>
+<wire x1="276.86" y1="27.94" x2="276.86" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -7881,6 +7902,11 @@ to screw terminal</text>
 <pinref part="R19" gate="R" pin="1"/>
 <pinref part="SUPPLY22" gate="PE" pin="GND"/>
 <wire x1="439.42" y1="86.36" x2="439.42" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND" gate="G$1" pin="TP"/>
+<pinref part="SUPPLY24" gate="PE" pin="GND"/>
+<wire x1="251.46" y1="30.48" x2="251.46" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ENC_A" class="0">
@@ -8303,6 +8329,11 @@ to screw terminal</text>
 <pinref part="U11" gate="IC" pin="AIN_IREF"/>
 <pinref part="R10" gate="1" pin="W"/>
 </segment>
+<segment>
+<pinref part="IREF_AIN" gate="G$1" pin="TP"/>
+<wire x1="289.56" y1="33.02" x2="289.56" y2="30.48" width="0.1524" layer="91"/>
+<label x="289.56" y="30.48" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
 </net>
 <net name="CFG-6" class="0">
 <segment>
@@ -8448,6 +8479,13 @@ to screw terminal</text>
 <pinref part="R7" gate="R" pin="1"/>
 <wire x1="129.54" y1="106.68" x2="129.54" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="P+17" gate="1" pin="+5V0"/>
+</segment>
+<segment>
+<pinref part="+5V" gate="G$1" pin="TP"/>
+<wire x1="259.08" y1="30.48" x2="259.08" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="27.94" x2="264.16" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="264.16" y1="27.94" x2="264.16" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="P+3" gate="1" pin="+5V0"/>
 </segment>
 </net>
 <net name="V_BM" class="0">
