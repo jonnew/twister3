@@ -79,7 +79,7 @@ Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this code.  If not, see <http://www.gnu.org/licenses/>.
 
-__Note__: This license applies to software/fireware source code which resides in in
+__Note__: This license applies to software/firmware source code which resides in in
 the 'firmware' folder of this repository
 
 \newpage
@@ -131,7 +131,7 @@ To make a tetrode, follow these steps:
 9. Cut the tetrode wire above the point at which the wires are fused
 10. Pull the alligator clip off the magnet and cut the finished tetrode into a storage box.
 
-TODO: Add pcitures, and links to videos for the above steps
+TODO: Add pictures, and links to videos for the above steps
 
 ## Loading bobbins 
 To load a bobbin, follow these steps:
@@ -151,7 +151,7 @@ To load a bobbin, follow these steps:
 13. Put the bobbins bake on their axle and and place back on the bobbin mount.
 14. Replace the wire shield.
 
-TODO: Add pcitures, and links to videos for the above steps
+TODO: Add pictures, and links to videos for the above steps
 
 \newpage
 
@@ -166,7 +166,16 @@ Each class of these materials has its own dedicated google sheet:
 * [3D Printing](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485)
 
 ## Twister Assembly (TODO) 
-- Step by step assembly instructions, probably made using CAD renders instead of pictures.
+
+### Feeder Assembly
+1. Insert press-in components into the feeder base. This includes M3 nut (2x), M3 standoff (2x), and 3/16" diameter dowel pin (2x).
+1. Mount the feeder base unto the C1545/M mounting clamp using 2 M6 screws. The top of the feeder should be flush with the mounting clamp.
+1. Cut two 5 cm sections from the M3 threaded rod. Turn each section into the M3 nut which behind the feeder base.
+1. Use the 60 mm M3 screw to mount the bobbin assembly to the standoff captive within the feeder base. Repeat for both sides.
+1. Thread a torsional spring onto the dowel pin. Squeeze between the shallow groove on the bobbin and the threaded rod. Repeat for each of the 4 bobbins.
+1. Mount the bobbin shield over the bobbins using a single M6 screw.
+
+### Rotor Assembly
 
 ## Control Box Assembly (TODO)
 - Assembly of box starting with pre-fab PCB
