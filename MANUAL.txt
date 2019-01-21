@@ -25,8 +25,9 @@ stepper-based tetrode twister. `twister3`'s design was inspired by the
 [SpikeGadgets Tetrode Fabrication
 Machine](http://www.spikegadgets.com/hardware/tetmachine.html).
 
+** This manual is a work in progress. PRs welcome. **
+
 \FloatBarrier
-\newpage
 
 # Note From the Maintainer
 I am very happy that this device may enable your scientific endeavors and I'm
@@ -94,9 +95,12 @@ the 'firmware' folder of this repository
 # Usage
 
 ### Using the controller
+
+![Twister3 control box.](./resources/control-box/control-box-usage.png)
+
 Using the `twister3` controller is simple. Just follow these steps:
 
-* Power the device.
+* Power the device using a 12VDC, center-postive source.
 * Place your finger on the control knob. This is the device's only user input
   mechanism.
     * __Pressing it__ will cycle through different settings (forward turns,
@@ -118,12 +122,17 @@ After a mode is selected, all turning parameters pertain to that mode only.
 Using `twister3` for each of these purposes is detailed below.
 
 ## Twisting Tetrodes
+![Making a tetrode.](./resources/operation/make-tetrode.png){width=80%}
+\FloatBarrier
+
 To make a tetrode, follow these steps: 
 
-1. Pull down the wire from all 4 of the bobbins and group with yur fingers
+1. Pull down the wire from all 4 of the bobbins and group with your fingers
 2. Clamp the bundle with the alligator clip
 3. Pull the twisting attachment's leaf spring up until under slight tension, about 1 cm.
-4. Move the alligator clip down to meet the magnet on the twisting attachment. Now, the leaf spring should be in opposition with the upward force produced by the tetrode wire. Each of the wires should be pulled straight.
+4. Move the alligator clip down to meet the magnet on the twisting attachment.
+Now, the leaf spring should be in opposition with the upward force produced by
+the tetrode wire. Each of the wires should be pulled straight.
 5. Make sure the controller is in `mode 0` and has been set to the desired amount of turns and turn speed.
 6. Hold the button down to perform a twist.
 7. When finished, fuse wires _starting from the point at which they separate_ using the hot air gun at ~480 deg. C.
@@ -131,9 +140,13 @@ To make a tetrode, follow these steps:
 9. Cut the tetrode wire above the point at which the wires are fused
 10. Pull the alligator clip off the magnet and cut the finished tetrode into a storage box.
 
-TODO: Add pictures, and links to videos for the above steps
+TODO: Add video for the above steps
 
 ## Loading bobbins 
+
+![Loading bobins.](./resources/loading-bobbins/load-bobbin.png)
+\FloatBarrier
+
 To load a bobbin, follow these steps:
 
 1. Remove the wire shield by removing its M6-retention screw
@@ -148,9 +161,10 @@ To load a bobbin, follow these steps:
 10. Set the controller to `mode 1`
 11. Select the desired number of turns to load the bobbin. The circumference of the bobbin is ~10 cm. The amount of wire loaded on the bobbin is therefore the number of turns * 10 cm.
 12. Start the turn and wait until it is finished.  __Be very careful not touch moving parts during this process__: the TT wire needs to have constant tension to ensure it is properly loaded on the bobbin.
-13. Put the bobbins bake on their axle and and place back on the bobbin mount.
+13. Put the bobbins bake on their axle and place back on the bobbin mount.
 14. Replace the wire shield.
 
+TODO: Add video for the above steps
 TODO: Add pictures, and links to videos for the above steps
 
 \newpage
@@ -168,14 +182,71 @@ Each class of these materials has its own dedicated google sheet:
 ## Twister Assembly (TODO) 
 
 ### Feeder Assembly
-1. Insert press-in components into the feeder base. This includes M3 nut (2x), M3 standoff (2x), and 3/16" diameter dowel pin (2x).
-1. Mount the feeder base unto the C1545/M mounting clamp using 2 M6 screws. The top of the feeder should be flush with the mounting clamp.
-1. Cut two 5 cm sections from the M3 threaded rod. Turn each section into the M3 nut which behind the feeder base.
-1. Use the 60 mm M3 screw to mount the bobbin assembly to the standoff captive within the feeder base. Repeat for both sides.
-1. Thread a torsional spring onto the dowel pin. Squeeze between the shallow groove on the bobbin and the threaded rod. Repeat for each of the 4 bobbins.
+
+![Feeder assembly.](./resources/feeder-assembly/feeder-assembly.png)
+\FloatBarrier
+
+1. Insert press-in components into the feeder base. This includes M3 nut (2x),
+M3 standoff (2x), and 3/16" diameter dowel pin (2x).
+1. Mount the feeder base unto the C1545/M mounting clamp using 2 M6 screws. The
+top of the feeder should be flush with the mounting clamp.
+1. Cut two 5 cm sections from the M3 threaded rod. Turn each section into the
+M3 nut which behind the feeder base.
+1. Use the 60 mm M3 screw to mount the bobbin assembly to the standoff captive
+within the feeder base. Repeat for both sides.
+1. Thread a torsional spring onto the dowel pin. Squeeze between the shallow
+groove on the bobbin and the threaded rod. Repeat for each of the 4 bobbins.
 1. Mount the bobbin shield over the bobbins using a single M6 screw.
 
 ### Rotor Assembly
+
+![TODO: Rotor assembly.](./resources/rotor-assembly/rotor-assembly.png){width=50%}
+\FloatBarrier
+
+1. Remove the long, M3 step screws from the bottom of the stepper motor (4x).
+1. Put the motor mount under the motor and reinstall long screws, holding the
+mount plate to the bottom of the motor
+1. Insert two magnets into the spring rotor top _in the same orientation_.
+1. Stick two additional magnets to those you just inserted into spring rotor
+and then use the spring rotor to press fit these two magnets into the spring
+rotor base.
+1. Push the spring rotor base, now with captive magnets, onto the stepper motor
+shaft.
+1. Fix the spring rotor base onto the shaft with the M3 set screw
+1. Push the clip magnet into one of the slots on the spring rotor top.
+
+### Wire Guide Assembly
+
+1. Screw the wire-guide into a mini, 6mm-diameter optical post
+1. Push the optical post into a swivel post holder.
+
+### Stock Spool Assembly
+
+![Stock spool assembly. TODO: label parts](./resources/stock-spool-assembly/stock-spool-assembly.png){width=40% }
+\FloatBarrier
+
+1. Push a bearing into each of the stock spool bearing cases.
+1. Push each of the bearing cases into the stock spool of tetrode wire.
+1. Push a 60mm, M3 screw through the two bearings and screw into a mini, 6-mm
+diameter optical post.
+1. Push the optical post into a swivel post holder.
+
+### Twister Assembly
+
+![Twister3 assembly.](./resources/operation/overview-operation.png){width=80%}
+\FloatBarrier
+
+1. Screw together the large, 1.5" diameter mounting posts and then screw this
+long post into either the left or right side of the optical bread board.
+2. Mount the feeder assembly on the post using the post mounting clamp on its
+back.
+3. Mount the rotor assembly directly in front of the post, as close as it will
+go, using 4x M6 screws.
+4. Mount the wire guide assembly into a position that is in close proximity to
+the rotor assembly using a single M6 screw.
+5. Mount the stock spool assembly in on the opposite side of the optical
+breadboard using a simple M6 screw.
+
 
 ## Control Box Assembly (TODO)
 - Assembly of box starting with pre-fab PCB

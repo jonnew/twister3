@@ -2411,18 +2411,6 @@ Source: http://www.bourns.com/data/global/PDFs/3223.PDF</description>
 <text x="-2.1668" y="1.6788" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
 <text x="-2.2238" y="-2.5048" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
 </package>
-<package name="CLP1006-2L">
-<wire x1="-0.4572" y1="0.254" x2="0.4572" y2="0.254" width="0.1016" layer="51"/>
-<wire x1="0.4572" y1="-0.254" x2="-0.4572" y2="-0.254" width="0.1016" layer="51"/>
-<wire x1="0.6" y1="0.2" x2="0.6" y2="-0.2" width="0.127" layer="21"/>
-<smd name="A" x="-0.325" y="0" dx="0.24" dy="0.49" layer="1"/>
-<smd name="C" x="0.325" y="0" dx="0.24" dy="0.49" layer="1"/>
-<text x="-1.1" y="0.7" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
-<text x="-1.2" y="-1.7" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
-<rectangle x1="-0.508" y1="-0.254" x2="-0.254" y2="0.254" layer="51"/>
-<rectangle x1="0.254" y1="-0.254" x2="0.508" y2="0.254" layer="51"/>
-<rectangle x1="-0.5" y1="-0.3" x2="0.5" y2="0.3" layer="39"/>
-</package>
 <package name="153CLV-0807">
 <description>&lt;b&gt;Aluminum electrolytic capacitors&lt;/b&gt;&lt;p&gt;
 SMD (Chip) Long Life Vertical 153 CLV&lt;p&gt;
@@ -3656,6 +3644,83 @@ Source: smt-pots.pdf</description>
 <text x="-2.9" y="4" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
 <text x="-3.2" y="-2.7" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
 </package>
+<package name="C900">
+<pad name="1" x="-5" y="0" drill="0.8"/>
+<pad name="2" x="5" y="0" drill="0.8"/>
+<wire x1="3.5" y1="0" x2="2.5" y2="1" width="0.254" layer="21" curve="90"/>
+<wire x1="2.5" y1="1" x2="-2.5" y2="1" width="0.254" layer="21"/>
+<wire x1="-2.5" y1="1" x2="-3.5" y2="0" width="0.254" layer="21" curve="90"/>
+<wire x1="-3.5" y1="0" x2="-2.5" y2="-1" width="0.254" layer="21" curve="90"/>
+<wire x1="-2.5" y1="-1" x2="2.5" y2="-1" width="0.254" layer="21"/>
+<wire x1="2.5" y1="-1" x2="3.5" y2="0" width="0.254" layer="21" curve="90"/>
+<wire x1="-4" y1="0" x2="-3.5" y2="0" width="0.254" layer="21"/>
+<wire x1="3.5" y1="0" x2="4" y2="0" width="0.254" layer="21"/>
+<text x="-3.5" y="1.5" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<text x="-3.5" y="-2.5" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+</package>
+<package name="HEADSTAGE-64-DAUGHTER-CARD">
+<wire x1="-2.1" y1="0" x2="-2.7" y2="0" width="0.2" layer="51"/>
+<smd name="1" x="-2.4" y="-0.1" dx="1.5" dy="1" layer="1" rot="R90"/>
+<smd name="2" x="-1.2" y="-0.1" dx="1.5" dy="1" layer="1" rot="R90"/>
+<smd name="3" x="0" y="-0.1" dx="1.5" dy="1" layer="1" rot="R90"/>
+<smd name="4" x="1.3" y="-0.1" dx="1.5" dy="1" layer="1" rot="R90"/>
+<wire x1="-0.9" y1="0" x2="-1.5" y2="0" width="0.2" layer="51"/>
+<wire x1="0.3" y1="0" x2="-0.3" y2="0" width="0.2" layer="51"/>
+<wire x1="1.6" y1="0" x2="1" y2="0" width="0.2" layer="51"/>
+<polygon width="0" layer="39">
+<vertex x="1.9" y="-0.3"/>
+<vertex x="-3" y="-0.3"/>
+<vertex x="-3" y="0.5"/>
+<vertex x="1.9" y="0.5"/>
+</polygon>
+<wire x1="-3.1" y1="0.45" x2="-3.1" y2="-0.25" width="0.127" layer="21"/>
+<wire x1="2" y1="0.45" x2="2" y2="-0.25" width="0.127" layer="21"/>
+</package>
+<package name="HEADSTAGE64-DAUGHER-CARD-CASTELLATED">
+<wire x1="2.5" y1="0" x2="-4" y2="0" width="0.127" layer="51"/>
+<pad name="1" x="-2.4" y="0" drill="0.5"/>
+<pad name="2" x="-1.2" y="0" drill="0.5"/>
+<pad name="3" x="0" y="0" drill="0.5"/>
+<pad name="4" x="1.3" y="0" drill="0.5"/>
+<wire x1="-3.38" y1="-0.862" x2="-3.38" y2="-0.354" width="0.127" layer="51"/>
+<wire x1="-3.253" y1="-0.481" x2="-3.38" y2="-0.354" width="0.127" layer="51"/>
+<wire x1="-3.38" y1="-0.354" x2="-3.507" y2="-0.481" width="0.127" layer="51"/>
+<wire x1="-3.253" y1="-0.481" x2="-3.507" y2="-0.481" width="0.127" layer="51"/>
+<wire x1="2.407" y1="-0.989" x2="2.407" y2="-0.354" width="0.127" layer="51"/>
+<wire x1="2.407" y1="-0.354" x2="2.28" y2="-0.481" width="0.127" layer="51"/>
+<wire x1="2.28" y1="-0.481" x2="2.534" y2="-0.481" width="0.127" layer="51"/>
+<wire x1="2.534" y1="-0.481" x2="2.407" y2="-0.354" width="0.127" layer="51"/>
+<text x="-4.229" y="-1.87" size="1.016" layer="51" font="vector" ratio="20">PCB Edge</text>
+</package>
+<package name="CLP1006-2L">
+<wire x1="-0.4572" y1="0.254" x2="0.4572" y2="0.254" width="0.1016" layer="51"/>
+<wire x1="0.4572" y1="-0.254" x2="-0.4572" y2="-0.254" width="0.1016" layer="51"/>
+<wire x1="0.6" y1="0.2" x2="0.6" y2="-0.2" width="0.127" layer="21"/>
+<smd name="A" x="-0.325" y="0" dx="0.24" dy="0.49" layer="1" cream="no"/>
+<smd name="C" x="0.325" y="0" dx="0.24" dy="0.49" layer="1" cream="no"/>
+<text x="-1.1" y="0.7" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<text x="-1.2" y="-1.7" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+<rectangle x1="-0.508" y1="-0.254" x2="-0.254" y2="0.254" layer="51"/>
+<rectangle x1="0.254" y1="-0.254" x2="0.508" y2="0.254" layer="51"/>
+<rectangle x1="-0.5" y1="-0.3" x2="0.5" y2="0.3" layer="39"/>
+<rectangle x1="-0.41" y1="-0.2" x2="-0.24" y2="0.2" layer="31"/>
+<rectangle x1="0.24" y1="-0.2" x2="0.41" y2="0.2" layer="31"/>
+</package>
+<package name="0805-POL">
+<wire x1="-0.9652" y1="0.635" x2="0.9652" y2="0.635" width="0.1016" layer="51"/>
+<wire x1="0.9652" y1="-0.635" x2="-0.9652" y2="-0.635" width="0.1016" layer="51"/>
+<wire x1="-1.978" y1="1.016" x2="1.778" y2="1.016" width="0.127" layer="21"/>
+<wire x1="1.778" y1="1.016" x2="1.778" y2="-1.016" width="0.127" layer="21"/>
+<wire x1="1.778" y1="-1.016" x2="-1.978" y2="-1.016" width="0.127" layer="21"/>
+<wire x1="-1.978" y1="-1.016" x2="-1.978" y2="1.016" width="0.127" layer="21"/>
+<smd name="A" x="-1.0414" y="0" dx="0.9652" dy="1.524" layer="1"/>
+<smd name="C" x="1.0414" y="0" dx="0.9652" dy="1.524" layer="1"/>
+<text x="-1.778" y="1.27" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
+<text x="-2.032" y="-2.286" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
+<rectangle x1="-1.016" y1="-0.635" x2="-0.6096" y2="0.635" layer="51"/>
+<rectangle x1="0.6096" y1="-0.635" x2="1.016" y2="0.635" layer="51"/>
+<rectangle x1="-2" y1="-1" x2="-1.7" y2="1" layer="21"/>
+</package>
 </packages>
 <symbols>
 <symbol name="PE">
@@ -4234,6 +4299,15 @@ Source: smt-pots.pdf</description>
 </technologies>
 </device>
 <device name="_0603T" package="0603T">
+<connects>
+<connect gate="C" pin="1" pad="1"/>
+<connect gate="C" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_C900" package="C900">
 <connects>
 <connect gate="C" pin="1" pad="1"/>
 <connect gate="C" pin="2" pad="2"/>
@@ -4862,6 +4936,28 @@ Source: smt-pots.pdf</description>
 <technology name=""/>
 </technologies>
 </device>
+<device name="HEADSTAGE64_DAUGHTER-CARD" package="HEADSTAGE-64-DAUGHTER-CARD">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="HEADSTAGE64-DAUGHTER-CARD-CASTELLATED" package="HEADSTAGE64-DAUGHER-CARD-CASTELLATED">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
 </devices>
 </deviceset>
 <deviceset name="TEENSY_3.1_CYCLOPS" uservalue="yes">
@@ -5266,6 +5362,15 @@ Source: smt-pots.pdf</description>
 <connects>
 <connect gate="C" pin="+" pad="+"/>
 <connect gate="C" pin="-" pad="-"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="_0805" package="0805-POL">
+<connects>
+<connect gate="C" pin="+" pad="A"/>
+<connect gate="C" pin="-" pad="C"/>
 </connects>
 <technologies>
 <technology name=""/>
