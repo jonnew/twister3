@@ -1,0 +1,186 @@
+\documentclass[11pt,a4paper]{article} 
+
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=2cm]{geometry}
+\usepackage{lineno}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[labelfont=bf, font=small]{caption}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{floatrow}
+\usepackage{xr}
+
+\DeclareFloatFont{small}{\scriptsize}% "scriptsize" is defined by floatrow, "tiny" not
+\floatsetup[table]{font=small}
+\linenumbers
+
+\title{Twister3: a simple and fast microelectrode twister}
+\author{Jonathan P. Newman, Jakob Voigts, Matthew A. Wilson}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    \noindent
+    We present Twister3, a twisted wire probe-making machine. This device
+    greatly increases the speed and repeatability of constructing twisted wire
+    probes (TWPs; e.g. stereotrodes and tetrodes) compared to existing options.
+    It is cheap, well documented, and all associated designs and source code
+    are open-source. Twister3 is of interest to any lab using TWP recordings in
+    freely moving animals, for example, in conjunction with microdrive arrays
+    or static implants.
+\end{abstract}
+
+\section{Introduction}
+Since their introduction \cite{}, twisted-wire probes (TWPs; e.g stereotrodes
+\cite{} and tetrodes \cite{}) have been a reliable method for obtaining
+multiple single-unit extracellular spiking data in freely moving animals. They
+are cheap (~xx USD/cm), small enough to cause minimal inflammation \cite{},
+biocompatible enough to be used over many months \cite{}, and mechanically
+flexible, such that they move with along with neural tissue, rather than as a
+rigid, cantilevered beam, which mitigates "drift" \cite{} and improve long term
+stability \cite{}. Their contacts are close (~20 um) and therefore allow much
+improved unit separability compared to single wire probes \cite{}. Although the
+introduction of modern silicon \cite{} and carbon-fiber probes \cite{} offer
+major advances in terms of channel density and size, respectively, and even
+rival microwires in terms of mechanical flexibility \cite{}, TWPs will remain a
+ubiquitous recording method due to their simplicity, performance, and low cost.
+
+Although quite simple to make \cite{}, constructing TWPs is a tedious and
+time-consuming process. For modern, easy to assemble microdrive designs \cite{},
+making TWPs are a rate-limiting step. Typically, TWPs are are
+made in three actions (Fig. \ref{f:manual-steps}):
+
+\begin{enumerate}
+    \item \textbf{Electrode Folding}: tungsten or nickel-chromium (`nichrome')
+        resistance wire is drawn from a spool and folded by hand 2, 4, or 8
+        times to make stereo-, tet-, or oct-trodes, respectively.
+    \item \textbf{Twisting}: the folded wire bundle is draped over a smooth
+        metal rod. The free end of the bundle is loosely linked a motor armature using a
+        magnetic
+        \footnote{\url{https://neuralynx.com/hardware/tetrode-spinner-2.0}} or
+        mechanical coupling
+        \footnote{\url{http://www.open-ephys.org/twister}}.
+        The motor then turns the wire bundle into a helix.
+    \item \textbf{Wiring fusing}: A hot air gun is used to fuse the insulation
+        on the wire bundle, forming a rigid, implantable unit.
+\end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.25\textwidth]{standin.jpg}
+    \caption{TODO: Manual tetrode making steps.}
+    \label{f:manual-steps}
+\end{figure}
+
+Recently,
+SpikeGadgets\footnote{\url{http://www.spikegadgets.com/main/home.html}}
+introduced a tetrode twisting machine that provides an arrangement of four
+pre-wound wire bobbins that allow the user to draw a multi-wire bundle without
+the folding step. Because folding is the most time consuming step of the
+tetrode making process, this device improves the speed at which tetrodes could
+be created. Additionally, this method minimizes wire handling, which is
+beneficial because wire ends up in direct contact with neural tissue. Despite
+these advantages, the cost (10,000 USD) and complexity of this device has
+hampered its adoption. Inspired by the SpikeGadgets design, we have created an
+open-source twisting machine that is approximately 10x times cheaper and
+faster. Our device replaces a servo motor with high speed stepping
+motor and modern micro-stepping driver in order to increase twisting
+speed while maintaining precise control motor acceleration and smooth motor
+actuation. A new counter-balanced spring system provides constant tension on
+tetrode wire during twisting. Our design allows a moderately trained ($\sim$1 hr of
+experience with device) operator to make $\sim$100 TWPs per hour.
+
+Here we present descriptions of how this device works, materials and assembly
+information, driver electronics designs, and descriptions of control firmware.
+In addition we provide detailed usage instructions, an exploration of twisting
+parameters, and show data obtained with tetrodes made using this machine. All
+designs and source code associated with this project can be found on its git
+repository\footnote{\url{https://github.com/jonnew/twister3}}.
+
+\section{Notable design elements}
+
+\section{3D-printed leaf spring and for rapid turn rates}
+In order to achieve straight TWPs, wire must be twisted together while under
+tension. In existing designs \cite{}, a weight is hung from the wire bundle and
+a motor is loosely coupled to the weight in a way that does not constrain axial
+motion. This provides constant tension on the wire bundle due to gravity and
+allows while allowing it to decrease in length as it is twisted. An variant of
+this method uses magnets hold the weight in place, but, in our experience, this
+unnecessary and is prone to causing wire breakage due to the nonlinear
+force/distance magnetic relationship.
+
+A key design criteria of our device was that TWPs need to be turned extremely
+quickly. We aimed for < 10 seconds of actual twisting time. Assuming 100 total
+revolutions (typical for tetrodes) this translates to an average turn rate of
+600 RPM. Because previous methods rely on loose motor coupling, they were
+unsuitable to meet our speed requirements. The high centripetal forces involved
+in rapid turning inevitably lead to instability of the coupling mechanism,
+causing the bundle to vibrate wildly. Therefore, we sought a way to rigidly
+constrain the motor and wire bundle in the turning plane, but still maintain
+freedom in the axial direction to allow bundle shortening during the turning
+process. To meet this goal, we made use of selective laser-sintered polyether
+block amide (PEBA) to create a monolithic, combined leaf-spring/wire-clip
+mechanism (Fig. XX). PEBA provides rubber-like mechanical qualities allowing
+us to achieve a spring with an spring-constant low enough for use with tetrode
+wire ($\sim$68 mN/mm in the relevant range of motion). 
+
+The wire bundle interfaces with this mechanism using a standard alligator clip
+that has been coated in shrink wrap, which we have found effective for holding
+the microwire bundle. A strong, neodymium magnet provides the final linkage
+between the leaf spring and this alligator clip.
+
+\section{Quick-draw wire feeder} 
+To further increase the speed at which TWPs can be made, microwire needs to be
+drawn, and attached to the  motor quickly, and ideally with minimal separate
+actions being taken by the operator. To facilitate the rapid draw of wire from
+stock spools, we designed a torsional-spring based feeding element that allows
+wire to be drawn rapidly from stock spools but applies enough friction to
+counter the increase in wire tension during a twist, transferring all slack
+compensation to the leaf spring. The holding force of this mechanism is
+adjustable. We have found that the lowest available setting, which results in a
+stiction threshold force of $\sim$XX N per spool, is adequate to counter wire
+tension and therefore prevent spools from feeding during twisting.
+
+\section{Advanced Motor control hardware and control firmware smooth turning}
+
+\section{Usage}
+
+\subsection{Making TWPs}
+
+
+\subsection{Loading Bobbins}
+
+
+\subsection{Using the controller}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{../resources/control-box/control-box-usage.png}
+    \caption{Twister3 control box.}
+    \label{f:ctrl-box}
+\end{figure}
+
+\section{Materials and Assembly}
+
+\subsection{Control Electronics}
+The control board is comprised of the following blocks: power regulation,
+motor-driver, microcontroller, and user interface. Wherever possible, we used
+pre-assembled modules in order to ease assembly and increase ease of soldering.
+
+\include{elecbom}
+
+\section{Twisting Parameters}
+- Back twisting vs forward only
+- Height of bobbins vs coil
+- Good parameters
+
+\medskip
+
+\bibliographystyle{unsrt} % Used BibTeX style is unsrt
+\bibliography{refs}
+
+\end{document}
