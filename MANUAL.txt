@@ -18,7 +18,7 @@ reference-section-title: true
 
 \newpage
 
-**MWL `twister3`** 
+**MWL `twister3`**
 
 Code and hardware designs for the MWL `twister3`, a simple and fast
 stepper-based tetrode twister. `twister3`'s design was inspired by the
@@ -117,7 +117,7 @@ The motor on `twister3` serves two purposes:
 1. Twisting tetrodes (Mode 0)
 1. Loading bobbins with tetrode wires (Mode 1)
 
-The mode can be selected using the dial on the `twister3` controller. 
+The mode can be selected using the dial on the `twister3` controller.
 After a mode is selected, all turning parameters pertain to that mode only.
 Using `twister3` for each of these purposes is detailed below.
 
@@ -125,7 +125,7 @@ Using `twister3` for each of these purposes is detailed below.
 ![Making a tetrode.](./resources/operation/make-tetrode.png){width=80%}
 \FloatBarrier
 
-To make a tetrode, follow these steps: 
+To make a tetrode, follow these steps:
 
 1. Pull down the wire from all 4 of the bobbins and group with your fingers
 2. Clamp the bundle with the alligator clip
@@ -142,7 +142,7 @@ the tetrode wire. Each of the wires should be pulled straight.
 
 TODO: Add video for the above steps
 
-## Loading bobbins 
+## Loading bobbins
 
 ![Loading bobins.](./resources/loading-bobbins/load-bobbin.png)
 \FloatBarrier
@@ -179,7 +179,7 @@ Each class of these materials has its own dedicated google sheet:
 * [Mechanical](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=1299007471)
 * [3D Printing](https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485)
 
-## Twister Assembly (TODO) 
+## Twister Assembly (TODO)
 
 ### Feeder Assembly
 
@@ -252,7 +252,7 @@ breadboard using a simple M6 screw.
 - Assembly of box starting with pre-fab PCB
 
 ## Controller Firmware
-The twister3 controller firmware runs on a teensy 3.2. To program the teensy you
+The twister3 controller firmware runs on a [Teensy 3.2](https://www.pjrc.com/store/teensy32.html). To program the Teensy you
 will need the following Arduino dependencies:
 
 - [TeensyStep](https://github.com/luni64/TeensyStep)
@@ -263,11 +263,9 @@ will need the following Arduino dependencies:
 The firmware is located
 [here](https://github.com/jonnew/twister3/tree/master/firmware/twister3). The
 firmware can be uploaded to the device using the [Arduino
-IDE](https://www.arduino.cc/en/Main/Software) in combination with the Cyclops
-Arduino library: `./lib/cyclops`. _Note that you will need to add the
-[Teensyduino add-on](https://www.pjrc.com/teensy/teensyduino.html) to to the
-Arduino IDE to program the Teensy_. 
+IDE](https://www.arduino.cc/en/Main/Software). _Note that you will need to add
+the [Teensyduino add-on](https://www.pjrc.com/teensy/teensyduino.html) to to
+the Arduino IDE to program the Teensy_.
+
 \newpage
-
-
 # References
