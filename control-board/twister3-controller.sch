@@ -2623,19 +2623,6 @@ Source: smt-pots.pdf</description>
 <wire x1="-3.25" y1="0" x2="3.25" y2="0" width="0.127" layer="21"/>
 <wire x1="3.25" y1="0" x2="5" y2="0" width="0.127" layer="21"/>
 </package>
-<package name="800AWSP9M2QE">
-<rectangle x1="-4.064" y1="-2.54" x2="4.064" y2="2.54" layer="39"/>
-<wire x1="-4.318" y1="2.794" x2="4.318" y2="2.794" width="0.127" layer="21"/>
-<wire x1="4.318" y1="2.794" x2="4.318" y2="-2.794" width="0.127" layer="21"/>
-<wire x1="4.318" y1="-2.794" x2="-4.318" y2="-2.794" width="0.127" layer="21"/>
-<wire x1="-4.318" y1="-2.794" x2="-4.318" y2="2.794" width="0.127" layer="21"/>
-<circle x="0" y="0" radius="2.552665625" width="0.127" layer="21"/>
-<circle x="0" y="0" radius="2.032" width="0.127" layer="21"/>
-<pad name="1" x="-2.54" y="0" drill="1" shape="octagon"/>
-<pad name="2" x="2.54" y="0" drill="1" shape="octagon"/>
-<text x="-4.064" y="3.302" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
-<text x="-3.81" y="-4.064" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
-</package>
 <package name="B1,27">
 <description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
 <wire x1="-0.635" y1="0" x2="0.635" y2="0" width="0.0024" layer="37"/>
@@ -3625,25 +3612,6 @@ Source: smt-pots.pdf</description>
 <hole x="37.5" y="15.5" drill="2.8"/>
 <hole x="37.5" y="-15.5" drill="2.8"/>
 </package>
-<package name="EVQPF">
-<pad name="M1" x="3.5" y="0" drill="1.3" rot="R180"/>
-<pad name="M2" x="-3.5" y="0" drill="1.3" rot="R180"/>
-<pad name="A" x="2.25" y="2.5" drill="1" rot="R180"/>
-<pad name="B" x="-2.25" y="2.5" drill="1" rot="R180"/>
-<wire x1="-3.5" y1="5.5" x2="-1.7" y2="5.5" width="0.127" layer="21"/>
-<wire x1="-1.7" y1="5.5" x2="1.7" y2="5.5" width="0.127" layer="21"/>
-<wire x1="1.7" y1="5.5" x2="3.5" y2="5.5" width="0.127" layer="21"/>
-<wire x1="3.5" y1="5.5" x2="3.5" y2="1.2" width="0.127" layer="21"/>
-<wire x1="3.5" y1="-1.3" x2="-3.5" y2="-1.3" width="0.127" layer="21"/>
-<wire x1="-3.5" y1="1.2" x2="-3.5" y2="5.5" width="0.127" layer="21"/>
-<wire x1="-1.7" y1="5.5" x2="-1.7" y2="7.4" width="0.127" layer="21"/>
-<wire x1="-1.7" y1="7.4" x2="1.7" y2="7.4" width="0.127" layer="21"/>
-<wire x1="1.7" y1="7.4" x2="1.7" y2="5.5" width="0.127" layer="21"/>
-<wire x1="-4.4" y1="5.5" x2="4.8" y2="5.5" width="0.127" layer="51" style="shortdash"/>
-<text x="5.1" y="5.4" size="0.8128" layer="51" font="vector" ratio="18">PCB EDGE</text>
-<text x="-2.9" y="4" size="1.016" layer="25" font="vector" ratio="18">&gt;NAME</text>
-<text x="-3.2" y="-2.7" size="1.016" layer="27" font="vector" ratio="18">&gt;VALUE</text>
-</package>
 <package name="C900">
 <pad name="1" x="-5" y="0" drill="0.8"/>
 <pad name="2" x="5" y="0" drill="0.8"/>
@@ -3992,23 +3960,6 @@ Source: smt-pots.pdf</description>
 <wire x1="14.605" y1="1.905" x2="15.24" y2="2.54" width="0.254" layer="94" curve="90"/>
 <wire x1="15.24" y1="2.54" x2="14.605" y2="3.175" width="0.254" layer="94" curve="90"/>
 <wire x1="14.605" y1="3.175" x2="6.35" y2="3.175" width="0.254" layer="94"/>
-</symbol>
-<symbol name="TS">
-<wire x1="0" y1="1.905" x2="0" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="-1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-4.445" y2="0" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="0" x2="-4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-1.905" y2="0" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-0.635" y2="0" width="0.1524" layer="94"/>
-<wire x1="-4.445" y1="0" x2="-3.175" y2="0" width="0.1524" layer="94"/>
-<wire x1="0" y1="-2.54" x2="-1.27" y2="1.905" width="0.254" layer="94"/>
-<circle x="0" y="-2.54" radius="0.127" width="0.4064" layer="94"/>
-<circle x="0" y="2.54" radius="0.127" width="0.4064" layer="94"/>
-<text x="-6.35" y="-2.54" size="1.778" layer="95" rot="R90">&gt;NAME</text>
-<text x="-3.81" y="3.175" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="P" x="0" y="-5.08" visible="pad" length="short" direction="pas" swaplevel="2" rot="R90"/>
-<pin name="S" x="0" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
 </symbol>
 <symbol name="TP">
 <wire x1="-0.762" y1="0.508" x2="0" y2="1.27" width="0.254" layer="94"/>
@@ -5411,31 +5362,6 @@ Source: smt-pots.pdf</description>
 <connects>
 <connect gate="G$1" pin="IN" pad="1"/>
 <connect gate="G$1" pin="OUT" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="SPST_TACT2" prefix="S" uservalue="yes">
-<gates>
-<gate name="G$1" symbol="TS" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_800AW" package="800AWSP9M2QE">
-<connects>
-<connect gate="G$1" pin="P" pad="1"/>
-<connect gate="G$1" pin="S" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="_EVQPF" package="EVQPF">
-<connects>
-<connect gate="G$1" pin="P" pad="A"/>
-<connect gate="G$1" pin="S" pad="B"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -7561,9 +7487,6 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <part name="R1" library="jonnew" deviceset="R" device="_0603" value="4.7k"/>
 <part name="SUPPLY32" library="jonnew" deviceset="GND" device=""/>
 <part name="SUPPLY33" library="jonnew" deviceset="GND" device=""/>
-<part name="S2" library="jonnew" deviceset="SPST_TACT2" device="_800AW" value="800AWSP9M2QE"/>
-<part name="TP1" library="jonnew" deviceset="TP" device="_1MM" value="RESET"/>
-<part name="SUPPLY34" library="jonnew" deviceset="GND" device=""/>
 <part name="R12" library="cyclops" deviceset="R" device="_0603" value="4.7k"/>
 <part name="R11" library="cyclops" deviceset="R" device="_0603" value="4.7k"/>
 <part name="R17" library="jonnew" deviceset="R" device="_0603" value="10k"/>
@@ -7600,9 +7523,6 @@ TMC2130 - SPI for configuration&lt;br&gt;</description>
 <plain>
 <text x="121.92" y="226.06" size="1.27" layer="97" rot="R90">NB: Override internal pullup</text>
 <frame x1="0" y1="0" x2="551.18" y2="335.28" columns="8" rows="5" layer="94"/>
-<text x="165.1" y="43.18" size="1.778" layer="97">Teensy reset (jumper 
-wire to reset pad on
-Teensy)</text>
 <text x="353.06" y="50.8" size="1.778" layer="97">Mechanical connections
 between panel and board.</text>
 <text x="408.94" y="33.02" size="1.778" layer="97">Motor connection
@@ -7708,9 +7628,6 @@ to screw terminal</text>
 <instance part="R1" gate="R" x="264.16" y="292.1" rot="MR90"/>
 <instance part="SUPPLY32" gate="PE" x="233.68" y="60.96"/>
 <instance part="SUPPLY33" gate="PE" x="487.68" y="86.36"/>
-<instance part="S2" gate="G$1" x="185.42" y="55.88" rot="R270"/>
-<instance part="TP1" gate="G$1" x="172.72" y="55.88" rot="R90"/>
-<instance part="SUPPLY34" gate="PE" x="195.58" y="45.72"/>
 <instance part="R12" gate="R" x="259.08" y="96.52" rot="R90"/>
 <instance part="R11" gate="R" x="251.46" y="96.52" rot="R90"/>
 <instance part="R17" gate="R" x="233.68" y="73.66" rot="R270"/>
@@ -7959,12 +7876,6 @@ to screw terminal</text>
 <wire x1="487.68" y1="109.22" x2="487.68" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="464.82" y1="109.22" x2="487.68" y2="109.22" width="0.1524" layer="91"/>
 <junction x="487.68" y="109.22"/>
-</segment>
-<segment>
-<pinref part="S2" gate="G$1" pin="S"/>
-<wire x1="190.5" y1="55.88" x2="195.58" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="195.58" y1="55.88" x2="195.58" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="SUPPLY34" gate="PE" pin="GND"/>
 </segment>
 <segment>
 <pinref part="R17" gate="R" pin="2"/>
@@ -8818,13 +8729,6 @@ to screw terminal</text>
 <pinref part="J8" gate="G$1" pin="1"/>
 <pinref part="J5" gate="G$1" pin="4"/>
 <wire x1="431.8" y1="15.24" x2="416.56" y2="15.24" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$23" class="0">
-<segment>
-<pinref part="TP1" gate="G$1" pin="TP"/>
-<pinref part="S2" gate="G$1" pin="P"/>
-<wire x1="175.26" y1="55.88" x2="180.34" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5VOUT" class="0">
