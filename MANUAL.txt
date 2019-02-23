@@ -98,7 +98,7 @@ the 'firmware' folder of this repository
 
 ![Twister3 control box.](./resources/control-box/control-box-usage.png)
 
-Using the `twister3` controller is simple. Just follow these steps:
+Using the controller is simple. Just follow these steps:
 
 * Power the device using a 12VDC, center-postive source.
 * Place your finger on the control knob. This is the device's only user input
@@ -112,7 +112,7 @@ Using the `twister3` controller is simple. Just follow these steps:
     * __Pressing it__ during a twist will cancel the twist and stop the motor
       immediately.
 
-The motor on `twister3` serves two purposes:
+The motor on serves two purposes:
 
 1. Twisting tetrodes (Mode 0)
 1. Loading bobbins with tetrode wires (Mode 1)
@@ -129,14 +129,18 @@ To make a tetrode, follow these steps:
 
 1. Pull down the wire from all 4 of the bobbins and group with your fingers
 2. Clamp the bundle with the alligator clip
-3. Pull the twisting attachment's leaf spring up until under slight tension, about 1 cm.
+3. Pull up on the twisting attachment's leaf spring up until under slight
+tension, about 1 cm.
 4. Move the alligator clip down to meet the magnet on the twisting attachment.
 Now, the leaf spring should be in opposition with the upward force produced by
-the tetrode wire. Each of the wires should be pulled straight.
+the tetrode wire. Each of the wires should be pulled straight. If any wire has
+slack, its bobbin can be turned backwards slightly until it is taught.
 5. Make sure the controller is in `mode 0` and has been set to the desired amount of turns and turn speed.
 6. Hold the button down to perform a twist.
-7. When finished, fuse wires _starting from the point at which they separate_ using the hot air gun at ~480 deg. C.
-8. Roll each of the bobbins forward a bit in order to release tension on the tetrode wire.
+7. When finished, fuse wires _starting from the point at which they separate_
+using the hot air gun at ~480 deg. C.
+8. Roll each of the bobbins forward a bit in order to release tension on the
+tetrode wire.
 9. Cut the tetrode wire above the point at which the wires are fused
 10. Pull the alligator clip off the magnet and cut the finished tetrode into a storage box.
 
@@ -198,7 +202,7 @@ within the feeder base. Repeat for both sides.
 groove on the bobbin and the threaded rod. Repeat for each of the 4 bobbins.
 1. Mount the bobbin shield over the bobbins using a single M6 screw.
 
-### Rotor Assembly
+### Motor Assembly
 
 ![TODO: Rotor assembly.](./resources/rotor-assembly/rotor-assembly.png){width=50%}
 \FloatBarrier
@@ -243,7 +247,8 @@ back.
 3. Mount the rotor assembly directly in front of the post, as close as it will
 go, using 4x M6 screws.
 4. Mount the wire guide assembly into a position that is in close proximity to
-the rotor assembly using a single M6 screw.
+the motor assembly using a single M6 screw. The tip of the wire guide should be
+able to extend to meet the outer radius of the rotor base.
 5. Mount the stock spool assembly in on the opposite side of the optical
 breadboard using a simple M6 screw.
 
