@@ -15,6 +15,8 @@
 \usepackage{siunitx}
 \usepackage{enumitem}
 \usepackage{wasysym}
+\usepackage{siunitx}
+\usepackage{placeins}
 
 \DeclareFloatFont{small}{\scriptsize} % "scriptsize" is defined by floatrow
 \floatsetup[table]{font=small}
@@ -50,7 +52,7 @@ many months~\cite{}, and mechanically flexible, such that they move with along
 with neural tissue, rather than behaving like a rigid, skull-coupled beam. This
 greatly mitigates \``drift''~\cite{} and improve long term stability and
 stability~\cite{} compared to with contemporary low-density silicon probes
-\url{}. Their contacts are close (~20 um) and therefore allow much improved
+\url{}. Their contacts are close ($\sim$10--20 $\mu$m) and therefore allow much improved
 unit separability compared to single wire probes~\cite{}. Although the
 introduction of modern silicon~\cite{} and carbon-fiber probes~\cite{} offer
 major advances in terms of channel density and size, respectively, and rival
@@ -64,7 +66,7 @@ time-consuming process. For modern, easy to assemble microdrive designs
 made in three actions~\cite{}:
 
 \begin{enumerate}
-    \item \textbf{Folding}: tungsten or nickel-chromium (`nichrome')
+    \item \textbf{Folding}: tungsten or nickel-chrome (`nichrome')
         resistance wire is drawn from a spool and folded by hand 2 or 4
         times to make stereo- or tetrodes, respectively.
     \item \textbf{Twisting}: the folded wire bundle is draped over a smooth
@@ -169,11 +171,11 @@ during a twist, transferring all slack compensation to the leaf spring
 (Fig.~\ref{f:design-features} (B)). The holding force of this mechanism is
 adjustable to account for the elastic deformability of different wire
 materials. We have found that the lowest available setting, and working with
-standard tetrode nichrome wire \url{}, the lowest stiction threshold force
+standard tetrode wire\footnote{Polyimide-coated nichrome; \diameter12.7$\mu$m}, the lowest stiction threshold force
 setting of $\sim$XX N per spool, is adequate to counter wire tension and
 therefore prevent spools from feeding during twisting.
 
-\subsection{Advanced motor control hardware for smooth turning} 
+\subsection{Advanced motor control hardware for smooth turning}
 To obtain precise control over motor acceleration, speed, and position we opted
 to use a bipolar stepper motor to perform wire twisting. We have found that,
 due to their discretized motion, stepper motors can vibrate resonantly with
@@ -274,10 +276,9 @@ loaded with microwire. To load the bobbins, follow these steps:
     \item Replace the wire shield.
 \end{enumerate}
 
-
 \subsection{Making TWPs}
 To twist tetrodes, use the following steps. Note that if you are interested in
-makeing stero- or tritrodes, simply don't load two or one bobbins, respectively.
+making stero- or tritrodes, simply don't load two or one bobbins, respectively.
 
 \begin{enumerate}[noitemsep]
     \item Pull down the wire from all of the bobbins and group the tips with
@@ -294,10 +295,10 @@ makeing stero- or tritrodes, simply don't load two or one bobbins, respectively.
         desired number of turns and turn speed.
     \item Press and hold the knob down to perform a twist.
     \item When finished, fuse wires \textit{starting from point at which
-        they separate towards the bobbins} using the hot air gun at $\sim$480 deg.
-        C. We have found that fusing form the bottom will cause the lower
-        portion of the TWP to `absorb' slack from above resulting in a very
-        fine twist pitch and an TWP that is shorter than intended.
+        they separate towards the bobbins} using the hot air gun at
+        $\sim$\SI{480}{\celsius}. We have found that fusing form the bottom will cause
+        the lower portion of the TWP to `absorb' slack from above resulting in
+        a very fine twist pitch and an TWP that is shorter than intended.
     \item Roll each of the bobbins forward a bit in order to release tension
         on the tetrode wire.
     \item Cut the tetrode wire above the point at which the wires are fused
@@ -305,34 +306,162 @@ makeing stero- or tritrodes, simply don't load two or one bobbins, respectively.
         tetrode into a storage box.
 \end{enumerate}
 
-\subsection{Twisting Parameters}
-- Back twisting vs forward only
-- Height of bobbins vs coil
-- Good parameters
+Choosing twisting parameters will require some experimentation in order to get
+electrodes with the desired mechanical properties given the user's choice of
+wire, implant use, and animal model. In our labs, we use the device to make
+tetrodes for microdrive implants in both mice and rats. We provide our device
+settings as a starting point in Table~\ref{t:tetrode-param}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Device setup resulting tetrode features as it is used in our labs.}
+\label{t:tetrode_param}
+
+\begin{tabular}{rlcc}
+\toprule
+&
+&
+\textbf{Mouse} &
+\textbf{Rat} \\
+\cmidrule{3-4}
+\textbf{Materials}  & Microwire          & \multicolumn{2}{c}{Sandvik PX000004} \\
+                    &                    & \\
+\textbf{Hardware}   & Feeder height      & \multicolumn{2}{c}{1 cm from top} \\
+\textbf{Settings}   & Bobbin torsion     & \multicolumn{2}{c}{1} \\
+                    & Hot air temp       & \multicolumn{2}{c}{\ang{480}c} \\
+                    & Hot air volume     & \multicolumn{2}{c}{TODO} \\
+                    &                    & \\
+\textbf{Turn}       & Forward turns      & 40  & 54 \\
+\textbf{Settings}   & Turn speed         & \multicolumn{2}{c}{700 RPM} \\
+                    &                    & \\
+\textbf{Results}    & Tetrode length     & XX cm  & XX cm \\
+                    & Twist pitch        & \multicolumn{2}{c}{XX mm} \\
+                    & Spring constant    & \multicolumn{2}{c}{XX mN/mm} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TODO: pitch and spring constant vs.\ feeder height.
+
 
 \section{Materials and Assembly}
+A continuously updated bill of materials (BOM) for electrical, mechanical and
+3D-printed parts is available on
+\href{https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0}{this
+google sheet}. Each class of materials has its own dedicated google sheet.
+
+\begin{itemize}[noitemsep]
+    \item \href{https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=1299007471}{Mechanical}
+    \item \href{https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=587676485}{3D Printing}
+    \item \href{https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit#gid=0}{Electronics}
+\end{itemize}
+
+Below, we provide snapshots of these BOMs along with instructions for component
+assembly for ease of reference and permanence. However, the online versions
+should be used during Twister3 assembly.
 
 \subsection{Mechanical Components}
 The mechanical portion of Twister3 consists of standard hardware, co-opted
-optomechanical components, and 3D-printed parts. Wherever possible, we used
-standard (and easy to replaceable) components. The mechanical bill of materials
-is shown in Table~\ref{t:mech_bom}.
+optomechanical components, and 3D-printed parts.  Wherever possible, we used
+standard (and easy to replace) parts. The mechanical bill of materials is shown
+in Table~\ref{t:mech-bom}. In addition to these standard mechanical components,
+several 3D-printed parts are required (Table~\ref{t:3d-bom}). These parts are
+available for direct purchase from third-party 3D-printing services via the
+links provide in the table.  After obtaining the required components, the wire
+feeder, wire-guide, and stock-spool assemblies can be constructed by following
+steps detailed Figures~\ref{f:feeder-assem},~\ref{f:other-assem}
+(A),~\ref{f:other-assem} (B), and~\ref{f:other-assem} (C), respectively. After
+each of these modules is complete, they are combined into the complete device
+by following the steps presented in Figure~\ref{f:twister3-assem}.
 
 \input{mechbom}
-
-Aside from standard mechanical components, several 3D-printed parts are
-required. The 3D-printing bill of materials in shown in Table~\ref{t:3dbom}.
-These parts are available for direct  purchase from third-party 3D-printing
-services via the links provide in the table.
-
 \input{3dbom}
+
+\begin{figure}
+\centering \includegraphics[width=1.0\textwidth]{../resources/feeder-assembly/feeder-assembly.png}
+\caption[]{Wire feeder assembly.
+\begin{enumerate}[noitemsep]
+    \item Insert press-in components into the feeder base. This includes M3 nut (2x),
+    M3 standoff (2x), and 3/16" diameter dowel pin (2x).
+    \item Mount the feeder base unto the C1545/M mounting clamp using M6 screws (2x). The
+    top of the feeder should be flush with the mounting clamp.
+    \item Cut two 5 cm sections from the M3 threaded rod. Turn each section into the
+    M3 nut which behind the feeder base.
+    \item Use the 60 mm M3 screw to mount the bobbin assembly to the standoff captive
+    within the feeder base. Repeat for both sides.
+    \item Thread a torsional spring onto the dowel pin. Squeeze between the shallow
+\end{enumerate}}
+\label{f:feeder-assem}
+\end{figure}
+
+\begin{figure}
+\centering \includegraphics[width=0.3\textwidth]{./fig/standin.jpg}
+\caption[]{Other mechanical assemblies
+\\ \\
+\textbf{(A) Motor assembly.}
+\begin{enumerate}[noitemsep]
+\item Remove the long, M3 step screws from the bottom of the stepper motor (4x).
+\item Put the motor mount under the motor and reinstall long screws, holding the
+mount plate to the bottom of the motor
+\item Insert two magnets into the spring rotor top \textit{in the same orientation}.
+\item Stick two additional magnets to those you just inserted into spring rotor
+and then use the spring rotor to press fit these two magnets into the spring
+rotor base.
+\item Push the spring rotor base, now with captive magnets, onto the stepper motor
+shaft.
+\item Fix the spring rotor base onto the shaft with the M3 set screw
+\item Push the clip magnet into one of the slots on the spring rotor top.
+\end{enumerate}
+\\ \\
+\textbf{(B) Wire guide assembly.}
+\begin{enumerate}[noitemsep]
+\item Screw the wire-guide into a mini, 6mm-diameter optical post
+\item Push the optical post into a swivel post holder.
+\end{enumerate}
+\\ \\
+\textbf{(C) Stock spool assembly.}
+\begin{enumerate}[noitemsep]
+\item Push a bearing into each of the stock spool bearing cases.
+\item Push each of the bearing cases into the stock spool of tetrode wire.
+\item Push a 60mm, M3 screw through the two bearings and screw into a mini, 6-mm
+diameter optical post.
+\item Push the optical post into a swivel post holder.
+\end{enumerate}
+}
+\label{f:other-assem}
+\end{figure}
+\floatbarrier
+
+\begin{figure}
+\centering \includegraphics[width=0.3\textwidth]{./fig/standin.jpg}
+\caption[]{Twister3 assembly.
+\begin{enumerate}[noitemsep]
+    \item Screw together the large, 1.5" diameter mounting posts and then screw
+        this long post into either the left or right side of the optical bread
+        board.
+    \item Mount the feeder assembly on the post using the post mounting clamp
+        on its back.
+    \item Mount the rotor assembly directly in front of the post, as close as
+        it will go, using 4x M6 screws.
+    \item Mount the wire guide assembly into a position that is in close
+        proximity to the motor assembly using a single M6 screw. The tip of the
+        wire guide should be able to extend to meet the outer radius of the
+        rotor base.
+    \item Mount the stock spool assembly in on the opposite side of the optical
+        breadboard using a simple M6 screw.
+\end{enumerate}
+}
+\label{f:twister3-assem}
+\end{figure}
+
+\FloatBarrier
 
 \subsection{Control Electronics}
 The control board is comprised of the following blocks: power regulation,
 motor-driver, microcontroller, and user interface (Fig.~\ref{f:ctrl-box} (A)).
 Wherever possible, we used pre-assembled modules (microcontroller, motor
 driver, and LCD display). The bill of materials for this board is shown in
-Table~\ref{t:elec_bom}. PCBs desings and gerber files are available on the
+Table~\ref{t:elec_bom}. PCBs design and gerber files are available on the
 repository\footnote{\url{https://github.com/jonnew/twister3/tree/master/control-board}}.
 
 \input{elecbom}
