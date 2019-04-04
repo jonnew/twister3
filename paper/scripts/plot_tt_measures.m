@@ -82,45 +82,79 @@ set(gca, 'tickdir', 'out')
 
 subplot(1,11, [6, 7])
 hold all
-plot(1, force_1a(:, end), 'ko');
-plot(2, force_3a(:, end), 'k^');
-plot(3, force_3b(:, end), 'k^');
-plot(4, force_2a(:, end), 'k*');
-plot(5, force_2b(:, end), 'k*');
+plot(1, force_2b(:, end), 'k*');
+plot(2, force_2a(:, end), 'k*');
+plot(3, force_3a(:, end), 'k^');
+plot(4, force_3b(:, end), 'k^');
+plot(5, force_1a(:, end), 'ko');
 
 u = (force_1a(:, end) + force_3a(:, end) + force_3b(:, end) + force_2a(:, end) + force_2b(:, end))/5;
 
 plot([0.5,  5.5], [u, u], 'k--');
 
 xlim([0.5 5.5])
-ylim([0.001, 0.1])
+ylim([0.001, 0.07])
 set(gca, 'YScale', 'log')
 set(gca, 'tickdir', 'out', 'xtick', [1 2, 3, 4, 5], 'YAxisLocation','right')
 
 subplot(1,11, [8, 11])
 hold all
-a = 0.1;
-% plot(a * rand(1,5) + 1, stiff_1a(:, end), 'ko');
-% plot(a * rand(1,5) + 2, stiff_3a(:, end), 'k^');
-% plot(a * rand(1,5) + 3, stiff_3b(:, end), 'k^');
-% plot(a * rand(1,5) + 4, stiff_2a(:, end), 'k*');
-% plot(a * rand(1,5) + 5, stiff_2b(:, end), 'k*');
-
-plot(a * (1:5) + 0.8, stiff_1a(:, end), 'ko-');
-plot(a * (1:5) + 1.8, stiff_3a(:, end), 'k^-');
-plot(a * (1:5) + 2.8, stiff_3b(:, end), 'k^-');
-plot(a * (1:5) + 3.8, stiff_2a(:, end), 'k*-');
-plot(a * (1:5) + 4.8, stiff_2b(:, end), 'k*-');
-set(gca, 'tickdir', 'out')
-
-u = mean((stiff_1a(:, end) + stiff_3a(:, end) + stiff_3b(:, end) + stiff_2a(:, end) + stiff_2b(:, end))/5);
-
-plot([0.5,  5.5], [u, u], 'k--');
+a = 0.15;
+as = 2.5 * a;
+plot(a * (1:5) + 1 - as, flip(stiff_2b(:, end)), 'k*-');
+plot(a * (1:5) + 2 - as, flip(stiff_2a(:, end)), 'k*-');
+plot(a * (1:5) + 3 - as, flip(stiff_3a(:, end)), 'k^-');
+plot(a * (1:5) + 4 - as, flip(stiff_3b(:, end)), 'k^-');
+plot(a * (1:5) + 5 - as, flip(stiff_1a(:, end)), 'ko-');
 
 xlim([0.5 5.5])
-ylim([0.06, 0.12])
+% ylim([0.06, 0.12])
 % set(gca, 'YScale', 'log')
 set(gca, 'tickdir', 'out', 'xtick', [1 2, 3, 4, 5], 'YAxisLocation','left')
 
 export_fig('tt-mech.pdf','-pdf','-transparent', gcf)
 
+% %% All stiffnesses pooled and LR
+% figure
+% hold all
+% as = 2.5 * a;
+% plot(len_1a, stiff_1a(:, end), 'ko-');
+% plot(len_3a, stiff_3a(:, end), 'k^-');
+% plot(len_3b, stiff_3b(:, end), 'k^-');
+% plot(len_2a, stiff_2a(:, end), 'k*-');
+% plot(len_2b, stiff_2b(:, end), 'k*-');
+% 
+% x = [len_1a, len_3a, len_3b, len_2a, len_2b]';
+% y = [stiff_1a(:, end); stiff_1a(:, end); stiff_3b(:, end);stiff_2a(:, end); stiff_2b(:, end)];
+% X = [ones(length(x),1) x];
+% 
+% alpha = 0.05;
+% N = length(x);
+% beta = X\y;
+% yp = X*b;
+% plot(x,yp,'k-', 'Linewidth', 3)
+% 
+% x_min = min(x);
+% x_max = max(x);
+% n_pts = 100;
+% 
+% X = x_min:(x_max-x_min)/n_pts:x_max;
+% Y = ones(size(X))*beta(1) + beta(2)*X;
+% SE_y_cond_x = sum((y - beta(1)*ones(size(y))-beta(2)*x).^2)/(N-2);
+% SSX = (N-1)*var(x);
+% SE_Y = SE_y_cond_x*(ones(size(X))*(1/N + (mean(x)^2)/SSX) + (X.^2 - 2*mean(x)*X)/SSX);
+% Yoff = (2*finv(1-alpha,2,N-2)*SE_Y).^0.5;
+% 
+% top_int = Y + Yoff;
+% bot_int = Y - Yoff;
+% 
+% plot(X,top_int,'k-','LineWidth',1);
+% plot(X,bot_int,'k-','LineWidth',1);
+% 
+% 
+% set(gca, 'tickdir', 'out')
+% 
+% xlim([0 30])
+% set(gca, 'tickdir', 'out', 'YAxisLocation','left')
+% 
+% export_fig('tt-mech.pdf','-pdf','-transparent', gcf)
