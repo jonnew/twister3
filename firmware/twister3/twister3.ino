@@ -3,7 +3,7 @@
 
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
-#include <StepControl.h>
+#include <TeensyStep.h>
 #include <Encoder.h>
 #include <i2c_t3.h>
 
@@ -73,7 +73,7 @@ volatile SelectedParam selected_param_ = fwd_turns;
 
 // Stepper motor
 Stepper motor_(MOT_STEP, MOT_DIR);
-StepControl<> controller_; // Use default settings
+StepControl controller_; // Use default settings
 
 // Rotary encoder
 Encoder encoder_(ENC_B, ENC_A);
