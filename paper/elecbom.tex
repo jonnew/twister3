@@ -3,17 +3,17 @@
 
 \begin{table}[!htbp]
 \centering
-\caption{Control Box (Fig.~\ref{f:ctrl-box}) bill of materials. An continuously updated
-    bill of materials is located on
+\caption{Control box (Fig.~\ref{f:ctrl-box}) bill of materials. A continuously
+    updated bill of materials is located on
     \href{https://docs.google.com/spreadsheets/d/1tdc3wfE6V87q8yqBOQvDj7WylAztkh6_2kuL-YzyB0g/edit\#gid=0}{this
-    google sheet}. Table entries labeled ``common'' are ubiquitous and
+    Google sheet}. Table entries labeled ``common'' are ubiquitous and
     therefore listing specific part numbers is futile due to rapid supplier
-    turn over. PCB design files are located
-    \href{https://github.com/jonnew/twister3/tree/master/control-board}{here}.
+    turn over. PCB design files are located at this
+    \href{https://github.com/jonnew/twister3/tree/master/control-board}{link}.
     The PCB is split into two halves separated by a breakaway v-cut. One half
     serves as the top panel of the enclosure, visible in (Fig.~\ref{f:ctrl-box}
-    (B)), and the other provides all electronics is mounted beneath the front
-    panel.}
+    (B)), and the other has all electronics and is mounted beneath the front
+panel.}
 \label{t:elec_bom}
 
 \begin{tabular}{lllllll}
@@ -33,7 +33,7 @@
 & & & & & & \\
 3 & M1, M2, M3 & N/A & M3 Screws, 10 mm & McMaster & 92000A120 & \\
 & & & & & & \\
-1 & N/A & N/A & 24V Wall Adaptere & Amazon & & \\
+1 & N/A & N/A & 24V Wall Adapter & Amazon & & \\
 & & & & & & \\
 1 & S1 & EC12P & Rotary Encoder & Sparkfun & 10982 & EC12P \\
 1 & S1 & N/A & Knob & Sparkfun & 10597 & P-15x13-T-T2-24A \\
@@ -54,19 +54,19 @@
 3 & M4, M5, M6 & N/A & M3 SMD Nuts & Digikey & 732-10918-1-ND & 9775056360R \\
 1 & J2 & N/A & Screw Terminal & Digikey & ED10563-ND & OSTVN04A150 \\
 1 & J1 & PJ-063BH & Barrel Jack & Digikey & CP-063BH-ND & PJ-063BH \\
-4 & C2, C6, C7, C8 & 10nF/50V & Capacitor, X7R & Digikey & 478-1227-1-ND & 06035C103KAT2A \\
-1 & C16 & 470nF/10V & Capacitor, X5R & Digikey & 1763-1190-1-ND & 0402BW474K160YT \\
-2 & C1, C3 & 1uF/50V & Capacitor, X7R & Digikey & 587-3247-1-ND & UMK107AB7105KA-T \\
-1 & C4 & 15uF & Tantalum Capacitor & Digikey & 399-3775-1-ND & T491D156K035AT \\
+4 & C2, C6, C7, C8 & 10 nF, 50 V & Capacitor, X7R & Digikey & 478-1227-1-ND & 06035C103KAT2A \\
+1 & C16 & 470 nF, 10 V & Capacitor, X7R & Digikey & 1763-1190-1-ND & 0402BW474K160YT \\
+2 & C1, C3 & 1 uF, 50 V & Capacitor, X7R & Digikey & 587-3247-1-ND & UMK107AB7105KA-T \\
+1 & C4 & 15 uF & Tantalum Capacitor & Digikey & 399-3775-1-ND & T491D156K035AT \\
 1 & C5 & 220 uF & Tantalum Capacitor & Digikey & 399-9744-1-ND & T491D227M010AT \\
-1 & R6 & 470 & Resistor, Thick film & Digikey & Common & Common \\
-2 & R1, R9, R10, R11, R12 & 4.7k & Resistor, Thick film & Digikey & Common & Common \\
-5 & R2, R3, R4, R5, R17 & 10k & Resistor, Thick film & Digikey & Common & Common \\
-1 & R13 & 20k & Resistor, Thick film & Digikey & Common & Common \\
-2 & R8, R16 & 20k & Trim Pot & Digikey & SM-42TX203CT-ND & SM-42TX203 \\
-1 & L1 & 68uH & Inductor & Digikey & 513-1386-1-ND & DR125-680-R \\
+1 & R6 & 470 \si{\ohm}& Resistor, Thick film & Digikey & Common & Common \\
+2 & R1, R9, R10, R11, R12 & 4.7 k\si{\ohm} & Resistor, Thick film & Digikey & Common & Common \\
+5 & R2, R3, R4, R5, R17 & 10 k\si{\ohm} & Resistor, Thick film & Digikey & Common & Common \\
+1 & R13 & 20 k\si{\ohm} & Resistor, Thick film & Digikey & Common & Common \\
+2 & R8, R16 & 20 k\si{\ohm} & Trim Pot & Digikey & SM-42TX203CT-ND & SM-42TX203 \\
+1 & L1 & 68 uH & Inductor & Digikey & 513-1386-1-ND & DR125-680-R \\
 1 & D1 & DB2W60400L & Schottky Diode & Digikey & P15184CT-ND & DB2W60400L \\
-1 & U1 & IS31FL3193 & IS31FL3193 & Digikey & 706-1215-1-ND & IS31FL3193-DLS2-TR \\
+1 & U1 & IS31FL3193 & LED Driver & Digikey & 706-1215-1-ND & IS31FL3193-DLS2-TR \\
 1 & U3 & MAX6816 & Debouncer & Digikey & MAX6816EUS+TCT-ND & MAX6816EUS+T \\
 1 & U2 & MIC4680-5.0YM-TR & DC DC Converter & Digikey & 576-1221-1-ND & MIC4680-5.0YM-TR \\
 1 & U4 & TMC2100 & Silent Stepper Stick & Digikey & 1460-1159-ND & N/A \\
