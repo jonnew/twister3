@@ -1,5 +1,9 @@
-// This script is used to control the twister3. It is very shitty. It was
-// written by JPN while mildly drunk.
+// ----------------------------------------------------------------------------
+// "THE BEER-WARE LICENSE" (Revision 42):
+// JPN wrote this file. As long as you retain this notice you
+// can do whatever you want with this stuff. If we meet some day, and you think
+// this stuff is worth it, you can buy me a beer in return.
+// ----------------------------------------------------------------------------
 
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
@@ -211,16 +215,16 @@ void setRGBColor(byte r, byte g, byte b)
 {
     // Set PWM state
     Wire.beginTransmission(IS31_ADDR);
-    Wire.write(0x04); 
-    Wire.write(r); 
-    Wire.write(g); 
-    Wire.write(b); 
+    Wire.write(0x04);
+    Wire.write(r);
+    Wire.write(g);
+    Wire.write(b);
     Wire.endTransmission();
 
     // Update PWM
     Wire.beginTransmission(IS31_ADDR);
-    Wire.write(0x07); 
-    Wire.write(0x00); 
+    Wire.write(0x07);
+    Wire.write(0x00);
     Wire.endTransmission();
 
 }
@@ -237,7 +241,7 @@ void modeToRGB() {
     }
 }
 
-void setupRGB() 
+void setupRGB()
 {
     // I2C for RGB LED
     Wire.begin(I2C_MASTER, 0x00, I2C_PINS_18_19, I2C_PULLUP_EXT, 400000);
@@ -248,9 +252,9 @@ void setupRGB()
     digitalWriteFast(IS31_SHDN, HIGH);
     delay(1);
 
-    // Set max LED current 
+    // Set max LED current
     Wire.beginTransmission(IS31_ADDR);
-    Wire.write(0x03); 
+    Wire.write(0x03);
     Wire.write(0x08); // Set max current to 5 mA
     Wire.endTransmission();
 
@@ -259,12 +263,12 @@ void setupRGB()
 
     // Enable current driver
     Wire.beginTransmission(IS31_ADDR);
-    Wire.write(0x00); 
+    Wire.write(0x00);
     Wire.write(0x20); // Enable current driver
     Wire.endTransmission();
 }
 
-void configMotor() 
+void configMotor()
 {
     // TODO: use spi interface and get to work in silent mode
     pinMode(MOT_SPI_MODE, OUTPUT);
@@ -277,13 +281,13 @@ void configMotor()
     // 16-step spreadcycle: GFG2 = open, CFG 1 = gnd
     // TODO: the led is preventing cfg2 from being open, I think. Instead, I'm
     // using 16-ustep without interp...
-    //pinMode(MOT_CFG1_MOSI, INPUT); 
+    //pinMode(MOT_CFG1_MOSI, INPUT);
     pinMode(MOT_CFG1_MOSI, OUTPUT);
-    //digitalWriteFast(MOT_CFG1_MOSI, LOW); 
-    digitalWriteFast(MOT_CFG1_MOSI, HIGH); 
-    //pinMode(MOT_CFG2_SCLK, INPUT); 
-    pinMode(MOT_CFG2_SCLK, OUTPUT); 
-    digitalWriteFast(MOT_CFG2_SCLK, HIGH); 
+    //digitalWriteFast(MOT_CFG1_MOSI, LOW);
+    digitalWriteFast(MOT_CFG1_MOSI, HIGH);
+    //pinMode(MOT_CFG2_SCLK, INPUT);
+    pinMode(MOT_CFG2_SCLK, OUTPUT);
+    digitalWriteFast(MOT_CFG2_SCLK, HIGH);
 
     // Use external sense resistors
     pinMode(MOT_CFG3_TMCCS, INPUT);
@@ -292,13 +296,13 @@ void configMotor()
     pinMode(MOT_CFG4, OUTPUT);
     digitalWriteFast(MOT_CFG4, LOW);
 
-    // Chopper blank time 
+    // Chopper blank time
     pinMode(MOT_CFG5, OUTPUT);
     digitalWriteFast(MOT_CFG5, HIGH);
 
     // Disable motor
     pinMode(MOT_CFG6_EN, OUTPUT);
-    digitalWriteFast(MOT_CFG6_EN, HIGH); 
+    digitalWriteFast(MOT_CFG6_EN, HIGH);
 }
 
 void toggleParam()
@@ -342,7 +346,7 @@ void setup()
 
     // Configure and Disable motor
     configMotor();
-    
+
     setupRGB();
 
     lcd.begin(16, 2);
