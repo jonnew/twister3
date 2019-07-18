@@ -109,9 +109,9 @@
 \section{Introduction}
 Since their introduction~\cite{McNaughton1983}, twisted wire probes (TWPs; e.g
 stereotrodes~\cite{McNaughton1983} and tetrodes~\cite{Wilson1993, Wilson1994a})
-have been a reliable method for obtaining multiple single-unit extracellular
-spiking data in freely moving animals. They are cheap ($\sim$5--10 USD/m using
-Sandvik PX000004), small enough to cause minimal inflammation, and sufficiently
+have been a reliable method for obtaining single-unit extracellular spiking
+data in freely moving animals. They are cheap ($\sim$5--10 USD/m using Sandvik
+PX000004), small enough to cause minimal inflammation, and sufficiently
 biocompatible to be used over many months~\cite{Dhawale2017, Voigts2013}. Their
 contacts are close ($\sim$10--20 $\mu$m) and therefore allow much improved unit
 separability compared to single wire probes~\cite{Gray1995}. They are
@@ -197,7 +197,7 @@ hr of experience with device) operator to make $\sim$70 TWPs per hour.
 %point where the spring force counteracts the bobbin stiction.
 
 Here we present descriptions of how this device works, materials and assembly
-information, and electronics designs. Also, we provide detailed usage
+information, and electronics designs. We provide detailed usage
 instructions, an exploration of probe mechanics with respect to twisting
 parameters, TWP construction time measurements, and show data obtained with
 tetrodes made using this machine. All designs and source code associated with
@@ -325,7 +325,7 @@ load wire and make TWPs. This content is aided by an instructional video
 available on YouTube (Appendix~\ref{s:videos}).
 
 \subsection{Using the Control Box}
-The control box (Fig.~\ref{f:ctrl-box} (B)) is powered using a 12VDC,
+The control box (Fig.~\ref{f:ctrl-box} (B)) is powered using a 12V DC
 center-positive barrel jack that supplies at least 1.5A. It has a single user
 input: a control knob consisting of a combined quadrature rotary encoder and
 tactile push-button. This knob permits the following user actions:
@@ -404,7 +404,7 @@ procedure. See text for details.}
 \label{f:usage}
 \end{figure}
 
-\subsection{Making Twisted Wire Pairs}
+\subsection{Making Twisted Wire Probes}
 The following steps detail tetrode construction using Twister3. If you are
 interested in making stereotrodes instead of tetrodes, follow the same steps but
 only use two bobbins on opposing sides of the feeder.
@@ -424,16 +424,20 @@ only use two bobbins on opposing sides of the feeder.
     \item With your free hand, pull up on the twisting attachment's leaf spring
         up until under slight tension, about 1.5 cm (Fig.~\ref{f:usage} (B3)).
     \item Draw the alligator clip down to meet the magnet on the twisting
-        attachment, feeding the bundle into the alignment jig (Fig.~\ref{f:usage} (B4)).
+        attachment, feeding the bundle into the alignment jig
+        (Fig.~\ref{f:usage} (B4)). The alligator clip can be rotated before
+        drawing to wrap the wire around it and improve its grip on the bundle.
     \item Ensure all wires are guided through the center of the alignment jig
-        (Fig.~\ref{f:usage} (B4, inset)).
+        (Fig.~\ref{f:usage} (B4, inset)) and the loose ends are not interfering
+        with the taught portion of the wire.
     \item Slowly lower the leaf spring until it is in equilibrium with the
         upward force produced by the tetrode wire. Each of the wires should be
         pulled straight. If any wire has slack, its bobbin can be turned
-        backwards slightly until it is taut.
-    \item Set the controller to ``mode 0''.
-    \item Set the desired number of turns and turn speed. We use 900 RRM for
-        our wire.
+        backwards slightly until it is taut. Do not let the spring snap back
+        under its tension, as this will leave slack in the wires
+    \item Set the controller to ``mode 0''. Set the desired number of turns and
+        turn speed. We use 900 RRM for our wire. This only needs to be done
+        once, or whenever parameter changes are required.
     \item Press and hold the knob down to perform a twist.
     \item When finished, fuse wires \textit{starting from point at which they
         separate towards the bobbins} using the hot air gun at
@@ -467,15 +471,15 @@ for a given number of turns, the buckling point (Fig.~\ref{f:trode-char}) and
 stiffness (Fig.~\ref{f:trode-char}) of tetrodes across feeder heights are
 remarkably stable.
 
-All To test probe functionality, we produced tetrodes using the device settings
-in Table~\ref{t:tetrode-param}. Using procedures that were approved by the
+To test probe functionality, we produced tetrodes using the device settings in
+Table~\ref{t:tetrode-param}. Using procedures that were approved by the
 Committee on Animal Care of Massachusetts Institute of Technology and followed
 the ethical guidelines of the US National Institutes of Health, these tetrodes
 were gold plated~\cite{Nguyen2009} and used in combination with microdrive
 assemblies~\cite{Voigts2013,Kloosterman2009} to obtain recordings in the
-pyramidal cell layer of CA1. As expected, these tetrodes reliably produced
-characteristic LFP and multiple, well-isolated units in both mice
-(Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
+pyramidal cell layer of CA1 of mice and rats. As expected, these tetrodes
+reliably produced characteristic LFP and multiple, well-isolated units in both
+mice (Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
 
 \begin{table}[!htbp]
 
@@ -536,21 +540,21 @@ characteristic LFP and multiple, well-isolated units in both mice
     The buckling force (value at which there is no increas in restorative force
     with $\delta L$) is length dependent. Different exposed probe lengths form
     clear groupings with the bucking force increasing as the probe length gets
-    shorter. \textit{(right)} Buckling forces for each sample on a log scale
-    show clear, and reliable, groups for each exposed probe length that do not
-    twist pitch.
+    shorter. \textit{(right)} Buckling forces for each sample on a log scale.
+    The buckling force is clearly grouped for each probe length but is not
+    affected by twist pitch.
     \textbf{(C)} Stiffness versus probe length for each of the samples tested.
     Of the parameters tested, longer, wide-pitch TWPs tended to be stiffest.
     \textbf{(D)} Example hippocampal mouse CA1 recording during sleep.
     \textit{(top)} Raw voltage trace from a single tetrode. Three sharp
     wave-ripple events are clearly visible in the trace. \textit{(bottom)}
-    Spike amplitudes for each combination of two wires on the tetrode.     
+    Spike amplitudes for each combination of two wires on the tetrode.
     \textbf{(E)} Example hippocampal rat CA1 recording during sleep.
     \textit{(top)} Raw voltage trace from a single electrode. Multiple sharp
     wave-ripple events are clearly visible in the trace. \textit{(bottom)}
     Spike amplitudes for each combination of two wires on the tetrode.
-    Recordings in (D) and (E) are skull referenced. 
-} 
+    Recordings in (D) and (E) are skull referenced.
+}
 
 \label{f:trode-char}
 \end{figure}
@@ -599,7 +603,7 @@ versions should be used during Twister3 assembly to ensure up to date suppliers
 and error corrections.
 
 \subsection{Mechanical Components}
-The mechanical portion of Twister3 consists of standard hardware, co-opted
+The mechanical portion of Twister3 consists of common hardware, standard
 optomechanical components, and 3D-printed parts. Wherever possible, we used
 standard (and easy to replace) parts. The mechanical bill of materials is shown
 in Table~\ref{t:mech-bom}. In addition to these standard mechanical components,
@@ -869,6 +873,14 @@ Vardalaki for their helpful feedback on the device design as well as
 participating in time trial testing. Finally, we thank Hector Penagos for
 providing the tetrode recordings from mice and rats presented in
 Fig.~\ref{f:trode-char} of this manuscript.
+
+This work was supported by the Center for Brains, Minds and Machines (CBMM),
+MIT, funded by NSF STC award CCF-1231216. JPN was supported by the NIH (NRSA
+1F32MH107086-01). JV and MTH were supported by funding provided by the NEC
+Corporation Fund for Research in Computers and Communications at MIT and the
+NIH (1R01NS106031). JV is a Simons Center for the Social Brain at MIT
+postdoctoral fellow and MTH is a Klingenstein-Simons Fellow in Neuroscience, a
+Vallee Foundation Scholar, and a McKnight Scholar. 
 
 \medskip
 
