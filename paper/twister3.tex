@@ -24,26 +24,40 @@
 % X - Add relevant open source projects from the stimjim paper to the closing
 %   sentences of discussion
 % X - Finish addressing Ming's comments on figures
-%   - Make sure the rat and mouse CA1 recordings are addressed in the text
+% X - Make sure the rat and mouse CA1 recordings are addressed in the text
 %   somewhere
 %
-%   - Video of bobbin loading and TT making. This goes on youtube and link in appendix
+% X  - Video of bobbin loading and TT making. This goes on youtube and link in appendix
 %
 % X - Ming and Jakob proof read
 %
 %   - Bioarxiv
 %
 %   - Tweet:
-%   1. Here is my work with @jvoigts, @OpenEphys, and @SpikeGadgets on an open source, cheap, and fast tetrode making machine (link). We have been using it in the Wilson and Harnett labs for the past 2 years. It allows you to make probes quickly and reliably. Some features: (1/N)
-%   2. No wire folding! just draw wire it from pre-loaded bobbins.
-%   3. Auto-aligning, magnetic wire bundle retention mechanism results in perfectly straight probes every time.
-%   4. 3D-printed leaf spring provides constant wire tension during high speed twist
-%   5. Turn as fast as you want. We use 1000 RPM. Your tetrode is done in seconds :).
-%   6. Put a tick on the sheet (link) if you want one. We are gauging interest for distribution on the Open Ephys store (link). Of course, the bill of materials construction steps are included in the manuscirpt if you just want to make your own!
+%   1. Here is my work with @jvoigts, @OpenEphys, and @SpikeGadgets on an open
+%   source, cheap, and fast tetrode making machine (link). We have been using
+%   it in the Wilson and Harnett labs for the past 2 years. It allows you to
+%   make probes quickly and reliably. Some features: (1/6)
+%       >> twitter_banner.png
+%   2. No wire folding! just draw wire it from pre-loaded bobbins. (2/6)
+%        >> pull.mov
+%   3. Auto-aligning, magnetic wire bundle retention mechanism results in
+%   perfectly straight probes every time. (3/6)
+%        >> pull_clip.mov
+%   4. A 3D-printed leaf spring provides constant wire tension during twisting
+%   so you can turn as fast as you want. We use 1000 RPM. Your tetrode
+%   is done in seconds. (5/6)
+%        >> pull_clip.mov
+%   5. New users make about 70 tetrodes an hour.
+%        >> start_to_finish.mov
+%   6. We are gauging interest for distribution on the Open Ephys store. Please
+%   fill out this form if you think you might want one (link). Of course, the
+%   bill of materials construction steps are included in the manuscript if you
+%   just want to make your own! (6/6)
 
 \documentclass[11pt,a4paper]{article}
 
-\usepackage{draftwatermark}
+%\usepackage{draftwatermark}
 \usepackage{booktabs}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
@@ -66,10 +80,10 @@
 \usepackage{array}
 \usepackage{siunitx}
 
-\SetWatermarkText{Draft}
-\SetWatermarkScale{4.5}
+%\SetWatermarkText{Draft}
+%\SetWatermarkScale{4.5}
 %\SetWatermarkHorCenter{200pt}
-\SetWatermarkLightness{0.85}
+%\SetWatermarkLightness{0.85}
 
 \DeclareFloatFont{small}{\scriptsize} % "scriptsize" is defined by floatrow
 \floatsetup[table]{font=small}
@@ -78,17 +92,18 @@
 
 \title{\vspace{-1.5cm} Twister3: a simple and fast microwire twister}
 
-\author[1,2]{Jonathan P. Newman \thanks{jpnewman@mit.edu}}
-\author[1,3]{Jakob Voigts}
+\author[1,2,5]{Jonathan P. Newman \thanks{jpnewman@mit.edu}}
+\author[1,3,5]{Jakob Voigts}
 \author[4]{Maxim Borius}
 \author[4]{Mattias Karlsson}
 \author[1,3]{Mark T. Harnett}
-\author[1,2]{Matthew A. Wilson}
+\author[1,2,5]{Matthew A. Wilson}
 
 \affil[1]{Department of Brain and Cognitive Sciences, MIT, Cambridge, MA, USA.}
 \affil[2]{Picower Institute for Learning and Memory, MIT, Cambridge, MA, USA.}
 \affil[3]{McGovern Institute for Brain Research, MIT, Cambridge, MA, USA.}
 \affil[4]{SpikeGadgets LLC, San Francisco, CA, USA}
+\affil[5]{Open Ephys Inc, Cambridge, MA, USA}
 
 \begin{document}
 
@@ -237,15 +252,15 @@ qualities resulting in a spring-constant low enough for use with tetrode wire
 \subsection{Auto-aligning Wire/Motor Interface}
 To interface the microwire bundle with the motor, the bundle is clipped
 together using a standard, ferrous alligator clip that has been coated in
-silicone shrink wrap. The bundle is then drawn towards the motor while the leaf
-spring is lifted with with the user's free hand. While the leaf spring is under
-tension, the alligator clip is attached to a strong neodymium magnet on the
-leaf spring assembly, which provides the bundle-to-motor linkage
-(Fig.~\ref{f:design-features} (A, B)). During this process, a 3D printed
-alignment jig on top of the magnet  automatically guides the microwire bundle
-in line with the motor's axis of rotation. The leaf spring is then slowly lowered
-until it reaches equilibrium with upward wire tension. At this point the motor
-can be turned.
+insulating shrink wrap. The bundle is then drawn towards the motor while the
+leaf spring is lifted with with the user's free hand. While the leaf spring is
+under tension, the alligator clip is attached to a strong neodymium magnet on
+the leaf spring assembly, which provides the bundle-to-motor linkage
+(Fig.~\ref{f:design-features} (A, B)). During this process, a 3D-printed
+alignment jig on top of the magnet automatically guides the microwire bundle
+in line with the motor's axis of rotation. The leaf spring is then slowly
+lowered until it reaches equilibrium with upward wire tension. At this point
+the motor can be turned.
 
 Because of print tolerances and the fact that the leaf spring does not deform
 exactly vertically, the resting position of wire bundle will likely not be
@@ -422,7 +437,7 @@ only use two bobbins on opposing sides of the feeder.
         axis of rotation during twisting.  Keep the clip in your hand while
         performing the following 2 steps.
     \item With your free hand, pull up on the twisting attachment's leaf spring
-        up until under slight tension, about 1.5 cm (Fig.~\ref{f:usage} (B3)).
+        until under slight tension, about 1.5 cm (Fig.~\ref{f:usage} (B3)).
     \item Draw the alligator clip down to meet the magnet on the twisting
         attachment, feeding the bundle into the alignment jig
         (Fig.~\ref{f:usage} (B4)). The alligator clip can be rotated before
@@ -752,11 +767,13 @@ simple, and may be ideal for labs who do not need to make many tetrodes and can
 accept some TWP construction variability. However, a general disadvantage with manual
 folding machines is that they are slow. This is due to a  manual folding step
 combined with loose mechanical coupling that requires slow turning speeds.  A
-single TWP generally takes well over a minute to make, even for an experienced
+single TWP generally takes several minutes to make, even for an experienced
 operator. This can be partially mitigated by using these devices in
 parallel: a second TWP is folded while the first is turned. However, we have
 found that due to the finicky nature of the folding step, using any more than
-two devices at a time is nearly impossible.
+two devices at a time is nearly impossible. Further it places a large rote
+labor burden on the operator, which can lead to poor construction quality due
+to boredom.
 
 Aside from slow construction speed, these devices introduce large (and
 uncontrollable) variability in manual wire handling and twist-pitch (which is
@@ -800,10 +817,10 @@ Table~\ref{t:compare}.
 \textbf{TWP turning speed}              & 60 RPM typical        & 700--1000 RPM typical \\
 \textbf{Acceleration control}           & No                    & Yes \\
 \textbf{Bobbin/motor attachment}        & Screw                 & Magnets \\
-\textbf{Wire bundle/motor attachment}   & Free-hanging          & Leaf-spring + magnet \\
+\textbf{Wire bundle/motor attachment}   & Free-hanging          & Leaf-spring \& magnet \\
 \textbf{Microcontroller module}         & Arduino Due           & Teensy LC \\
 \textbf{Adjustable twist geometry }     & No                    & Yes \\
-\textbf{Mechanical parts}               & Custom machined       & Standard optomechanics + 3D printed \\
+\textbf{Mechanical parts}               & Custom machined       & Standard optomechanics \& 3D printed \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -812,7 +829,7 @@ The two most notable differences between Twister3 and the SpikeGadgets Tetrode
 Machine are the means by which they increase TWP construction speed and the
 wire fusing mechanism. Twister3 provides automatic wire bundle alignment and a
 leaf-spring based bundle to motor coupling, instead of relying on gravity to
-provide wire tension. This means that wire can be turned at arbitrarily fast
+provide wire tension. This means that wire can be turned at fast
 speeds while maintaining twist integrity. Because wire turning only takes a few
 seconds, it is not a rate limiting step in the TWP construction process.
 Because the SpikeGadgets device lacks Twister3's motor coupling features, it
@@ -850,7 +867,7 @@ Further, we encourage the replication and improvement of this device by others.
 For instance, an open design that incorporates the automated wire fusing step
 would further reduce human variability in TWP quality of the current design. We
 hope that Twister3 complements the growing number of open-source
-electrophysioloy devices, such as
+electrophysioloy tools, such as
 microdrives~\cite{Kloosterman2009,Voigts2013}, electrical
 stimulators~\cite{Cermak2019}, optical
 stimulators~\cite{Newman2015}\footnote{\url{https://github.com/jonnew/cyclops}},
@@ -880,7 +897,7 @@ MIT, funded by NSF STC award CCF-1231216. JPN was supported by the NIH (NRSA
 Corporation Fund for Research in Computers and Communications at MIT and the
 NIH (1R01NS106031). JV is a Simons Center for the Social Brain at MIT
 postdoctoral fellow and MTH is a Klingenstein-Simons Fellow in Neuroscience, a
-Vallee Foundation Scholar, and a McKnight Scholar. 
+Vallee Foundation Scholar, and a McKnight Scholar.
 
 \medskip
 
@@ -893,7 +910,15 @@ Vallee Foundation Scholar, and a McKnight Scholar.
 
 \section{Instructional Videos}\label{s:videos}
 
-A video tutorial of device use is provided on YouTube: \url{TODO}.
+Videos documenting device operation and usage are available on YouTube:
+
+\begin{itemize}
+    \item \textbf{\url{https://youtu.be/xQbXc738ZuM}} Annotated video showing
+        how to use Twister3 to load bobbins with electrode wire and how to use
+        Twister3 to make tetrodes.
+    \item \textbf{\url{https://youtu.be/B0MdM4z-wl0}} Video showing the
+        construction of two tetrodes, start to finish.
+\end{itemize}
 
 \section{Bills of Materials}\label{s:boms}
 
