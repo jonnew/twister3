@@ -7,9 +7,9 @@ stereotrodes for invasive neural recordings.
 
 ### Documentation
 Construction, usage, and performance information is provided in the [Twister3
-manuscript](./paper/twister3.pdf). Please cite this paper if you use Twister3
-in your research. If you have further questions, please direct them toward the
-[Open Ephys forum](https://groups.google.com/forum/#!forum/open-ephys).
+manuscript](https://www.biorxiv.org/content/10.1101/727644v1). Please cite 
+this paper if you use Twister3 in your research. If you have further questions, 
+please direct them toward the [Open Ephys forum](https://groups.google.com/forum/#!forum/open-ephys).
 
 ### Licensing
 Copyright Jonathan P. Newman & Jakob Voigts 2019
