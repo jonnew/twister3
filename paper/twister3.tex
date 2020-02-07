@@ -1,60 +1,3 @@
-% TODO to finish this paper;
-% X - Make sure latest (2019.03) 3D printed parts work as written.
-% X - Come up with an alignment procedure that always works (e.g. by adjusting
-% X - feeder rotation to account for imperfections in bundle location)
-% X - Update figures with new parts
-% X - Update usage and figures to match the enumerations in captions
-% X - Put alignment jig in features figure somehow
-% X - Show the clip flip and final magnet location in the tt making steps figure
-% X - Produce tts with the up to date 3d components and create the tt characteristics figure
-% X - Potentially address these concerns:
-% X  - It might make sense to break down how you get to 100 TWP per hour, and to
-% X    discuss how much time each part takes: 1) dispensing wire, 2) twisting wire 3)
-% X    annealing wire, 3) separating and cutting the leads to the correct length.
-% X  - Maybe time an expert user?
-% X - Fix Fig. Usage B5.
-% X - Update BOMS to match google sheet
-% X - Remeasure the leaf spring constant
-% X - Try new alignment parts
-% X - Assuming alignment works, put in the figures where required
-% X - Find the correct clip coating material
-% X - Finish tetrode-param table (has XX in table and caption).
-% ? - Add the wire retainers onto the feeder assembly on Fig. 6 and elsewhere
-% X - Add thumb screw to the bobbin assembly (steps 4-6) on Fig. 6 and elsewhere.
-% X - Add relevant open source projects from the stimjim paper to the closing
-%   sentences of discussion
-% X - Finish addressing Ming's comments on figures
-% X - Make sure the rat and mouse CA1 recordings are addressed in the text
-%   somewhere
-%
-% X  - Video of bobbin loading and TT making. This goes on youtube and link in appendix
-%
-% X - Ming and Jakob proof read
-%
-%   - Bioarxiv
-%
-%   - Tweet:
-%   1. Here is my work with @jvoigts, @OpenEphys, and @SpikeGadgets on an open
-%   source, cheap, and fast tetrode making machine (link). We have been using
-%   it in the Wilson and Harnett labs for the past 2 years. It allows you to
-%   make probes quickly and reliably. Some features: (1/6)
-%       >> twitter_banner.png
-%   2. No wire folding! just draw wire it from pre-loaded bobbins. (2/6)
-%        >> pull.mov
-%   3. Auto-aligning, magnetic wire bundle retention mechanism results in
-%   perfectly straight probes every time. (3/6)
-%        >> pull_clip.mov
-%   4. A 3D-printed leaf spring provides constant wire tension during twisting
-%   so you can turn as fast as you want. We use 1000 RPM. Your tetrode
-%   is done in seconds. (5/6)
-%        >> pull_clip.mov
-%   5. New users make about 70 tetrodes an hour.
-%        >> start_to_finish.mov
-%   6. We are gauging interest for distribution on the Open Ephys store. Please
-%   fill out this form if you think you might want one (link). Of course, the
-%   bill of materials construction steps are included in the manuscript if you
-%   just want to make your own! (6/6)
-
 \documentclass[11pt,a4paper]{article}
 
 %\usepackage{draftwatermark}
@@ -80,17 +23,12 @@
 \usepackage{array}
 \usepackage{siunitx}
 
-%\SetWatermarkText{Draft}
-%\SetWatermarkScale{4.5}
-%\SetWatermarkHorCenter{200pt}
-%\SetWatermarkLightness{0.85}
-
 \DeclareFloatFont{small}{\scriptsize} % "scriptsize" is defined by floatrow
 \floatsetup[table]{font=small}
 \linenumbers{}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
-\title{\vspace{-1.5cm} Twister3: a simple and fast microwire twister}
+\title{\vspace{-2.1cm} Twister3: a simple and fast microwire twister}
 
 \author[1,2,5]{Jonathan P. Newman \thanks{jpnewman@mit.edu}}
 \author[1,3,5]{Jakob Voigts}
@@ -129,36 +67,39 @@ data in freely moving animals. They are cheap ($\sim$5--10 USD/m using Sandvik
 PX000004), small enough to cause minimal inflammation, and sufficiently
 biocompatible to be used over many months~\cite{Dhawale2017, Voigts2013}. Their
 contacts are close ($\sim$10--20 $\mu$m) and therefore allow much improved unit
-separability compared to single wire probes~\cite{Gray1995}. They are
-mechanically flexible, such that they move with neural tissue, rather than
-behaving like a rigid, skull-coupled beam. This mitigates
-``drift''~\cite{Rossant2016,Pachitariu2016} and improves long term stability
-compared to with low-density silicon probes\footnote{e.g.
-\url{http://neuronexus.com/products/neural-probes/}}, allowing units to be
-tracked continuously over multi-day timescales~\cite{Dhawale2017}. Although the
+separability compared to single wire probes~\cite{Gray1995}.
+
+Compared to other commonly used electrode types, they are mechanically
+flexible, such that they move with neural tissue, rather than behaving like a
+rigid, skull-coupled beam. This improves long term stability compared to, e.g.,
+silicon
+probes\footnote{e.g.\url{http://neuronexus.com/products/neural-probes/}}, which
+require second-to-second removal of artifacts due to relative shear motion
+(``drift'') in order to obtain classifiable action potential
+waveforms~\cite{Rossant2016,Pachitariu2016, Pachitariu2020}. In contrast, TWPs
+allow units to be tracked continuously over multi-day periods with minutes-long
+time-scale drift correction~\cite{Dhawale2017}, which is less deleterious to
+unit classification than fast drift~\cite{Pachitariu2020}. Although the
 introduction of modern silicon~\cite{Du2011,Jun2017} and carbon-fiber
 probes~\cite{Gillis2018} offer major advances in terms of channel density and
-size, respectively, and rival microwires in terms of mechanical
-flexibility~\cite{Jun2017}, TWPs will remain a ubiquitous recording method for
-the foreseeable future due to their simplicity, good performance, and low cost.
+size, respectively, and polyimide-substrate and mesh-electronics probes provide
+orders of magnitude decreases in mechanical stiffness~\cite{Fu2017}, TWPs will
+remain a ubiquitous recording method for the foreseeable future due to their
+simplicity, ease of implantation, good performance, and low cost.
 
 Although simple to make~\cite{Nguyen2009}, constructing TWPs is a tedious and
 time-consuming process. For modern, easy-to-assemble microdrive
 designs~\cite{Voigts2013}, making TWPs is a rate-limiting step. Typically, TWPs
-are made in three actions~\cite{Nguyen2009}:
-
-\begin{enumerate}
-    \item \textbf{Folding}: insulated tungsten or nickel-chrome (`nichrome')
-        resistance wire is drawn from a spool and folded by hand 1 or 2 times
-        to make stereo- or tetrodes, respectively.
-    \item \textbf{Twisting}: the folded wire is draped over a smooth metal rod.
-        The free end of the wire bundle is loosely coupled to a motor armature
-        using a mechanical\footnote{\url{http://www.open-ephys.org/twister}} or
-        magnetic\footnote{\url{https://neuralynx.com/hardware/tetrode-spinner-2.0}}
-        mechanism. The motor then twists the wire bundle into a helix.
-    \item \textbf{Fusing}: A hot air gun is used to fuse the insulation
-        on the wire helix, forming a springy, implantable probe.
-\end{enumerate}
+are made in three actions~\cite{Nguyen2009}. First insulated tungsten or
+nickel-chrome (`nichrome') resistance wire is drawn from a spool and folded by
+hand 1 or 2 times to make stereo- or tetrodes, respectively. Next, the folded
+wire is draped over a smooth metal rod.  The free end of the wire bundle is
+loosely coupled to a motor armature using a
+mechanical\footnote{\url{http://www.open-ephys.org/twister}} or
+magnetic\footnote{\url{https://neuralynx.com/hardware/tetrode-spinner-2.0}}
+mechanism. The motor then twists the wire bundle into a helix.  Finally, a hot
+air gun is used to melt and fuse the insulation on the wire helix, forming a
+springy, implantable probe.
 
 Recently,
 SpikeGadgets\footnote{\url{http://www.spikegadgets.com/main/home.html}; Note:
@@ -174,11 +115,11 @@ clean. Despite these advantages, the high-price of its custom-designed
 components ($\sim$10,000 USD) and complexity of this device has hampered its
 adoption. Inspired by the SpikeGadgets design, we collaborated to create an
 open-source twisting machine that is approximately ten times cheaper and ten times faster
-(Fig.~\ref{f:design-features} (A)). Our device uses a high-speed stepping motor
+(Fig.~\ref{f:design_features} (A)). Our device uses a high-speed stepping motor
 and modern micro-stepping driver to increase twisting speed while maintaining
 precise control of motor acceleration and smooth motor actuation. A new
 counter-balanced, auto-aligning spring system provides constant tension on
-tetrode wire during twisting. Our design allows a moderately trained ($\sim$1
+wire during twisting. Our design allows a moderately trained ($\sim$1
 hr of experience with device) operator to make $\sim$70 TWPs per hour.
 
 \begin{figure}
@@ -204,12 +145,8 @@ hr of experience with device) operator to make $\sim$70 TWPs per hour.
     \textbf{(D)} \textit{(left)} Wire quick draw mechanism. \textit{(right)} Isolated
     single bobbin indicating the wire tension, due to the leaf spring in (C),
     and counter stiction due to the adjustable torsional spring.}
-\label{f:design-features}
+\label{f:design_features}
 \end{figure}
-
-%TODO: The procedure is: 1) manually lft spring beyond this point, 2) attach TWP
-%bundle and clip 3) release spring, this evenly pulls the TWB bundle down to the
-%point where the spring force counteracts the bobbin stiction.
 
 Here we present descriptions of how this device works, materials and assembly
 information, and electronics designs. We provide detailed usage
@@ -237,16 +174,18 @@ quickly. We aimed for <10 seconds of twisting time (time when motor is in
 motion) per TWP.\@ Assuming 100 total revolutions (upper estimate for tetrodes)
 this translates to an average turn rate of 600 RPM.\@ Because previous methods
 rely on loose motor coupling, they were unsuitable to meet our speed
-requirements. The high centripetal forces involved in rapid turning inevitably
-leads to instability of the coupling mechanism, causing the bundle to vibrate
-wildly. Therefore, we sought to rigidly constrain the motor and wire
-bundle in the turning plane, but still maintain freedom in the axial direction
-to allow bundle tensioning and shortening during the turning process. To meet
-this goal, we made use of selective laser-sintered polyether block amide (PEBA)
-to create a monolithic, combined leaf spring/wire-retention mechanism
-(Fig.~\ref{f:design-features} (B)). PEBA provides rubber-like mechanical
-qualities resulting in a spring-constant low enough for use with tetrode wire
-($\sim$32 mN/mm in the relevant range of motion (Fig.~\ref{f:design-features}
+requirements. For example, the SpikeGadgets machine, original Open Ephys
+Twister, and Neuralynx Spinner-2.0 are limited to approximately 60 RPM. The
+high centripetal forces involved in rapid turning inevitably leads to
+instability of the coupling mechanism, causing the bundle to vibrate wildly.
+Therefore, we sought to rigidly constrain the motor and wire bundle in the
+turning plane, but still maintain freedom in the axial direction to allow
+bundle tensioning and shortening during the turning process. To meet this goal,
+we made use of selective laser-sintered polyether block amide (PEBA) to create
+a monolithic, combined leaf spring/wire-retention mechanism
+(Fig.~\ref{f:design_features} (B)). PEBA provides rubber-like mechanical
+qualities resulting in a spring-constant low enough for use with microwire
+($\sim$32 mN/mm in the relevant range of motion (Fig.~\ref{f:design_features}
 (C)).
 
 \subsection{Auto-aligning Wire/Motor Interface}
@@ -256,11 +195,15 @@ insulating shrink wrap. The bundle is then drawn towards the motor while the
 leaf spring is lifted with with the user's free hand. While the leaf spring is
 under tension, the alligator clip is attached to a strong neodymium magnet on
 the leaf spring assembly, which provides the bundle-to-motor linkage
-(Fig.~\ref{f:design-features} (A, B)). During this process, a 3D-printed
-alignment jig on top of the magnet automatically guides the microwire bundle
-in line with the motor's axis of rotation. The leaf spring is then slowly
-lowered until it reaches equilibrium with upward wire tension. At this point
-the motor can be turned.
+(Fig.~\ref{f:design_features} (A, B)). During this process, a 3D-printed
+alignment jig on top of the magnet automatically guides the microwire bundle in
+line with the motor's axis of rotation. This alignment jig must be made from a
+material that can withstand the high temperature of the hot air during the
+fusing process and is smooth enough to ensure it does not snag the microwire as
+it guides it into position. We have found that 3D-printed rhodium-plated brass
+works very well for this purpose. The leaf spring is then slowly lowered until
+it reaches equilibrium with upward wire tension. At this point the motor can be
+turned.
 
 Because of print tolerances and the fact that the leaf spring does not deform
 exactly vertically, the resting position of wire bundle will likely not be
@@ -268,7 +211,7 @@ perfectly co-linear with the motor axle. To account for this, the motor mount
 consists of a two pieces: the base, which is rigidly concentric with the motor
 shaft, and an alignment plate. The alignment plate is friction fitted within
 the base and provides $\sim$2 mm of omnidirectional planar adjustment
-(Fig.~\ref{f:design-features} (B)). This plate should be moved until the
+(Fig.~\ref{f:design_features} (B)). This plate should be moved until the
 resting position of the wire bundle is in line with the motor axis.
 
 This wire attachment mechanism has two advantages over existing designs. First
@@ -284,10 +227,10 @@ drawn and attached to the motor quickly. Ideally, this process should occur
 with as few separate actions being taken by the operator as possible. To
 facilitate the rapid draw of wire from stock spools, we designed a torsion
 spring-based feeding assembly that allows wire to be quickly drawn from stock
-feeder bobbins (Fig.~\ref{f:design-features} (C)). This mechanism applies
-enough friction to feeder bobbins to counter increased wire tension during a
-twist, transferring all slack compensation to the leaf spring
-(Fig.~\ref{f:design-features} (B)). The holding (stiction) force of this
+feeder bobbins (Fig.~\ref{f:design_features} (C)).
+This mechanism applies enough friction to feeder bobbins to counter increased
+wire tension during a twist, transferring all slack compensation to the leaf
+spring (Fig.~\ref{f:design_features} (B)). The holding (stiction) force of this
 mechanism is adjustable to account for the elastic deformation of different
 wire materials. We have found that, when working with standard tetrode
 wire\footnote{Polyimide-coated nichrome; \diameter12.7$\mu$m}, the 2nd stiction
@@ -302,7 +245,7 @@ to used a bipolar stepper motor to perform wire twisting. We have found that,
 due to their discretized motion, stepper motors can vibrate resonantly with
 taut microwire, resulting in irregular twists and wire damage. To overcome
 this issue, we drive our motor using an advanced microstepping driver
-(Fig.~\ref{f:ctrl-box} (A));
+(Fig.~\ref{f:ctrl_box} (A));
 \href{https://www.trinamic.com/products/integrated-circuits/details/tmc2100/}{Trinamic
 TMC2130}). In our case, we use 200 steps/revolution (\ang{1.8})
 motor. Microstep commands from the microcontroller are provided at 16
@@ -323,7 +266,7 @@ dynamics.
     operation.
     \textbf{(B)} Control box with callouts showing features, connections, and
     controls.}
-\label{f:ctrl-box}
+\label{f:ctrl_box}
 \end{figure}
 
 We used an Arduino-compatible Teensy
@@ -340,7 +283,7 @@ load wire and make TWPs. This content is aided by an instructional video
 available on YouTube (Appendix~\ref{s:videos}).
 
 \subsection{Using the Control Box}
-The control box (Fig.~\ref{f:ctrl-box} (B)) is powered using a 12V DC
+The control box (Fig.~\ref{f:ctrl_box} (B)) is powered using a 12V DC
 center-positive barrel jack that supplies at least 1.5A. It has a single user
 input: a control knob consisting of a combined quadrature rotary encoder and
 tactile push-button. This knob permits the following user actions:
@@ -356,8 +299,8 @@ tactile push-button. This knob permits the following user actions:
         immediately.
 \end{itemize}
 
-The control box is used to perform two tasks: twisting electrodes (turn mode 0)
-and loading bobbins with microwire (turn mode 1). The turn mode is selected and
+The control box is used to perform two tasks: twisting electrodes (mode 0)
+and loading bobbins with microwire (mode 1). The turn mode is selected and
 changed using the dial on the controller. The selected turn mode is shown in
 the upper right corner of the liquid crystal display (LCD). After a mode is
 selected, all turning parameters (speed, forward and backwards turns) pertain
@@ -368,133 +311,199 @@ bobbins with stock wire.
 
 \subsection{Loading Bobbins}
 Before twisting electrodes, the bobbins on the wire feeder assembly must be
-loaded with microwire (Fig.~\ref{f:usage}A). The following steps detail the
-bobbin loading procedure:
-\begin{enumerate}[noitemsep]
-    \item Remove the wire shield by removing its M6-retention screw.
-    \item Remove one set of bobbins by unscrewing the M3 bolt that serves as
-        the axle.
-    \item Take the bobbins and spacers off the axle.
-    \item Remove any remaining microwire from each bobbin and ensure they
-        are clean of dirt and debris.
-    \item Remove the leaf spring to the base rotor.
-    \item Place a bobbin on the motor using the embedded magnets
-        (Fig.~\ref{f:usage} (A1))
-    \item Adjust the position of the wire guide such that the tip points
-        directly into the center of the wire groove on the bobbin. The tip of
-        the wire guide should be a few millimeters away from this groove
-        (Fig.~\ref{f:usage} (A1)).
-    \item Feed the tetrode wire from the stock spool through the wire guide and
-        wrap once around the bobbin in its center groove
-        (Fig.~\ref{f:usage} (A2)).
-    \item Set the controller to ``mode 1''.
-    \item Select the desired loading speed. We have found that 100 RPM works
-        well for our wire.
-    \item Select the desired number of turns to load the bobbin. The
-        circumference of the bobbin is $\sim$10 cm. The length of wire loaded
-        on the bobbin is therefore $turns \times 10\ cm$. Including wastage,
-        this results in a conservative estimate of 1 TWP per turn
-        (Table~\ref{t:tetrode-param}).
-    \item Start the turn and wait until it is finished. \textit{Be careful not
-        touch moving parts during this process}: the microwire needs to have
-        constant tension to ensure it is properly loaded on the bobbin.
-    \item Repeat the process for the remaining bobbins.
-    \item Put the bobbins back on their axle on the wire feeder assembly. Loose
-        wire ends should point inward on both sides of the assembly.
-    \item Replace the wire shield.
-\end{enumerate}
+loaded with microwire (Fig.~\ref{f:usage}A). The following paragraphs detail
+the bobbin loading procedure. A video of the bobbin loading process is
+available to aid these instructions (Appendix~\ref{s:videos}).
 
-Properly loaded bobbins will have microwire tightly wound around their center
-groove. This relies on carefully adjusting the position of the wire guide such
-that it's tip is located about 1--2 mm from the center groove. The loading
-processes should be monitored as it begins to ensure that microwire is being
-accepted by the bobbin. If there is an issue, pressing the knob on the
+First, the bobbins must be removed from the wire feeder assembly. To do this,
+the wire shield is removed by unscrewing its M6-retention screw as indicated in
+Fig.~\ref{f:feeder_assem} (6). Next, the bobbins are removed by unscrewing the
+M3 bolt that serves as the bobbin axle (Fig.~\ref{f:feeder_assem} (4)). The
+bobbins are then slipped off of each axle.  If the bobbins have any left-over
+microwire, it should be removed and the wire grooves should be examined in to
+ensure they are clean of dirt and debris. They can be wiped with a cotton swab
+and water if they require cleaning.
+
+Next, the 3D-printed leaf spring is removed from the rotor base. Because each
+bobbin has embedded magnets that mate with those on the rotor base, after the
+leaf-spring is removed, a bobbin can be placed onto to rotor base
+(Fig.~\ref{f:usage} (A1)). Once the bobbin is in place and reasonably centered
+using the adjustment plate (Fig.~\ref{f:twister3_assem}(5)), the wire guide
+should be positioned such that its tip points directly into the center of the
+wire groove on the bobbin.  Properly loaded bobbins will have microwire tightly
+wound around their center groove. This relies on carefully adjusting the
+position of the wire guide such that it's tip is located about 1--2 mm from the
+center groove (Fig.~\ref{f:usage} (A1)). After this, wire is feed from from the
+stock spool through the wire guide and wrapped once around the bobbin in its
+center groove (Fig.~\ref{f:usage} (A2)).
+
+Finally, to load wire onto the bobbin, the controller is set to mode 1
+(Fig.~\ref{f:ctrl_box} (B)) and then the desired loading speed and number of
+revolutions are selected. We have found that 100 RPM works well for most wire
+(Fig.~\ref{f:ctrl_box} (B)). The circumference of the bobbin is $\sim$10 cm.
+Therefore, the length of wire loaded on the bobbin is $turns \times 10\ cm$.
+Including wastage, this results in a conservative estimate of 1 TWP per turn
+(Table~\ref{t:tt_param}). After the desired parameters have been entered,
+loading is started by pressing and holding the controller button. \textit{Be
+careful not touch moving parts during this process}: the microwire needs to
+have constant tension to ensure it is properly loaded on the bobbin. The
+loading processes should be monitored as it begins to ensure that microwire is
+being accepted by the bobbin. If there is an issue, pressing the knob on the
 control unit will halt the process so it can be corrected.
+
+Once loading has completed, the process is repeated for the for the remaining
+bobbins.  After each bobbin has be loaded with microwire, they are put back on
+their axle on the wire feeder assembly. Loose wire ends should point inward on
+both sides of the assembly (Fig.~\ref{f:usage} (B2)). Finally, the wire shield
+is replaced (Fig.~\ref{f:feeder_assem} (6)).
 
 \begin{figure}
 \centering
 \includegraphics{./fig/usage.png}
-\caption{\textbf{(A)} Bobbin loading procedure. \textbf{(B)} TWP construction
-procedure. See text for details.}
+\captionsetup{singlelinecheck=off}
+\caption[]{Bobbin loading and TWP creation procedures. 
+
+\textbf{(A) Summary of the bobbin loading procedure. See text for details.}
+\begin{enumerate}[noitemsep]
+    \item The leaf spring is removed and a bobbin is magnetically mated with
+        the rotor. The wire guide is moved into close proximity to the wire
+        groove on the bobbin.
+    \item Wire from the stock spool is threaded through the wire guide and
+        around the bobbin. The control box is then used to load a desired
+        amount of stock wire.
+\end{enumerate}
+
+\textbf{(B) Summary of the TWP construction procedure. See text for details.}
+\begin{enumerate}[noitemsep]
+    \item The leaf spring is attached to the base rotor and the wire guide is
+        moved out of the way.
+    \item The loose wire is alligator clipped and drawn from the bobbins. 
+    \item The user's free hand is used pull up on the twisting attachment's
+        leaf spring until under slight tension.
+    \item The alligator clip is drawn down and flipped 180$^{\circ}$ to meet
+        the magnet within the alignment jig (insets). This procedure improves
+        the alligator clip's grip on the bundle. A twist can then be performed.
+    \item After the twist, wires are fused \textit{starting from point at which they separate
+        towards the bobbins} using a hot air gun.
+    \item The bobbins are simultaneously rolled forward forward to release
+        tension on the wire.
+    \item The loose wire is cut e above the point at which the wires are fused,
+        and the alligator clip is removed from the magnet with a finished TWP.
+    \item The finished TWP is cut into a storage box.
+\end{enumerate}
+}
 \label{f:usage}
 \end{figure}
 
 \subsection{Making Twisted Wire Probes}
-The following steps detail tetrode construction using Twister3. If you are
-interested in making stereotrodes instead of tetrodes, follow the same steps but
-only use two bobbins on opposing sides of the feeder.
+The following steps detail TWP construction using Twister3. If you are
+interested in making stereotrodes instead of tetrodes, follow the same steps
+but only use two bobbins on diagonally opposing sides of the feeder. A video of
+the TWP construction process is available to aid these instructions
+(Appendix~\ref{s:videos}).
 
-\begin{enumerate}[noitemsep]
-    \item Attach the leaf spring to the base rotor (Fig.~\ref{f:usage} (B1))
-    \item Draw the wire down from all of the bobbins and group the tips with
-        your fingers. If one wire is much longer than the others, trim it.
-    \item Clamp the tip of bundle with the alligator clip. The position of the
-        wire bundle in the clip is not important (Fig.~\ref{f:usage} (B2)).
-    \item Flip the clip 180$^{\circ}$ such that the wire bundle wraps around the
-        bottom of the clip and exits its rear face (Fig.~\ref{f:usage} (B3,
-        inset)). This will ensure that the wire does not slip and that the
-        twist alignment jig will keep the bundle exactly concentric with the
-        axis of rotation during twisting.  Keep the clip in your hand while
-        performing the following 2 steps.
-    \item With your free hand, pull up on the twisting attachment's leaf spring
-        until under slight tension, about 1.5 cm (Fig.~\ref{f:usage} (B3)).
-    \item Draw the alligator clip down to meet the magnet on the twisting
-        attachment, feeding the bundle into the alignment jig
-        (Fig.~\ref{f:usage} (B4)). The alligator clip can be rotated before
-        drawing to wrap the wire around it and improve its grip on the bundle.
-    \item Ensure all wires are guided through the center of the alignment jig
-        (Fig.~\ref{f:usage} (B4, inset)) and the loose ends are not interfering
-        with the taught portion of the wire.
-    \item Slowly lower the leaf spring until it is in equilibrium with the
-        upward force produced by the tetrode wire. Each of the wires should be
-        pulled straight. If any wire has slack, its bobbin can be turned
-        backwards slightly until it is taut. Do not let the spring snap back
-        under its tension, as this will leave slack in the wires
-    \item Set the controller to ``mode 0''. Set the desired number of turns and
-        turn speed. We use 900 RRM for our wire. This only needs to be done
-        once, or whenever parameter changes are required.
-    \item Press and hold the knob down to perform a twist.
-    \item When finished, fuse wires \textit{starting from point at which they
-        separate towards the bobbins} using the hot air gun at
-        $\sim$\SI{480}{\celsius} (Fig.~\ref{f:usage} (B5)). We have found that
-        fusing from the bottom will cause the lower portion of the TWP to
-        `absorb' slack from above resulting in a very fine twist pitch and a
-        TWP that is shorter than intended.
-    \item Using two hands, simultaneously roll each of the bobbins forward a
-        bit in order to release tension on the tetrode wire (Fig.~\ref{f:usage}
-        (B6))
-    \item Cut the tetrode wire above the point at which the wires are fused
-        (Fig.~\ref{f:usage} (B7)). Make sure to leave enough free wire for
-        connectorization.
-    \item Pull the alligator clip off the magnet and cut the finished tetrode
-        into a storage box (Fig.~\ref{f:usage} (B8)).
-\end{enumerate}
+If it is not already in place, the leaf spring must be attached to the base
+rotor using its magnetic interface (Fig.~\ref{f:usage} (B1)). With the leaf
+spring in position, wire from each of the bobbins is grouped using a finger
+pitch. The bundle is then clamped using the alligator clip (Fig.~\ref{f:usage}
+(B2), Fig.~\ref{f:other_assem}(B)). The wire bundle does not need to be in a
+certain position within the clip or be tightly grouped Additionally, each wire
+does not need to begin at exactly the same length from the feeder because those
+with more slack will not pull on their bobbin until they it is equal in length
+to the shortest wire. At the point that all wires are drawing slack, they will
+be equidistant from the wire feeder.
 
+Once the wires are clamped in the alligator clip, it is flipped 180$^{\circ}$
+such that the wire bundle wraps around the bottom of the clip and exits its
+rear face (Fig.~\ref{f:usage} (B3, inset)). This will ensure that the wire does
+not slip out of the clip as it is draw from the feeder. Do not worry if the
+wire is not tightly bunched as the twist alignment jig will keep the bundle
+exactly concentric with the axis of rotation during twisting. Using your free
+hand, the twisting attachment's leaf spring is lifted until under slight
+tension, about 1.5 cm (Fig.~\ref{f:usage} (B3)). Then, with the leaf-spring
+raised, the alligator clip is drawn down to meet the magnet on the twisting
+attachment, feeding the bundle into the alignment jig (Fig.~\ref{f:usage}
+(B4)). After the clip is magnetically mated, the leaf spring is smoothly
+lowered until it is in equilibrium with the upward force produced by the wire.
+Each of the wires should be pulled straight. Do not let the spring snap back
+under its tension, as this will leave slack in the wires. If any wire has
+slack, its bobbin can be turned backwards slightly until it is taut. Finally,
+ensure all wires are guided through the center of the alignment jig
+(Fig.~\ref{f:usage} (B4, inset)) and the loose ends are not interfering with
+the taught portion of the wire. If so, they should be cut before performing a
+twist.
+
+Before performing the first twist in a session, ensure that the alignment plate
+has been adjusted so that the point at which the wire exits the alignment jig
+is co-axial with the motor shaft (Fig.~\ref{f:twister3_assem} (5)). To do this,
+adjust the position of the plate until until the point at which the wires enter
+the alignment jig entry point does not "wobble" with respect to a steady
+background object when the motor is manually turned back and forth. This should
+only need to be done once per session. After alignment, the controller is set
+to mode 0 and the desired number of turns and turn speed are selected
+(Fig.~\ref{f:ctrl_box}(B)). We use 900 RRM for our wire
+(Table~\ref{t:tt_param}). These settings only need to be entered once because
+they are saved to non-volatile memory by the controller every time they are
+changed. The button is then pressed and held to start a twist.
+
+After the twist is complete, the wires are fused using hot air. The exact
+parameters of the hot air gun will dependent on the melting point of microwire
+insulation material. For polyimide, we have found that 480
+$\sim$\SI{480}{\celsius} is a good temperature. We have found that the air flow
+is not critical, but should not be so high that it deforms the taught wire
+during the fusing process. Settings for our hot air gun
+(Table~\ref{t:elec_bom}) lab are provided in Table~\ref{t:tt_param}.
+
+Once the air gun has reached a stable temperature, the nozzle is held $\sim$5
+mm from the from the point at which the twisted microwires separate towards the
+feeder bobbins (Fig.~\ref{f:usage} (B5)). It is then moved downward slowly and
+smoothly ($\sim$2 cm/s) until it reaches the wire alignment jig. The direction
+is then reversed and it is raised until the nozzle returns to its initial
+position at the wire separation point. The nozzle is then moved away from the
+wire. Starting from the top and fusing downward is important: we have found
+that fusing from the bottom and moving upwards will cause the lower portion of
+the TWP to `absorb' slack from above resulting in a very fine twist pitch and a
+TWP that is shorter than intended.
+
+After wire fusing, both hands are used to simultaneously roll each of the
+bobbins forward until the leaf spring relaxes and there is no tension on the
+microwire (Fig.~\ref{f:usage} (B6)). The loose wire above the fused TWP is
+then cut using scissors (Fig.~\ref{f:usage} (B7)). When performing this cut,
+make sure to leave enough free wire for connectorization. Finally, the
+alligator clip is removed from the magnet in the wire alignment jig and  the
+finished TWP is cut into a storage box (Fig.~\ref{f:usage} (B8)). The process
+can then be repeated for the next TWP.
+
+\subsection{Selecting Device Parameters}
 Choosing twisting parameters will require some experimentation in order to
 produce TWPs with the desired geometric and mechanical properties given the
 user's choice of wire, implant type, and animal model. In our labs, we use
 Twister3 to make tetrodes for microdrive implants in both mice and rats. The
-operation settings that we use are shown in Table~\ref{t:tetrode-param}.  Two
-settings of note are the height of the wire feeder above the motor assembly,
-which determines the probe length and microwire twist pitch and the bobbin
-stiction threshold which determines the wire tension during twisting and
-drawing.  Figure~\ref{f:trode-char} shows the effect of changing the wire
-feeder height on resulting tetrode characteristics. Although lowering the
-feeder closer to the motor, and therefore increasing the angle of wire
-divergence from the axis of rotation does decrease twist pitch and probe length
-for a given number of turns, the buckling point (Fig.~\ref{f:trode-char}) and
-stiffness (Fig.~\ref{f:trode-char}) of tetrodes across feeder heights are
-remarkably stable.
+operation settings that we use are shown in Table~\ref{t:tt_param}. 
+
+Two settings of note are the height of the wire feeder above the motor
+assembly, which determines the probe length and microwire twist pitch and the
+bobbin stiction threshold which determines the wire tension during twisting and
+drawing. Figure~\ref{f:trode_char} shows the effect of changing the wire
+feeder height on resulting tetrode characteristics for 12.7 $\mu$m diameter,
+polyimide coated nichrome and 0.6 $\mu$m, polyimide coated nichrome mircowire
+types. For both wire types, lowering the feeder closer to the motor, and
+therefore increasing the angle of wire divergence from the axis of rotation
+does decrease twist pitch and probe length for a given number of turns.
+However, the buckling point (Fig.~\ref{f:trode_char}) and stiffness
+(Fig.~\ref{f:trode_char}) of tetrodes across feeder heights for each material
+are remarkably stable. Probe stiffness across materials and wire diameters is
+very different, as expected.
 
 To test probe functionality, we produced tetrodes using the device settings in
-Table~\ref{t:tetrode-param}. Using procedures that were approved by the
+Table~\ref{t:tt_param}. Using procedures that were approved by the
 Committee on Animal Care of Massachusetts Institute of Technology and followed
 the ethical guidelines of the US National Institutes of Health, these tetrodes
 were gold plated~\cite{Nguyen2009} and used in combination with microdrive
 assemblies~\cite{Voigts2013,Kloosterman2009} to obtain recordings in the
 pyramidal cell layer of CA1 of mice and rats. As expected, these tetrodes
 reliably produced characteristic LFP and multiple, well-isolated units in both
-mice (Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
+mice (Fig.~\ref{f:trode_char}(D)) and rats (Fig.~\ref{f:trode_char}(E)).
 
 \begin{table}[!htbp]
 
@@ -505,9 +514,9 @@ mice (Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
     tension. \small\textsuperscript{*}Using the hot air station specified in
     the bill of materials, this is the lowest setting used in combination with
     8 mm diameter nozzle \small\textsuperscript{$\dagger$}Mean $\pm$ standard
-    deviation over three novice users (Fig.~\ref{f:tt-time})
+    deviation over three novice users (Fig.~\ref{f:tt_time})
 }
-\label{t:tetrode-param}
+\label{t:tt_param}
 
 \begin{tabular}{rlP{3cm}P{3cm}}
 \toprule
@@ -539,27 +548,33 @@ mice (Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
 \begin{figure}
 \centering
 \includegraphics{./fig/tt-mech.png}
-\caption{Tetrode characteristics for different twist pitches.
-    \textbf{(A)} \textit{(left)} Feeder height versus twist pitch and probe
-    length for the tetrodes in this figure. All other construction parameters
-    were kept the same as Table~\ref{t:tetrode-param}. Circled row indicates
-    the parameters used in the tetrode used to create panel (D).
-    \textit{(right)} Diagram of the mechanical test. Tetrodes were attached to a rigid column
-    and the exposed portion cut to a length $L$. The rigid column was lowered
-    in small increments using a micromanipulator onto a precision scale and the
-    restoring force was measured to find the buckling point.
+\caption{Tetrode characteristics for different twist pitches and wire types.
+    \textbf{(A)} \textit{(right)} Diagram of the mechanical test. Tetrodes were
+    attached to a rigid column and the exposed portion cut to a length $L$. The
+    rigid column was lowered in small increments using a micro-manipulator onto
+    a precision scale and the resulting force was measured to find the buckling
+    point. \textit{(middle)} Feeder height versus twist pitch, probe length,
+    diameter, and average stiffness across exposed lengths when using nichrome
+    or tungsten microwire of different diameters. Aside from the feeder height,
+    all other construction parameters were kept the same as the rat column of
+    Table~\ref{t:tt_param}. The circled row indicates the parameters used to
+    create the tetrodes that produced the data in panels (D) and (E).
+    \textit{(right)} Micrographs of sections of probe shanks for each twist
+    pitch and material presented in the table. Each arrow-line is a quarter
+    pitch.
     \textbf{(B)} \textit{(left)} Compressive force versus depth lowered
-    ($\delta L$) onto a rigid surface.  Each line is a single tetrode sample
-    cut to one of 5 exposed lengths ($L$ = 25, 20, 15, 10, and 5 mm). Data
-    point symbols correspond to the table in (A) for various probe lengths.
-    The buckling force (value at which there is no increas in restorative force
-    with $\delta L$) is length dependent. Different exposed probe lengths form
-    clear groupings with the bucking force increasing as the probe length gets
-    shorter. \textit{(right)} Buckling forces for each sample on a log scale.
-    The buckling force is clearly grouped for each probe length but is not
-    affected by twist pitch.
-    \textbf{(C)} Stiffness versus probe length for each of the samples tested.
-    Of the parameters tested, longer, wide-pitch TWPs tended to be stiffest.
+    ($\delta L$) onto a rigid surface. Each line is a single tetrode sample cut
+    to one of 5 exposed lengths ($L$ = 25, 20, 15, 10, and 5 mm). Data point
+    symbols correspond to the nichrome portion of table in (A) for various
+    probe lengths. The buckling force (value at which there is no increase in
+    restorative force with $\delta L$) is length dependent. Different exposed
+    probe lengths form clear groupings with the bucking force increasing as the
+    probe length gets shorter. \textit{(right)} Buckling forces for each sample
+    on a log scale.  The buckling force is clearly grouped for each probe
+    length but is not affected by twist pitch.
+    \textbf{(C)} Stiffness versus probe length for each of the nichrome samples
+    tested in (A). Of the parameters tested, longer, wide-pitch TWPs tended to
+    be stiffest.
     \textbf{(D)} Example hippocampal mouse CA1 recording during sleep.
     \textit{(top)} Raw voltage trace from a single tetrode. Three sharp
     wave-ripple events are clearly visible in the trace. \textit{(bottom)}
@@ -571,19 +586,19 @@ mice (Fig.~\ref{f:trode-char}(D)) and rats (Fig.~\ref{f:trode-char}(E)).
     Recordings in (D) and (E) are skull referenced.
 }
 
-\label{f:trode-char}
+\label{f:trode_char}
 \end{figure}
 
 \subsection{TWP Construction Time}
 To quantify Twister3's speed of operation, we measured the tetrode construction
 time of three users. All users had $\sim$1 hour of experience with the device
-at the time of testing (Fig.~\ref{f:tt-time}). We divided speed measurements
+at the time of testing (Fig.~\ref{f:tt_time}). We divided speed measurements
 into three steps: \textit{(1)} wire clipping/drawing, \textit{(2)} wire
 twisting/fusing, and \textit{(3)} tetrode removal and storage.  Time trials
 were performed using the device parameters shown the ``Mouse'' column of
-Table~\ref{t:tetrode-param}. The motor-in-motion time was constant (9.1 sec at
+Table~\ref{t:tt_param}. The motor-in-motion time was constant (9.1 sec at
 1000 RPM max speed) and therefore incurred a constant offset on step (2), as
-indicated by the dashed line in Figure~\ref{f:tt-time}. All users were able to
+indicated by the dashed line in Figure~\ref{f:tt_time}. All users were able to
 create tetrodes at a pace exceeding 1 tetrode/minute. However, each user had
 slightly different strategies when using the device. For instance, user 3, who
 has large amounts of experience with tasks requiring fine motor skills, was
@@ -603,9 +618,9 @@ clipping and fusing.
     line). \textit{(right)} Timing for each step of tetrode construction.
     The dotted line above the turn and fuse step is the constant motor-in-motion
     time. Twister3 parameters were the same as the ``Mouse'' column of
-    Table~\ref{t:tetrode-param}.
+    Table~\ref{t:tt_param}.
 }
-\label{f:tt-time}
+\label{f:tt_time}
 \end{figure}
 
 \section{Materials and Assembly}
@@ -621,15 +636,15 @@ and error corrections.
 The mechanical portion of Twister3 consists of common hardware, standard
 optomechanical components, and 3D-printed parts. Wherever possible, we used
 standard (and easy to replace) parts. The mechanical bill of materials is shown
-in Table~\ref{t:mech-bom}. In addition to these standard mechanical components,
-several 3D-printed parts are required (Table~\ref{t:3d-bom}). These parts are
+in Table~\ref{t:mech_bom}. In addition to these standard mechanical components,
+several 3D-printed parts are required (Table~\ref{t:3d_bom}). These parts are
 available for direct purchase from third-party 3D-printing services via the
 links provide in the table. After obtaining the required components, the wire
 feeder, wire-guide, and stock-spool assemblies can be constructed by following
-steps detailed Figures~\ref{f:feeder-assem},~\ref{f:other-assem}
-(A),~\ref{f:other-assem} (B), and~\ref{f:other-assem} (C), respectively. After
+steps detailed Figures~\ref{f:feeder_assem},~\ref{f:other_assem}
+(A),~\ref{f:other_assem} (B), and~\ref{f:other_assem} (C), respectively. After
 each of these modules is complete, they are combined into the complete device
-by following the steps presented in Figure~\ref{f:twister3-assem}.
+by following the steps presented in Figure~\ref{f:twister3_assem}.
 
 \begin{figure}
 \centering
@@ -655,7 +670,7 @@ by following the steps presented in Figure~\ref{f:twister3-assem}.
         groove in each bobbin on the other. Repeat for each bobbin.
     \item Install the wire shield above the bobbins using a single M6 screw.
 \end{enumerate}}
-\label{f:feeder-assem}
+\label{f:feeder_assem}
 \end{figure}
 
 \begin{figure}
@@ -692,7 +707,7 @@ by following the steps presented in Figure~\ref{f:twister3-assem}.
 \begin{enumerate}[noitemsep]
     \item Put two pieces of heat shrink tubing over the wire clip jaws.
     \item Shrink into position using the hot air gun. This prevents electrode
-    wire from slipping during a draw.  The clip can then be stuck under the
+    wire from slipping during a draw. The clip can then be stuck under the
     wire alignment jig (Fig.~\ref{f:usage}).
 \end{enumerate}
 
@@ -705,14 +720,14 @@ by following the steps presented in Figure~\ref{f:twister3-assem}.
 \textbf{(D) Stock spool assembly.}
 \begin{enumerate}[noitemsep]
     \item Push a bearing into each of the stock spool bearing cases.
-    \item Push each of the bearing cases into the stock spool of tetrode wire.
+    \item Push each of the bearing cases into the stock spool of microwire.
     \item Push a 40 mm, M3 screw through the two bearings and screw into a mini,
         6 mm diameter optical post.
     \item Push the optical post into a swivel post holder.
 \end{enumerate}
 }
 
-\label{f:other-assem}
+\label{f:other_assem}
 \end{figure}
 \FloatBarrier
 
@@ -735,19 +750,19 @@ by following the steps presented in Figure~\ref{f:twister3-assem}.
         wire guide should be able to extend into the center grove of a wire bobbin
         when it is mounted on the rotor bases for wire reloading.
     \item With the wire-clip mechanism installed, slide the adjustment plate
-        around until the motor axis of rotation (dotted black line) is precisly
+        around until the motor axis of rotation (dotted black line) is precisely
         in line with the wire bundle (red lines). When properly aligned, the apex of
         the wire bundle will appear motionless during motor turning.
 \end{enumerate}
 }
-\label{f:twister3-assem}
+\label{f:twister3_assem}
 \end{figure}
 
 \FloatBarrier
 
 \subsection{Control Electronics}
 The control board is comprised of the following blocks: power regulation,
-motor-driver, microcontroller, and user interface (Fig.~\ref{f:ctrl-box} (A)).
+motor-driver, microcontroller, and user interface (Fig.~\ref{f:ctrl_box} (A)).
 Wherever possible, we used pre-assembled modules (microcontroller, motor
 driver, and LCD display). The bill of materials for this board is shown in
 Table~\ref{t:elec_bom}. Printed circuit board designs and Gerber files are
@@ -763,7 +778,7 @@ Simple Twister\footnote{\url{http://www.open-ephys.org/simple-twister}}, and
 the Neuralynx
 Spinner-2.0\footnote{\url{https://neuralynx.com/hardware/tetrode-spinner-2.0}}
 fall into the first category. The first of these two devices are very cheap and
-simple, and may be ideal for labs who do not need to make many tetrodes and can
+simple, and may be ideal for labs who do not need to make many TWPs and can
 accept some TWP construction variability. However, a general disadvantage with manual
 folding machines is that they are slow. This is due to a  manual folding step
 combined with loose mechanical coupling that requires slow turning speeds.  A
@@ -777,7 +792,7 @@ to boredom.
 
 Aside from slow construction speed, these devices introduce large (and
 uncontrollable) variability in manual wire handling and twist-pitch (which is
-directly linked to electrode compliance (Fig.~\ref{f:trode-char})). Although
+directly linked to electrode compliance (Fig.~\ref{f:trode_char})). Although
 they are cheaper than bobbin-based designs, their manual labor requirements and
 slow operation lead to human-resource requirements that can far outweigh the
 increased material cost of bobbin-based designs.
@@ -856,6 +871,19 @@ use of standard optomechanical and cheap 3D printed parts greatly reduces BOM
 cost and increases ease of acquisition compared to SpikeGadgets design, which
 relies on custom, tight-tolerance machined parts.
 
+A construction step that is not currently addressed by any TWP machine is the
+precision cut used to create the exposed probe tip. The most common "final cut"
+method is to place the TWP in a single groove between the serrations of
+well-maintained, hard (tungsten or carbide-coated) scissors and then
+manually close them~\cite{Nguyen2009,Ferguson2009a}. This typically creates
+TWPs without electrical shorts, but does not result in consistent
+cross-sectional electrode geometry when the tips are viewed using electron
+microscopy~\cite{Ferguson2009a}. More consistent geometry can be obtained by
+performing this cut with the shaft submerged in liquid nitrogen which makes the
+insulating material brittle. However, both of these procedures are tedious and
+variable and therefore lend themselves to automation. Automated TWP
+shearing could perhaps be incorporated into the Twister3 design in the future.
+
 Because TWPs provide a good balance of data quality, ease of use, ease of
 assembly, and low cost, they will continue to be used in \textit{in vivo}
 neurophysiology labs for years to come. Twister3 is a simple device that
@@ -883,13 +911,13 @@ low-cost, open-source tools. We believe this trend will increase the
 accessibility, transparency, and quality of scientific research in
 general~\cite{Siegle2015}.
 
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 The authors gratefully acknowledge Ming-fai Fong for her detailed review of the
 manuscript. Additionally, we thank Marie-Sophie Helene van der Goes and Dimitra
 Vardalaki for their helpful feedback on the device design as well as
 participating in time trial testing. Finally, we thank Hector Penagos for
 providing the tetrode recordings from mice and rats presented in
-Fig.~\ref{f:trode-char} of this manuscript.
+Fig.~\ref{f:trode_char} of this manuscript.
 
 This work was supported by the Center for Brains, Minds and Machines (CBMM),
 MIT, funded by NSF STC award CCF-1231216. JPN was supported by the NIH (NRSA
@@ -898,6 +926,14 @@ Corporation Fund for Research in Computers and Communications at MIT and the
 NIH (1R01NS106031). JV is a Simons Center for the Social Brain at MIT
 postdoctoral fellow and MTH is a Klingenstein-Simons Fellow in Neuroscience, a
 Vallee Foundation Scholar, and a McKnight Scholar.
+
+\section*{Conflicts of Interest Statement}
+JV, JPN and MW are board members of Open Ephys inc., a nonprofit that supports
+the development, standardization, and distribution of open-source tools for
+neuroscience research. The work described in this manuscript is being
+distributed through Open Ephys. None of the authors are receiving any financial
+compensation for their position on the board or for the work described in this
+manuscript.
 
 \medskip
 
