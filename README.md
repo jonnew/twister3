@@ -1,7 +1,8 @@
 # Twister3
 Twister3 is a simple and fast microwire twister from the [Wilson
 Lab](http://web.mit.edu/wilsonlab/) at MIT. It is used to make tetrodes and
-stereotrodes for invasive neural recordings.
+stereotrodes for invasive neural recordings. It can be purchased from the 
+[Open Ephys store](https://open-ephys.org/twister-3).
 
 ![Twister3](paper/fig/design-features/twister3-mechanical.PNG)
 
